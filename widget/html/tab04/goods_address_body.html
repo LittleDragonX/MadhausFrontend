@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title></title>
+	<link href="../../css/Hui.css" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+		input.H-textbox {
+			border-width: 0;
+			color: #999;
+			min-width: 100px;
+		}
+
+		.H-badge {
+			padding-right: 5px;
+			color: #999;
+		}
+
+		.select {
+			text-align: right;
+			vertical-align: middle;
+			border: 0;
+			width: 100%;
+			height: 48px;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			color: #999;
+			cursor: pointer;
+			background-color: white;
+			outline: none;
+			tap-highlight-color: rgba(255, 255, 255, 0);
+			-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+		}
+
+		.select option {
+			direction: rtl;
+		}
+
+		.payActive .H-icon-radio-check {
+			color: #FF7C47;
+		}
+
+		.payActive .H-icon-radio-check:before {
+			content: "\f258";
+		}
+	</style>
+</head>
+
+<body>
+	<div id="itemList" style="display:none;">
+		<div onclick="selectPay(this)" tapmode="" data-type="wxpay" class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-padding-vertical-both-10 H-border-vertical-bottom-margin-both-10-after H-vertical-middle H-touch-active payActive">
+			<span class="H-icon H-display-block H-margin-horizontal-left-10 H-font-size-18">1</span>
+			<div class="H-flex-item H-font-size-16 H-flexbox-vertical H-padding-horizontal-both-10">
+				微信
+			</div>
+			<span class="H-icon H-padding-horizontal-right-10 H-display-block"><i class="H-iconfont H-icon-radio-check H-font-size-28 H-theme-font-color-999 H-vertical-middle"></i></span>
+		</div>
+		<div onclick="selectPay(this)" tapmode="" data-type="alipay" class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-padding-vertical-both-10 H-border-vertical-bottom-margin-both-10-after H-vertical-middle H-touch-active">
+			<span class="H-icon H-display-block H-margin-horizontal-left-10 H-font-size-18">2</span>
+			<div class="H-flex-item H-font-size-16 H-flexbox-vertical H-padding-horizontal-both-10">
+				支付宝
+			</div>
+			<span class="H-icon H-padding-horizontal-right-10 H-display-block"><i class="H-iconfont H-icon-radio-check H-theme-font-color-999 H-font-size-28 H-vertical-middle"></i></span>
+		</div>
+	</div>
+	<div style="height: 48px;"></div>
+	<div class="H-flexbox-horizontal H-box-sizing-border-box" style="position: fixed;bottom:0px;z-index: 10000;">
+		<div tapmode="" onclick="submitBtn()" class="H-flex-item H-center-all H-padding-vertical-both-12 H-font-size-16 H-theme-font-color-white" style="background-color:#ff7c48;">
+			确定
+		</div>
+	</div>
+	<script id="tpl_itemList" type="text/html">
+		[:if(list.length>0){:]
+		[: for (var i=0;i<list.length;i++) { :]
+			<div onclick="selectPay(this)" tapmode="" data-index="[:=(i+1):]" data-id="[:=list[i].id:]" class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-padding-vertical-both-10 [:=(i == 0?'payActive':''):] H-border-vertical-bottom-margin-both-10-after H-vertical-middle H-touch-active">
+			<span class="H-icon H-display-block H-margin-horizontal-left-10 H-font-size-18 color">[:=(i+1):]</span>
+			<div class="H-flex-item H-font-size-16 H-theme-font-color-444 H-flexbox-vertical H-padding-horizontal-both-10">
+				[:=list[i].area:]-[:=list[i].detail_address:]-[:=list[i].receive_person:]-[:=list[i].contact_number:]
+			</div>
+			<span class="H-icon H-padding-horizontal-right-10 H-display-block"><i class="H-iconfont H-icon-radio-check H-theme-font-color-999 H-font-size-28 H-vertical-middle"></i></span>
+			</div>
+			[:}}else{:]
+			<div class="H-padding-vertical-both-20 H-theme-font-color-999 H-font-size-16 H-center-all">暂无数据</div>
+			[:}:]
+	</script>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/H.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/setting.js"></script>
+	<script type="text/javascript">
+		// var id = null;
+		apiready = function() {
+			getItemInfo();
+			api.addEventListener({
+				name: 'loadUserAddressData'
+			}, function(ret, err) {
+				if (ret) {
+					getItemInfo();
+				} else {
+					alert(JSON.stringify(err));
+				}
+			});
+
+		};
+
+		function submitBtn() {
+			var check_id = $('.payActive').attr('data-id');
+			var index = $('.payActive').attr('data-id');
+			api.sendEvent({
+				name: 'getUserAddressData',
+				extra: {
+					id: check_id,
+					index: index
+				}
+			});
+			api.closeWin();
+		};
+
+		function selectPay(obj) {
+			// id = $(obj).attr('data-type');
+			$(obj).addClass('payActive').siblings().removeClass('payActive');
+		};
+
+		function getItemInfo() {
+			var url = '/user/receiver/own/';
+			ajaxs(url, 'get', null, true, function(ret) {
+				if (ret.results) {
+					var html = H.tppl(H.D('#tpl_itemList').innerHTML, {
+						list: ret.results
+					});
+					$('#itemList').html(html).fadeIn(300);
+				} else {
+
+				}
+			}, function(ret, err) {
+				log(ret, true);
+				log(err, true);
+			});
+		};
+	</script>
+</body>
+
+</html>

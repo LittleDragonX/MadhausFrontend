@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>用户登陆</title>
+		<link type="text/css" rel="stylesheet" href="../../css/Hui.css" />
+		<script type="text/javascript" src="../../script/fastclick.js"></script>
+		<script type="text/javascript" src="../../script/common/global.js"></script>
+		<style>
+			body {
+			}
+		</style>
+		<script>
+			if ('addEventListener' in document) {
+				document.addEventListener('DOMContentLoaded', function() {
+					FastClick.attach(document.body);
+				}, false);
+			}
+		</script>
+	</head>
+	<body class="H-height-100-percent H-box-sizing-border-box H-overflow-hidden">
+		<div id="bar" style="height:0px;background:white;"></div>
+		<script type="text/javascript">
+			initBar("#FF9171");
+		</script>
+		<header class="H-header" style="background: url(../../image/header.png) no-repeat left top;background-size: cover;">
+			<span tapmode="" onclick="api.closeWin();" class="H-icon H-position-relative H-display-block H-float-left H-vertical-middle H-theme-font-color-white H-padding-horizontal-both-15 H-z-index-1000"><i class="H-iconfont H-icon-close H-font-size-18 H-vertical-middle"></i></span>
+			<div class="H-flexbox-horizontal H-center-all" style="padding-bottom: 30px;">
+				<img src="../../image/logo.png" class="H-border-radius-12 H-margin-vertical-top-10" style="width:80px;height:80px;" />
+			</div>
+		</header>
+		<div class="fix">
+			<div class="H-border-vertical-top-after H-margin-vertical-top-10">
+				<div class="H-flexbox-horizontal H-padding-horizontal-left-10 H-border-vertical-bottom-margin-both-10-after">
+					<span class="H-icon H-vertical-middle H-padding-horizontal-left-10"><i class="H-iconfont H-icon-phone H-font-size-18 H-vertical-middle H-theme-font-color-999"></i></span>
+					<input id="userName" type="text" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-15 H-theme-background-color-transparent" placeholder="请输入手机号码" />
+				</div>
+				<div class="H-flexbox-horizontal H-padding-horizontal-left-10 H-border-vertical-bottom-after">
+					<span class="H-icon H-vertical-middle H-padding-horizontal-left-10"><i class="H-iconfont H-icon-lock H-font-size-18 H-vertical-middle H-theme-font-color-999"></i></span>
+					<input id="password" type="password" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-15 H-theme-background-color-transparent" placeholder="请输入登录密码" />
+				</div>
+				<div class="H-padding-15 H-margin-vertical-top-10">
+					<button onclick="userLogin()" tapmode="" class="H-button H-width-100-percent H-font-size-15 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-font-color-white H-border-radius-3" style="background-color: #ff7c48;border:1px solid #ff7c48;">
+						登录
+					</button>
+				</div>
+				<div class="H-margin-horizontal-both-15">
+					<span tapmode="" onclick="openWins()" class="H-theme-font-color1 H-float-left H-font-size-14">注册账号</span><span class="H-theme-font-color1 H-float-right H-font-size-14">忘记密码？</span>
+				</div>
+			</div>
+		</div>
+		<div class="H-padding-vertical-bottom-10"></div>
+		<div class="H-theme-font-color-999 H-text-align-center H-padding-vertical-both-10 H-font-size-14">
+			快捷登录
+		</div>
+		<div class="H-flexbox-horizontal H-text-align-center H-padding-vertical-both-15">
+			<div class="H-flex-item">
+				<span class="H-icon H-center-all H-theme-background-color1 H-border-radius-circle H-margin-horizontal-auto" style="height: 42px; width: 42px; "><i class="H-iconfont H-icon-qq H-font-size-22 H-theme-font-color-white"></i></span>
+				<label class="H-display-block H-font-size-13 H-margin-vertical-top-5">QQ</label>
+			</div>
+			<div class="H-flex-item">
+				<span class="H-icon H-center-all H-theme-background-color9 H-border-radius-circle H-margin-horizontal-auto" style="height: 42px; width: 42px; "><i class="H-iconfont H-icon-weixin H-font-size-22 H-theme-font-color-white"></i></span>
+				<label class="H-display-block H-font-size-13 H-margin-vertical-top-5">微信</label>
+			</div>
+			<div class="H-flex-item">
+				<span class="H-icon H-center-all H-border-radius-circle H-margin-horizontal-auto" style="height: 42px; width: 42px;background-color: #F18432;"><i class="H-iconfont H-icon-weibo H-font-size-22 H-theme-font-color-white"></i></span>
+				<label class="H-display-block H-font-size-13 H-margin-vertical-top-5">微博</label>
+			</div>
+		</div>
+		<script	type="text/javascript" src="../../script/H.js"></script>
+		<script type="text/javascript" src="../../script/setting.js"></script>
+		<script type="text/javascript">
+			var UILoading = null, loadId = 0;
+			apiready = function() {
+				UILoading = api.require('UILoading');
+			};
+			function showLoading() {
+				UILoading.flower({
+					center : {
+						x : api.winWidth / 2.0,
+						y : api.winHeight / 2.0
+					},
+					mask : 'rgba(0,0,0,0)',
+					size : 30,
+					fixed : true
+				}, function(ret) {
+					if (ret)
+						loadId = ret.id;
+				});
+			};
+			function closeLoading() {
+				UILoading.closeFlower({
+					id : loadId
+				});
+			};
+			function userLogin() {
+				var username = document.getElementById("userName").value;
+				var password = document.getElementById("password").value;
+				if (username == '' || password == '') {
+					api.toast({
+						msg : '手机号和密码不能为空',
+						duration : 2000,
+						location : 'bottom'
+					});
+					return;
+				}
+				return;
+				showLoading();
+				var url = '/login/api/login/';
+				var data = {
+					username : username,
+					password : password
+				};
+				http(url, 'post', data, function(ret) {
+					api.openWin({
+						rect : {
+							x : 0,
+							y : 0,
+							w : 'auto',
+							h : 'auto'
+						},
+						name : 'main',
+						url : 'html/main.html',
+						animation : {
+							type : "fade",
+							duration : 300
+						},
+						bounces : false,
+						reload : true,
+						slidBackEnabled : false
+					});
+				}, closeLoading);
+			};
+			function openWins() {
+				H.openWin('register_body', 'register_body.html', null, {
+					animation : {
+						type : "fade",
+						subType : "from_bottom",
+						duration : 0
+					}
+				});
+			};
+		</script>
+	</body>
+</html>

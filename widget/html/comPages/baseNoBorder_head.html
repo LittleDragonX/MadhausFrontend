@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>头部-基本页面</title>
+		<link rel="stylesheet" type="text/css" href="../../css/Hui.css" />
+		<script type="text/javascript" src="../../script/global.js"></script>
+		<style>
+		</style>
+		<script type="text/javascript">
+			initTopBar('#fff',1);
+		</script>
+	</head>
+	<body class="H-flexbox-vertical">
+		<header class="H-header  H-theme-background-color-white" id="header">
+			<span tapmode="" onclick="goBack()" class="H-icon H-position-relative H-display-inline-block H-float-left H-vertical-middle headColor H-padding-horizontal-both-12 H-z-index-100"><i class="H-iconfont H-icon-arrow-left H-font-size-18 H-vertical-middle"></i><label class="H-display-block H-vertical-middle H-font-size-15"></label></span>
+			<div id="title" class="H-header-title H-center-all H-font-size-18 H-text-show-row-1 headColor H-position-absolute H-width-100-percent H-font-weight-bold"></div>
+		</header>
+		<script type="text/javascript">
+			apiready = function() {
+				if (api.systemType == 'ios') {
+					api.setStatusBarStyle({
+						style : 'dark'
+					});
+				}
+				document.getElementById("title").innerHTML = api.pageParam.title;
+				openFrames();
+			};
+			function openFrames() {
+				api.openFrame({
+					name : api.pageParam.name,
+					url : api.pageParam.url,
+					rect : {
+						x : 0,
+						y : 44 + parseInt(getStorage("statusBar")),
+						w : 'auto',
+						h : api.winHeight - (44 + parseInt(getStorage("statusBar")))
+					},
+					bounces : false,
+					vScrollBarEnabled : true,
+					hScrollBarEnabled : false,
+					//useWKWebView : true
+				});
+			};
+			function goBack() {
+				api.closeWin();
+			};
+		</script>
+	</body>
+</html>

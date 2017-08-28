@@ -1,0 +1,273 @@
+
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>slid</title>
+	<link href="../css/Hui.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="http://at.alicdn.com/t/font_354149_a6vmvwdw4m927qfr.css">
+	<style type="text/css">
+		body {
+			/*background: url(../image/bg/bg003.jpg) no-repeat left top;
+				background-size: cover;
+				-webkit-background-size: cover;*/
+		}
+
+		.userInfo {
+			background: url(../image/icon/userbg@3x.png) no-repeat left top;
+			background-size: cover;
+			-webkit-background-size: cover;
+			height: 131px;
+		}
+
+		.content {
+			/*background-color: rgba(0,0,0,0.2);*/
+			background-color: #181C24;
+		}
+
+		.H-iconfont,
+		.H-flex-item,
+		.userName,
+		.item-list {
+			color: rgba(255, 255, 255, 0.7);
+		}
+
+		.H-touch-active:active {
+			background-color: rgba(0, 0, 0, 0.1);
+		}
+
+		.H-border-vertical-bottom-after:after,
+		.H-border-vertical-bottom-margin-left-10-after:after,
+		.H-border-vertical-bottom-margin-right-10-after:after,
+		.H-border-vertical-bottom-margin-both-10-after:after {
+			border-bottom: 1px solid #504f4f;
+		}
+	</style>
+</head>
+
+<body class="H-height-100-percent H-flexbox-vertical" id="bdy">
+	<div id="head" class="H-text-list H-flexbox-horizontal H-theme-font-color-white H-vertical-middle H-padding-vertical-both-10 userInfo">
+		<div onclick="openUserSetting()" tapmode="" class="H-padding-horizontal-left-10 H-padding-vertical-both-15">
+			<img id="userImg" src="../image/userImg/nouser.png" onerror="this.src='../image/userImg/nouser.png'" class="H-height-50 H-vertical-align-middle H-width-50 H-border-radius-circle" />
+		</div>
+		<div class="H-flex-item H-font-size-16 H-padding-horizontal-both-10">
+			<span id="userName" class="H-icon H-padding-horizontal-left-3 userName">海阔天空</span>
+			<span class="H-display-block H-font-size-13"> <span class="H-display-inline-block"> <label class="H-theme-font-color-white H-font-size-12 H-border-radius-3" style="background-color: rgba(0, 0, 0, 0.22);padding:2px 5px;">已签到100天</label> <label class="H-theme-font-color-white H-font-size-12 H-border-radius-3" style="background-color: rgba(0, 0, 0, 0.22);padding:2px 5px;">排名20</label> </span>			</span>
+		</div>
+	</div>
+	<div class="content H-main H-flex-item H-padding-horizontal-left-15 H-padding-horizontal-right-5 H-position-relative H-overflow-hidden H-overflow-scrolling H-center-alls">
+		<div style="width:100%;padding-top:50px;">
+			<!-- <div tapmode="" onclick="openUserCenter(0)" class="H-text-list H-flexbox-horizontal H-vertical-middle H-touch-active">
+				<span class="H-icon H-display-block"><i class="H-iconfont H-icon-money2 H-font-size-20 H-vertical-middle"></i></span>
+				<div class="H-flex-item item-list H-padding-horizontal-left-10 H-font-size-16 H-padding-vertical-both-12">
+					我的小纸条
+				</div>
+				<span class="H-vertical-middle H-padding-horizontal-both-10 H-theme-font-color-999"><label class="H-font-size-18 H-padding-horizontal-right-3"></label><i class="H-iconfont H-icon-arrow-right H-font-size-14 H-display-block"></i></span>
+			</div> -->
+			<div tapmode="" onclick="openUserCenter(1)" class="H-text-list H-flexbox-horizontal H-vertical-middle  H-touch-active">
+				<span class="H-icon H-display-block"><i class="H-iconfont icon-gerenzhongxin-wodewan H-font-size-22 H-vertical-middle"></i></span>
+				<div class="H-flex-item item-list H-padding-horizontal-left-10 H-font-size-17 H-padding-vertical-both-20">
+					我的玩
+				</div>
+				<!-- <span class="H-vertical-middle H-padding-horizontal-both-10 H-theme-font-color-999"><label class="H-font-size-18 H-padding-horizontal-right-3"></label><i class="H-iconfont H-icon-arrow-right H-font-size-14 H-display-block"></i></span> -->
+			</div>
+			<div tapmode="" onclick="openUserCenter(2)" class="H-text-list H-flexbox-horizontal H-vertical-middle  H-touch-active">
+				<span class="H-icon H-display-block"><i class="H-iconfont icon-gerenzhongxin-wodeyue H-font-size-22 H-vertical-middle"></i></span>
+				<div class="H-flex-item item-list H-padding-horizontal-left-10 H-font-size-16 H-padding-vertical-both-20">
+					我的约
+				</div>
+				<!-- <span class="H-vertical-middle H-padding-horizontal-both-10 H-theme-font-color-999"><label class="H-font-size-18 H-padding-horizontal-right-3"></label><i class="H-iconfont H-icon-arrow-right H-font-size-14 H-display-block"></i></span> -->
+			</div>
+			<div tapmode="" onclick="openUserCenter(3)" class="H-text-list H-flexbox-horizontal H-vertical-middle  H-touch-active">
+				<span class="H-icon H-display-block"><i class="H-iconfont icon-gerenzhongxin-wodeliao H-font-size-22 H-vertical-middle"></i></span>
+				<div class="H-flex-item item-list H-padding-horizontal-left-10 H-font-size-17 H-padding-vertical-both-20">
+					我的聊
+				</div>
+				<!-- <span class="H-vertical-middle H-padding-horizontal-both-10 H-theme-font-color-999"><label class="H-font-size-18 H-padding-horizontal-right-3"></label><i class="H-iconfont H-icon-arrow-right H-font-size-14 H-display-block"></i></span> -->
+			</div>
+			<div tapmode="" onclick="openUserCenter(4)" class="H-text-list H-flexbox-horizontal H-vertical-middle  H-touch-active">
+				<span class="H-icon H-display-block"><i class="H-iconfont icon-gerenzhongxin-wodemai H-font-size-22 H-vertical-middle"></i></span>
+				<div class="H-flex-item item-list H-padding-horizontal-left-10 H-font-size-17 H-padding-vertical-both-20">
+					我的买
+				</div>
+				<!-- <span class="H-vertical-middle H-padding-horizontal-both-10 H-theme-font-color-999"><label class="H-font-size-18 H-padding-horizontal-right-3"></label><i class="H-iconfont H-icon-arrow-right H-font-size-14 H-display-block"></i></span> -->
+			</div>
+			<div id="manage" tapmode="" onclick="openAdmin()" class="H-text-list H-flexbox-horizontal H-vertical-middle H-touch-active" style="display:none;">
+				<span class="H-icon H-display-block"><i class="H-iconfont H-icon-safe H-font-size-22 H-vertical-middle"></i></span>
+				<div class="H-flex-item item-list H-padding-horizontal-left-10 H-font-size-17 H-padding-vertical-both-20">
+					切换管理后台
+				</div>
+				<!-- <span class="H-vertical-middle H-padding-horizontal-both-10 H-theme-font-color-999"><label class="H-font-size-18 H-padding-horizontal-right-3"></label><i class="H-iconfont H-icon-arrow-right H-font-size-14 H-display-block"></i></span> -->
+			</div>
+		</div>
+	</div>
+	<footer class="content H-footer H-flexbox-horizontal" id="footer">
+		<div onclick="openUserSetting()" tapmode="" class="H-flex-item H-center-all H-text-align-center H-theme-font-color-999 H-touch-active">
+			<span class="H-icon H-display-block H-line-height-normal"><i class="H-iconfont icon-gerenzhongxin-fankui H-font-size-22"></i></span>
+			<strong class="H-font-size-17 H-padding-horizontal-left-5 H-display-block H-font-weight-normal H-center-all">反馈</strong>
+		</div>
+		<div onclick="openSystemSetting()" tapmode="" class="H-flex-item H-center-all H-text-align-center H-theme-font-color-999 H-touch-active">
+			<span class="H-icon H-display-block H-line-height-normal"><i class="H-iconfont icon-gerenzhongxin-shezhi H-font-size-22"></i></span>
+			<strong class="H-font-size-17 H-padding-horizontal-left-5 H-display-block H-font-weight-normal H-center-all">设置</strong>
+		</div>
+	</footer>
+	<script src="../script/H.js" type="text/javascript"></script>
+	<script src="../script/common/global.js" type="text/javascript"></script>
+	<script src="../script/zepto.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		var userInfos = null;
+		H.ready(function() {
+			var clientWidth = document.body.clientWidth;
+			document.body.style.width = clientWidth * 0.777 + "px";
+			//				document.body.style.width = (clientWidth - 100) + "px";
+			H.fixStatusBar(function(offset) {}, '#head');
+			userInfos = getStorage("userInfo");
+			intLogin(userInfos);
+			api.addEventListener({
+				name: 'userLoginData'
+			}, function(ret, err) {
+				userInfos = getStorage("userInfo");
+				intLogin(userInfos);
+			});
+		});
+
+		function intLogin(data) {
+			if (data == null) {
+				$('#userImg').attr('src', '../image/userImg/nouser.png');
+				$('#userName').html('点击登录');
+				// $('#manage').css({
+				// 	"display": "none"
+				// });
+			} else {
+				$('#userImg').attr('src', data.user.avatar ? data.user.avatar : '../image/userImg/nouser.png');
+				$('#userName').html(data.user.nickname);
+				// $('#manage').css({
+				// 	"display": "-webkit-box"
+				// });
+			}
+		};
+
+		function openAdmin() {
+			H.openWin('indexAdmin', 'admin/index.html', null, {
+				animation: {
+					type: api.systemType == 'ios' ? 'cube' : 'fade',
+					subType: 'from_right',
+					duration: api.systemType == 'ios' ? 0 : 300
+				}
+			});
+		};
+
+		function setting() {
+			H.openWin('setting_head', 'user/common_head.html', {
+				title: '设置',
+				url: 'setting_body.html',
+				frameName: 'setting_body'
+			});
+		};
+		//用户退出登录
+		function logout() {
+			rmStorage('userInfo');
+			api.sendEvent({
+				name: 'userCenterInfo',
+				extra: 0
+			});
+			H.toast("您已成功安全退出账号");
+		};
+
+		function openLogin() {
+			if (userInfos == null) {
+				H.openWin('login_head', 'user/login_register_head.html', {
+					title: '用户登录',
+					url: 'login_body.html',
+					frameName: 'login_body'
+				});
+			} else {
+				H.openWin('common_head', 'user/common_head.html', {
+					title: '个人信息',
+					url: 'userInfo_body.html',
+					frameName: 'userInfo_body'
+				});
+			}
+		};
+
+		function openWins(title, name, url) {
+			H.openWin('base_head_' + name, 'widget://html/comPages/base_head.html', {
+				title: title,
+				name: name,
+				url: url
+			});
+		};
+		//设置
+		function openUserSetting() {
+			openWins('个人设置', 'userCenter_body', '../user/userCenter_body.html');
+		};
+
+		function openSystemSetting() {
+			if (userInfos) {
+				openWins('个人设置', 'userCenter_body', '../user/userCenter_body.html');
+			} else {
+				openWins('登录', 'user_login_body', '../user/user_login_body.html');
+			}
+		};
+		//个人中心
+		function openUserCenter(type) {
+			if (type == 0) {
+				H.openWin('note_head', 'user/note_head.html', {
+					title: '我的小纸条',
+					name: 'group_play'
+				});
+			} else if (type == 1) {
+				H.openWin('play_head', 'user/play_head.html', {
+					title: '我的玩',
+					name: 'group_play'
+				});
+			} else if (type == 2) {
+				H.openWin('date_head', 'user/date_head.html', {
+					title: '我的约',
+					name: 'group_date'
+				});
+			} else if (type == 3) {
+				H.openWin('chat_head', 'user/chat_head.html', {
+					title: '我的聊',
+					name: 'group_chat'
+				});
+			} else if (type == 4) {
+				H.openWin('buy_head', 'user/buy_head.html', {
+					title: '我的买',
+					name: 'group_buy'
+				});
+			}
+		};
+		//我的玩
+		function openMyPaly() {
+			//openWins('支出', 'expenditure_body', '../staffManager/pages/expenditure_body.html');
+		};
+		//我的约
+		function openPurchase() {
+			//openWins('采购', 'purchase_body', '../staffManager/pages/purchase_body.html');
+		};
+		//我的聊
+		function openOrder() {
+			//openWins('订单列表', 'orderList_body', '../staffManager/pages/orderList_body.html');
+		};
+		//我的买
+		function openOrder() {
+			//openWins('订单列表', 'orderList_body', '../staffManager/pages/orderList_body.html');
+		};
+		//主题背景图像设置
+		function setBackground() {
+			var bg = Math.floor(Math.random() * 10);
+			$("#bdy").css({
+				"background": "url(../image/bg/bg00" + bg + ".jpg) no-repeat left top",
+				"background-size": "cover",
+				"-webkit-background-size": "cover"
+			});
+			H.toast("主题" + bg);
+		}
+	</script>
+</body>
+
+</html>

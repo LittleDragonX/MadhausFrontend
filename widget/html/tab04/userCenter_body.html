@@ -1,0 +1,205 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>Hui</title>
+		<link href="../../css/Hui.css" rel="stylesheet" type="text/css" />
+		<link href="../../css/user/iconfont.css" rel="stylesheet" type="text/css" />
+		<style type="text/css">
+			.userInfo {
+				background-image: url(../../image/userImg/bg04.png);
+			}
+			#cc {
+				background-color: rgba(245, 237, 238, 0.08);
+			}
+			.iconColor {
+				color: #FFFFFF;
+				padding: 1px;
+				font-size: 12px;
+			}
+			.iconNav {
+				height: 42px;
+				width: 42px;
+			}
+			span.H-icon.H-display-block.H-margin-horizontal-left-10 {
+				padding: 1px 4px;
+				border-radius: 50%;
+				-webkit-border-radius: 50%;
+			}
+			.H-badge label {
+				height: 15px;
+				line-height: 15px;
+				padding: 0 4px;
+				border-radius: 9px;
+				-webkit-border-radius: 9px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="userCenter" class="H-display-none1">
+			<div onclick="userCenterInfo()" tapmode="" class="H-text-list H-flexbox-horizontal  H-theme-font-color-white H-vertical-middle userInfo">
+				<div class="H-padding-horizontal-left-10 H-padding-vertical-both-15">
+					<img id="userImg" src="../../image/userImg/user03.jpg" class="H-height-50 H-vertical-align-middle H-width-50 H-border-radius-circle" />
+				</div>
+				<div class="H-flex-item H-font-size-16 H-padding-horizontal-both-8">
+					<span id="userName" class="H-icon H-padding-horizontal-left-5">海阔天空</span>
+					<label class="H-display-block H-font-size-13"><span class="H-badge H-display-inline-block"> <label class="H-display-inline-block H-vertical-middle H-theme-background-color2 H-theme-font-color-white H-font-size-12" id="cc">金币：8888</label> </span> </label>
+				</div>
+				<span class="H-icon H-padding-horizontal-right-10 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-white H-font-size-14 H-vertical-middle"></i></span>
+			</div>
+			<div class="H-flexbox-horizontal H-theme-background-color-white H-padding-horizontal-both-5 H-line-height-normal H-text-align-center H-theme-font-color-black H-padding-vertical-bottom-15 H-padding-vertical-top-20 H-box-sizing-border-box">
+				<div tapmode onclick="H.openWin('qzone_fabu_head', '../bbs/qzone_fabu_head.html');" class="H-flex-item H-touch-active">
+					<span style="background-color:#FE981A;" class="H-icon H-center-all H-display-block H-border-radius-circle  H-margin-horizontal-auto iconNav"> <i class="H-iconfont H-icon-time H-theme-font-color-white H-font-size-22"></i> </span>
+					<label class="H-display-block H-font-size-14 H-margin-vertical-top-10">观看记录</label>
+				</div>
+				<div tapmode onclick="openWins('chongzhi_body','我的收藏')" class="H-flex-item H-touch-active">
+					<span style="background-color:#70ABF9;" class="H-icon H-center-all H-display-block H-border-radius-circle  H-margin-horizontal-auto iconNav" style="background-color:#52ace5;"> <i class="H-iconfont H-theme-font-color-white H-icon-star H-font-size-22"></i> </span>
+					<label class="H-display-block H-font-size-14 H-margin-vertical-top-10">我的收藏</label>
+				</div>
+				<div tapmode onclick="openWins('myCourses_body','VIP会员')" class="H-flex-item H-touch-active">
+					<span style="background-color:#62C930;" class="H-icon H-center-all H-display-block H-border-radius-circle  H-theme-background-color9 H-margin-horizontal-auto iconNav"> <i class="H-iconfont H-theme-font-color-white H-icon-vip H-font-size-22"></i> </span>
+					<label class="H-display-block H-font-size-14 H-margin-vertical-top-10">VIP会员</label>
+				</div>
+				<div onclick="qianDao()" tapmode="" class="H-flex-item H-touch-active">
+					<span style="background-color:#F45E9B;" class="H-icon H-center-all H-display-block H-border-radius-circle H-position-relative H-theme-background-color7 H-margin-horizontal-auto iconNav"> <i class="H-iconfont H-icon-qiandao H-theme-font-color-white H-font-size-22"></i> <span id="czTip" class="H-badge H-display-inline-block H-badge-null H-theme-background-color7 H-border-radius-circle H-position-absolute H-z-index-10000" style="top:0;right:-6px;background-color:#F80728;"></span></span>
+					<label class="H-display-block H-font-size-14 H-margin-vertical-top-10">签到中心</label>
+				</div>
+			</div>
+			<div class="H-margin-vertical-top-10 H-theme-background-color-white H-border-vertical-both-after">
+				<div onclick="openWins('guanzhu_body','我的关注')" tapmode="" class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active">
+					<span style="background-color:#FE7573;" class="H-icon H-display-block H-margin-horizontal-left-10"><i class="H-iconfont H-icon-like H-font-size-16 H-vertical-middle iconColor"></i></span>
+					<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+						我的关注
+					</div>
+					<span class="H-icon H-padding-horizontal-right-5 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-14 H-vertical-middle"></i></span>
+				</div>
+				<div onclick="H.openWin('myLikes_head','myLikes_head.html');" tapmode="" class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active">
+					<span style="background-color:#F12341;" class="H-icon H-display-block H-margin-horizontal-left-10"><i class="H-iconfont H-icon-money21 H-font-size-16 H-vertical-middle iconColor"></i></span>
+					<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+						我的积分
+					</div>
+					<span class="H-icon H-padding-horizontal-right-5 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-14 H-vertical-middle"></i></span>
+				</div>
+				<div onclick="openWins('xiaoxi_body','消息列表')" tapmode="" class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active">
+					<span style="background-color:#FEBD50;" class="H-icon H-display-block H-margin-horizontal-left-10"><i class="H-iconfont H-icon-email H-font-size-16 H-vertical-middle iconColor"></i></span>
+					<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+						<span class="H-position-relative">我的消息<span style="background-color:#F70629;" class="H-badge H-display-inline-block H-border-radius-circle H-position-absolute H-z-index-10000"> <label class="H-display-inline-block H-vertical-middle H-theme-font-color-white H-font-size-12">3</label> </span></span>
+					</div>
+					<span class="H-icon H-padding-horizontal-right-5 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-14 H-vertical-middle"></i></span>
+				</div>
+				<div onclick="H.openWin('quanyou_head', 'quanyou_head.html');" tapmode="" class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active">
+					<span style="background-color:#70ABF7;" class="H-icon H-display-block H-margin-horizontal-left-10"><i class="H-iconfont H-icon-com H-font-size-16 H-vertical-middle iconColor"></i></span>
+					<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+						我的定制
+					</div>
+					<span class="H-display-block"> <label class="H-display-inline-block H-vertical-middle H-theme-font-color-999 H-font-size-12">私人定制</label> </span>
+					<span class="H-icon H-padding-horizontal-right-5 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-14 H-vertical-middle"></i></span>
+				</div>
+			</div>
+			<div class="H-theme-background-color-white H-margin-vertical-top-10 H-border-vertical-both-after">
+				<div tapmode onclick="openWins('userInfo_body','个人信息')" class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active">
+					<span style="background-color:#F97084;" class="H-icon H-display-block H-margin-horizontal-left-10"><i class="H-iconfont H-icon-tianmao H-font-size-16 H-vertical-middle iconColor"></i></span>
+					<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+						商城中心
+					</div>
+					<span class="H-icon H-padding-horizontal-right-5 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-14 H-vertical-middle"></i></span>
+				</div>
+				<div tapmode onclick="openWins('lipin_record_body','礼品兑换记录')" class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active">
+					<span style="background-color:#9A92FB;" class="H-icon H-display-block H-margin-horizontal-left-10"><i class="H-iconfont H-icon-gif H-font-size-16 H-vertical-middle iconColor"></i></span>
+					<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+						礼品兑换
+					</div>
+					<span class="H-display-block"> <label class="H-display-inline-block H-vertical-middle H-theme-font-color-999 H-font-size-12">金币抵现、换礼品</label> </span>
+					<span class="H-icon H-padding-horizontal-right-5 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-14 H-vertical-middle"></i></span>
+				</div>
+			</div>
+			<div class="H-margin-vertical-top-10 H-theme-background-color-white H-border-vertical-both-after">
+				<div tapmode onclick="openWins('lipin_record_body','礼品兑换记录')" class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-touch-active">
+					<span style="background-color:#666580;" class="H-icon H-display-block H-margin-horizontal-left-10"><i class="H-iconfont H-icon-setting H-font-size-16 H-vertical-middle iconColor"></i></span>
+					<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+						设置中心
+					</div>
+					<span class="H-icon H-padding-horizontal-right-5 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-14 H-vertical-middle"></i></span>
+				</div>
+			</div>
+		</div>
+		<script src="../../script/AHelper.js" type="text/javascript"></script>
+		<script src="../../script/zepto.min.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			var isLogin = 0, userInfos = null;
+			H.ready(function() {
+				api.parseTapmode();
+			});
+			function test() {
+				api.ajax({
+					url : url,
+					method : 'get'
+				}, function(ret, err) {
+					if (ret.code == 200) {
+						//H.closeToast();
+						api.refreshHeaderLoadDone();
+						var banner = ret.data[0].templateData;
+						imgBanner(banner);
+						var html = H.tppl(H.D('#tpl_list').innerHTML, {
+							list : ret.data
+						});
+						$("#list").html(html);
+						//$('.H-width-avg-2 .pic').height(h);
+						api.parseTapmode();
+						H.setStorage("cacheData", ret.data);
+					} else {
+						H.toast('数据加载异常,请重试');
+					}
+				});
+			};
+			Zepto(function($) {
+				$("#mybuy").on("tap", function() {
+					openToLogin("myNeed_body", "need/myNeed_body.html", "我的求购");
+				});
+				$("#mysell").on("tap", function() {
+					openToLogin("myGoods_body", "goods/myGoods_body.html", "我的产品");
+				});
+			});
+			function openToLogin(name, url, title) {
+				if (getStorage("userInfos") == null) {
+					H.$openWin('login_head', '../user/head.html', {
+						title : '用户登录',
+						url : 'login_body.html',
+						frameName : 'login_body'
+					});
+				} else {
+					H.$openWin("my_head", "head.html", {
+						frameName : name,
+						url : url,
+						title : title
+					});
+				}
+			};
+			function intLogin(data) {
+				if (data == null) {
+					$('.userImg').attr('src', '../../image/user2.jpg');
+					//$('#setPic').removeClass('H-display-block');
+					$('#setPic').css('display', 'none');
+					$('#userName').html('点击登陆');
+					$('#userDis').html('');
+				} else {
+					$('.userImg').attr('src', data.avatar);
+					$('#setPic').css('display', '');
+					$('#userName').html(data.userName);
+					$('#userDis').html(data.signature);
+				}
+			};
+			function openLogin() {
+				if (userInfos == null) {
+					H.$openWin('login_head', 'head.html', {
+						title : '用户登录',
+						url : 'login_body.html',
+						frameName : 'login_body'
+					});
+				}
+			};
+		</script>
+	</body>
+</html>

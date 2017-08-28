@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>Hui</title>
+	<link href="../../../css/Hui.css" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+		.showItem {
+			padding: 0 10px;
+			color: #999;
+			width: 65px;
+		}
+
+		.showItem .H-badge label {
+			padding: 5px 12px;
+			font-size: 1.4rem;
+			border-radius: 15px;
+			-webkit-border-radius: 15px;
+			border: 1px solid #ff7c48;
+			color: #ff7c48;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="itemList" class="H-qq-list" style="display:nones;">
+		<div onclick="openDetail(1)" tapmode="" class="H-flexbox-horizontal H-box-sizing-border-box H-theme-background-color-white H-border-vertical-bottom-after H-clear-both H-padding-horizontal-both-10 H-padding-vertical-both-8 H-touch-active" style="transition: transform 0.4s; transform: translateX(0px);">
+			<div style="width:50px;height:50px;"><img src="../../../image/userImg/user03.jpg" class="H-width-100-percent H-height-100-percent H-display-block H-border-radius-circle H-border-both"></div>
+			<div class="H-flex-item H-padding-horizontal-both-10 H-vertical-middle H-overflow-hidden">
+				<div class="H-width-100-percent">
+					<div class="H-flexbox-horizontal H-font-weight-normal H-display-block H-font-weight-500 H-font-size-16">
+						<div class="H-flex-item H-text-show-row-1" style="color: #ff7c48;">最新电影《战狼2》有一起看的么？</div>
+						<div class="H-theme-font-color-999 H-center-all H-font-size-12">2017-08-11</div>
+					</div>
+					<div class="H-theme-font-color-666 H-font-size-14 H-padding-vertical-top-3 H-text-show-row-2">
+						最新电影《战狼2》有一起看的么？据说很好看的！！！
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script id="tpl_itemList" type="text/html">
+		[:if(list.length>0){:] [: for (var i=0;i
+		<list.length;i++) { :] <div class="H-qq-item H-vertical-middle H-overflow-hidden">
+			<div class="H-flexbox-horizontal H-box-sizing-border-box H-theme-background-color-white H-border-vertical-bottom-after H-clear-both H-padding-horizontal-both-10 H-padding-vertical-both-8">
+				<div style="width:50px;height:50px;display: none;"><img src="../../../image/logo.png" class="H-width-100-percent H-height-100-percent H-display-block H-border-radius-circle H-border-both" />
+				</div>
+				<div class="H-flex-item H-padding-horizontal-both-10 H-vertical-middle H-overflow-hidden">
+					<div class="H-width-100-percent">
+						<strong class="H-font-weight-normal H-display-block H-font-weight-500 H-font-size-14 H-text-show-row-1" style="color: #ff7c48;">[:=list[i].a_type:]</strong>
+						<div class="H-theme-font-color-333 H-font-size-16 H-padding-vertical-top-3 H-text-show-row-1">
+							[:=list[i].name:]
+						</div>
+					</div>
+				</div>
+				<div class="H-font-size-12 H-center-all H-theme-font-color-999 showItem">
+					<span onclick="openDetail('[:=list[i].id:]',0)" tapmode="" class="H-badge H-display-inline-block"><label class="H-display-inline-block H-vertical-middle H-theme-border-color7 H-theme-font-color7 H-font-size-12 H-touch-active">查看</label></span>
+				</div>
+			</div>
+			<div class="H-qq-menu H-vertical-middle H-position-relative H-overflow-hidden">
+				<div onclick="openDetail('[:=list[i].id:]',1)" tapmode="" class="H-font-size-16 H-padding-horizontal-both-20 H-theme-background-color1 H-display-block H-theme-font-color-white H-center-all">
+					编辑
+				</div>
+				<div onclick="removeItem('[:=list[i].id:]')" tapmode="" class="H-font-size-16 H-padding-horizontal-both-20 H-theme-background-color-red H-display-block H-theme-font-color-white H-center-all">
+					删除
+				</div>
+			</div>
+			</div>
+			[:}:] [:}else{:]
+			<div class="H-padding-vertical-both-20 H-theme-font-color-999 H-font-size-16 H-center-all">暂无数据</div>
+			[:}:]
+	</script>
+	<script src="../../../script/api.js" type="text/javascript"></script>
+	<script src="../../../script/H.js" type="text/javascript"></script>
+	<script src="../../../script/setting.js" type="text/javascript"></script>
+	<script src="../../../script/zepto.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		H.ready(function() {
+			//initData();
+		});
+
+		function initData() {
+			var url = window.server + '/activities/';
+			api.ajax({
+				url: url,
+				method: 'get',
+				data: {
+					values: {
+						level: 0
+					}
+				}
+			}, function(ret, err) {
+				if (ret) {
+					if (ret.results) {
+						//alert(JSON.stringify(ret));
+						var html = H.tppl(H.D('#tpl_itemList').innerHTML, {
+							list: ret.results
+						});
+						$("#itemList").html(html).fadeIn(300);
+						api.parseTapmode();
+					} else {
+						alert('数据异常')
+					}
+				} else {
+					api.toast({
+						msg: '错误码:' + err.code + ";网络状态码:" + err.statusCode,
+						duration: 3000,
+						location: 'middle'
+					});
+				}
+			});
+		};
+
+		function openDetail(id) {
+			H.openWin('detail_head_feedbackInfo_body', 'widget://html/comPages/detail_head.html', {
+				title: '活动详情',
+				name: 'user_feedbackInfo_body',
+				url: '../admin/user/user_feedbackInfo_body.html',
+				id: id
+			});
+		};
+
+	</script>
+</body>
+
+</html>

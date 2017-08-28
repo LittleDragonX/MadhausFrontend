@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget id="A6055408814668" version="0.0.1">
+    <name>madhaus</name>
+    <description>光影车间</description>
+    <author email="694159553@qq.com" href="http://www.apicloud.com">itcoder888</author>
+    <content src="index.html"/>
+    <preference name="pageBounce" value="false"/>
+    <preference name="appBackground" value="rgba(0,0,0,0.0)"/>
+    <preference name="windowBackground" value="rgba(0,0,0,0.0)"/>
+    <preference name="frameBackgroundColor" value="rgba(0,0,0,0.0)"/>
+    <preference name="hScrollBarEnabled" value="true"/>
+    <preference name="vScrollBarEnabled" value="true"/>
+    <preference name="autoLaunch" value="true"/>
+    <preference name="fullScreen" value="false"/>
+    <preference name="autoUpdate" value="true"/>
+    <preference name="smartUpdate" value="false"/>
+    <preference name="debug" value="true"/>
+    <preference name="statusBarAppearance" value="true"/>
+    <preference name="querySchemes" value="tmall,tbopen"/>
+    <preference name="forbiddenSchemes" value="*"/>
+    <preference name="customRefreshHeader" value="UIPullRefreshFlash"/>
+    <permission name="readPhoneState"/>
+    <permission name="camera"/>
+    <permission name="record"/>
+    <permission name="location"/>
+    <permission name="fileSystem"/>
+    <permission name="internet"/>
+    <permission name="bootCompleted"/>
+    <permission name="hardware"/>
+    <access origin="*"/>
+    <feature name="wxPay">
+        <param name="urlScheme" value="wx2b08aa05d953d93f"/>
+        <param name="apiKey" value="wx2b08aa05d953d93f"/>
+        <param name="apiSecret" value="d49610f0c7d0b2708403b92917c748d5"/>
+    </feature>
+    <feature name="aliPay">
+        <param name="urlScheme" value="AliPayA6055408814668"/>
+    </feature>
+</widget>

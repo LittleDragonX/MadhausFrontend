@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>头部-详情页面</title>
+		<link rel="stylesheet" type="text/css" href="../../css/Hui.css" />
+		<script type="text/javascript" src="../../script/global.js"></script>
+		<style>
+			.active {
+				position: relative;
+				color: #ff7c48;
+			}
+			.active:after {
+				content: '';
+				position: absolute;
+				height: 1px;
+				bottom: 5px;
+				/*left: 7px;*/
+				/*right: 7px;*/
+				left: calc(50% - 8px);
+				width: 16px;
+				border-bottom: 3px solid #ff7c48;
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+				-webkit-transition: -webkit-transform .4s ease;
+			}
+		</style>
+		<script type="text/javascript">
+			initTopBar('#fff', 1);
+		</script>
+	</head>
+	<body class="H-flexbox-vertical">
+		<header class="H-header H-border-vertical-bottom-after H-theme-background-color-white">
+			<span tapmode="" onclick="goBack()" class="H-icon H-position-relative H-display-inline-block H-float-left H-vertical-middle headColor H-padding-horizontal-both-12 H-z-index-100"><i class="H-iconfont H-icon-arrow-left H-font-size-18 H-vertical-middle"></i><label class="H-display-block H-vertical-middle H-font-size-15"></label></span>
+			<div id="title" class="H-header-title H-center-all H-font-size-18 H-text-show-row-1 headColor H-position-absolute H-width-100-percent H-font-weight-bold"></div>
+			<div id="nav" class="H-flexbox-horizontal H-theme-background-color-white">
+				<!--<div class="H-flex-item H-center-all H-theme-border-color-white H-font-size-16">
+					<div class="H-vertical-middle H-padding-horizontal-both-10 tabNav active" style="height:42px;">
+						全部
+					</div>
+				</div>-->
+				<div class="H-flex-item H-center-all H-theme-border-color-white H-font-size-16">
+					<div class="H-vertical-middle H-padding-horizontal-both-10 tabNav" style="height:42px;">
+						待付款
+					</div>
+				</div>
+				<div class="H-flex-item H-center-all H-theme-border-color-white H-font-size-16">
+					<div class="H-vertical-middle H-padding-horizontal-both-10 tabNav" style="height:42px;">
+						待参加
+					</div>
+				</div>
+				<div class="H-flex-item H-center-all H-theme-border-color-white H-font-size-16">
+					<div class="H-vertical-middle H-padding-horizontal-both-10 tabNav" style="height:42px;">
+						已参加
+					</div>
+				</div>
+			</div>
+		</header>
+		<script type="text/javascript" src="../../script/H.js"></script>
+		<script type="text/javascript" src="../../script/zepto.min.js"></script>
+		<script type="text/javascript">
+			apiready = function() {
+				if (api.systemType == 'ios') {
+					api.setStatusBarStyle({
+						style : 'dark'
+					});
+				}
+				document.getElementById("title").innerHTML = api.pageParam.title;
+				openFrameGroups();
+			};
+			function openFrameGroups() {
+				api.openFrameGroup({
+					name : api.pageParam.name,
+					rect : {
+						x : 0,
+						y : 88 + parseInt(getStorage("statusBar")),
+						w : 'auto',
+						h : api.winHeight - (88 + parseInt(getStorage("statusBar")))
+					},
+					frames : [{
+						name : 'play_waitPay_body',
+						url : 'play_waitPay_body.html',
+						bgColor : '#fff',
+						bounces : false,
+						vScrollBarEnabled : true,
+						hScrollBarEnabled : false,
+						useWKWebView : true
+					}, {
+						name : 'play_waitAttend_body',
+						url : 'play_waitAttend_body.html',
+						bgColor : '#fff',
+						bounces : false,
+						vScrollBarEnabled : true,
+						hScrollBarEnabled : false,
+						useWKWebView : true
+					}, {
+						name : 'play_alreadyAttend_body',
+						url : 'play_alreadyAttend_body.html',
+						bgColor : '#fff',
+						bounces : false,
+						vScrollBarEnabled : true,
+						hScrollBarEnabled : false,
+						useWKWebView : true
+					}]
+				}, function(ret, err) {
+					var index = ret.index;
+					setShowTabNav(index);
+				});
+			};
+			Zepto(function($) {
+				$(".H-flex-item").on("tap", function() {
+					var index = $(this).index();
+					console.log(index)
+					setShowTabNav(index);
+					H.setFrameGroupIndex(api.pageParam.name, index, true);
+				});
+			});
+			function setShowTabNav(index) {
+				$("#nav .active").removeClass('active');
+				$("#nav .tabNav").eq(index).addClass('active');
+			};
+			function goBack() {
+				api.closeWin();
+			};
+		</script>
+	</body>
+</html>

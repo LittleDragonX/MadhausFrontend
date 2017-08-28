@@ -1,0 +1,73 @@
+﻿<!doctype html>
+<html style="height:100%;">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>添加</title>
+		<link href="../css/Hui.css" rel="stylesheet" type="text/css" />
+		<style type="text/css">
+			html, body {
+				background: rgba(0,0,0,0);
+				padding: 0;
+				margin: 0;
+			}
+			.animated {
+				-webkit-animation-duration: .6s;
+				animation-duration: .6s;
+				-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+			}
+		</style>
+	</head>
+	<body id="bdy" class="H-flexbox-vertical H-position-relative" style="overflow: hidden">
+		<canvas id="canvas" style="width: 100%;height: 100%;"></canvas>
+		<div id="content" class="single-menu H-background-color-transparent-1 H-flexbox-vertical H-position-absolute H-vertical-top-0 H-horizontal-left-0 H-horizontal-right-0 H-vertical-bottom-0 H-height-100-percent H-width-100-percent H-z-index-1000000">
+			<div class="space H-flex-item"></div>
+			<div class="share-menu">
+				<div class="H-flexbox-horizontal H-text-align-center animated bounceInUp" style="padding:10px 0 80px 0">
+					<div class="H-flex-item">
+						<span class="H-icon H-center-all H-theme-background-color4 H-border-radius-circle H-margin-horizontal-auto" style="height: 60px; width: 60px;"><i class="H-iconfont H-icon-donate H-font-size-28 H-theme-font-color-white"></i></span>
+						<label class="H-display-block H-theme-font-color-333 H-font-size-13 H-margin-vertical-top-5">发邀约</label>
+					</div>
+					<div class="H-flex-item">
+						<span class="H-icon H-center-all H-theme-background-color4 H-border-radius-circle H-margin-horizontal-auto" style="height: 60px; width: 60px;"><i class="H-iconfont H-icon-msg H-font-size-28 H-theme-font-color-white"></i></span>
+						<label class="H-display-block H-theme-font-color-333 H-font-size-13 H-margin-vertical-top-5">发话题</label>
+					</div>
+				</div>
+				<div onclick="api.closeWin()" tapmode="" class="H-padding-vertical-top-20 H-font-size-16 H-center-all">
+					<span class="H-icon H-display-block H-horizontal-center H-padding-10"><i class="H-iconfont H-icon-close H-font-size-22 H-vertical-middle H-theme-font-color-666"></i></span>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../script/stackblur.min.js"></script>
+		<script>
+			var w = document.body.clientWidth;
+			var h = document.body.clientHeight;
+			document.getElementById("bdy").style.height = h + 'px';
+			document.documentElement.style.overflow = "hidden";
+			var canvas = document.getElementById("canvas");
+			var cctx = canvas.getContext("2d");
+			var buff = document.createElement("canvas");
+			buff.width = canvas.width;
+			buff.height = canvas.height;
+			var bctx = buff.getContext("2d");
+			bctx.fillStyle = "#fff";
+			bctx.fillRect(0, 0, canvas.width, canvas.height);
+			bctx.fillStyle = "#f54a04";
+			bctx.fillRect(0, 0, w, 5);
+			bctx.fillStyle = "#A6A6AB";
+			bctx.beginPath();
+			bctx.arc(50, 100, 50, 0, 2 * Math.PI);
+			bctx.arc(w-100, 80, 50, 0, 2 * Math.PI);
+			bctx.fill();
+			bctx.fillStyle = "#eee";
+			bctx.fillRect(0, 90, w, 90);
+			cctx.drawImage(buff, 0, 0);
+			cctx.drawImage(buff, 0, 0);
+			cctx.drawImage(buff, 0, 0);
+			cctx.drawImage(buff, 0, 0);
+			StackBlur.canvasRGB(canvas, 0, 0, canvas.width, canvas.height, 80);
+		</script>
+	</body>
+</html>

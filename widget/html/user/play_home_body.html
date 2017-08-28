@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport"
+		content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0">
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>play_home_body</title>
+		<link href="../../css/Hui.css" rel="stylesheet" type="text/css">
+		<style type="text/css">
+			body {
+				background: url(../../image/body.png) no-repeat left top;
+				background-size: cover;
+			}
+			#shadow {
+				box-shadow: 1px 4px 16px rgb(254, 127, 77);
+			}
+			#login {
+				background-image: linear-gradient(120deg, #FA6931 0%, #FF8555 100%);
+				border: 1px solid #FFF;
+				border-radius: 25px;
+			}
+			#login:active {
+				background-image: linear-gradient(120deg, #ee5448 0%, #ff5c4b 100%);
+				border: 1px solid #FA6931;
+				color: #FFF;
+			}
+			#register {
+				background-image: linear-gradient(120deg, #FFFFFF 0%, #FFFFFF 100%);
+				border: 1px solid #FA6931;
+				border-radius: 25px;
+				color: #FA6931;
+			}
+			#register:active {
+				background-image: linear-gradient(120deg, #FA6931 0%, #FF8555 100%);
+				color: #FFF;
+			}
+		</style>
+	</head>
+	<body class="H-height-100-percent H-box-sizing-border-box H-overflow-hidden">
+		<div class="fix">
+			<div class="H-horizontal-center H-padding-vertical-both-25">
+				<div class="H-text-align-center H-padding-vertical-top-10">
+					<img src="../../image/logo.png" class="H-border-radius-12 H-margin-vertical-top-10"
+					style="width:80px;height:80px;" id="shadow">
+					<div class="H-font-size-18 H-padding-vertical-top-12" style="color: #FE7F4D;">
+						MADHAUS
+					</div>
+				</div>
+			</div>
+			<div class="H-margin-vertical-top-2">
+				<div class="H-padding-15">
+					<button tapmode=""  onclick="logins()" id="login" class="H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-15 H-padding-horizontal-both-20 H-theme-font-color-white">
+						登录
+					</button>
+				</div>
+				<div class="H-padding-15">
+					<button tapmode=""  onclick="registers()" id="register" class="H-button H-width-100-percent  H-font-size-15 H-outline-none H-padding-vertical-both-15 H-padding-horizontal-both-20 H-theme-font-color-white">
+						新用户注册
+					</button>
+				</div>
+			</div>
+		</div>
+		<div style="height:110px;"></div>
+		<div class="H-width-100-percent H-text-align-center" style="position: fixed; bottom: 0; height: 110px;">
+			<div class="H-flex-item H-center-all H-text-align-center H-width-100-percent H-height-75" style="float: left;">
+				<span class="H-icon H-center-all H-theme-background-color9 H-border-radius-circle"
+				style="height: 47px; width: 47px; margin: 0px;"><i
+					class="H-iconfont H-icon-weixin H-font-size-26 H-theme-font-color-white"></i></span>
+				<label class="H-display-block H-font-size-15 H-opacity-1-half H-margin-horizontal-left-10">使用微信账户登录</label>
+			</div>
+			<div class="H-width-100-percent H-text-align-center H-font-size-14 H-opacity-1-half H-width-100-percent">
+				注册登录即表示您同意我们的 <span class="H-text-decoration-underline"> 用户许可协议 </span>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../script/H.js"></script>
+		<script type="text/javascript" src="../../script/zepto.min.js"></script>
+		<script type="text/javascript">
+			function openWins(title, name, url) {
+				H.openWin('base_head_' + name, 'widget://html/comPages/baseNoBorder_head.html', {
+					title : title,
+					name : name,
+					url : url
+				}, {
+					animation : {
+						type :  'movein',
+						subType : 'from_bottom',
+						duration : 0
+					}
+				});
+			};
+			function logins() {
+				openWins('登录', 'logins', '../user/play_login_body.html');
+			};
+			function registers(){
+				openWins('注册', 'registers', '../user/play_register_body.html');
+			}
+		</script>
+	</body>
+</html>

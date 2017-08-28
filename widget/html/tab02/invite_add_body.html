@@ -1,0 +1,261 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>发邀约</title>
+		<link href="../../css/Hui.css" rel="stylesheet" type="text/css" />
+		<style type="text/css">
+			input.H-textbox {
+				border-width: 0;
+				color: #999;
+				min-width: 100px;
+			}
+			.select {
+				text-align: right;
+				vertical-align: middle;
+				border: 0;
+				width: 100%;
+				height: 48px;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				color: #999;
+				cursor: pointer;
+				background-color: white;
+				outline: none;
+				tap-highlight-color: rgba(255, 255, 255, 0);
+				-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+			}
+			.select option {
+				direction: rtl;
+			}
+			.bgColor1 {
+				background-color: #ccc;
+			}
+			.bgColor2 {
+				background-color: #FE7842;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div class="H-theme-background-color-white H-margin-vertical-top-10 H-text-list H-flexbox-horizontal H-vertical-middle">
+				<div class="H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+					邀约对象
+				</div>
+				<div class="H-flex-item">
+					<select v-model="jsonData.obj_type" class="H-font-size-16 select" dir="rtl">
+						<option value="0">女</option>
+						<option value="1">男</option>
+					</select>
+				</div>
+				<span class="H-icon H-padding-horizontal-right-10 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-999 H-font-size-14 H-vertical-middle"></i></span>
+			</div>
+			<div class="H-theme-background-color-white H-margin-vertical-top-10 H-text-list H-flexbox-horizontal H-vertical-middle">
+				<div class="H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+					支付方式
+				</div>
+				<div class="H-flex-item">
+					<select v-model="jsonData.pay_type" class="H-font-size-16 select" dir="rtl">
+						<option value="0">我买单</option>
+						<option value="1">求请客</option>
+						<option value="2">AA制</option>
+					</select>
+				</div>
+				<span class="H-icon H-padding-horizontal-right-10 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-999 H-font-size-14 H-vertical-middle"></i></span>
+			</div>
+			<div class="H-theme-background-color-white H-margin-vertical-top-10 H-text-list H-flexbox-horizontal H-vertical-middle">
+				<div class="H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+					约会内容
+				</div>
+				<div class="H-flex-item">
+					<select id="selectType" v-model="jsonData.content_type" class="H-font-size-16 select" dir="rtl">
+						<option value="0">约电影</option>
+						<option value="1">约戏剧</option>
+						<option value="2">约咖啡</option>
+						<option value="3">约运动</option>
+						<option value="4">约课程</option>
+					</select>
+				</div>
+				<span class="H-icon H-padding-horizontal-right-10 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-999 H-font-size-14 H-vertical-middle"></i></span>
+			</div>
+			<div onclick="vm.getDatePicker('start_time')" tapmode="" class="H-theme-background-color-white H-margin-vertical-top-10 H-text-list H-flexbox-horizontal H-vertical-middle H-touch-active">
+				<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+					约会开始时间
+				</div>
+				<span class="H-padding-horizontal-right-10 H-display-block H-theme-font-color-666" v-text="jsonData.start_time">2017-07-22 15:15</span>
+				<span class="H-icon H-padding-horizontal-right-10 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-999 H-font-size-14 H-vertical-middle"></i></span>
+			</div>
+			<div onclick="vm.getDatePicker('end_time')" tapmode="" class="H-theme-background-color-white H-margin-vertical-top-10 H-text-list H-flexbox-horizontal H-vertical-middle H-touch-active">
+				<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+					约会结束时间
+				</div>
+				<span class="H-padding-horizontal-right-10 H-display-block H-theme-font-color-666" v-text="jsonData.end_time">2017-07-22 15:15</span>
+				<span class="H-icon H-padding-horizontal-right-10 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-999 H-font-size-14 H-vertical-middle"></i></span>
+			</div>
+			<div class="H-flexbox-horizontal H-margin-vertical-top-10 H-border-vertical-top-after">
+				<textarea class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" v-model="jsonData.address" style="min-height:50px;" placeholder="请写下详细地址"></textarea>
+			</div>
+			<div class="H-flexbox-horizontal H-margin-vertical-top-10">
+				<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">邀约发言</span>
+				<input type="text" v-model="jsonData.talk" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12 H-text-align-right" placeholder="来一句邀约发言吧">
+			</div>
+			<div style="height: 48px;"></div>
+			<div class="H-flexbox-horizontal H-box-sizing-border-box" style="position: fixed;bottom:0px;z-index: 10000;">
+				<div tapmode="" onclick="vm.addItemInfo()" class="H-flex-item H-center-all H-padding-vertical-both-12 H-font-size-16 H-theme-font-color-white bgColor2">
+					发出邀约
+				</div>
+			</div>
+		</div>
+		<script src="../../script/api.js" type="text/javascript"></script>
+		<script src="../../script/H.js" type="text/javascript"></script>
+		<script src="../../script/vue.js" type="text/javascript"></script>
+		<script src="../../script/setting.js"type="text/javascript"></script>
+		<script src="../../script/zepto.min.js"type="text/javascript"></script>
+		<script type="text/javascript">
+			var vm = null;
+			initVue();
+			apiready = function() {
+				getFengyueType();
+			};
+			function initVue() {
+				vm = new Vue({
+					el : '#app',
+					data : {
+						jsonData : {
+							create_user:$api.getStorage('userInfo').user.id,
+							obj_type : null,
+							pay_type : null,
+							content_type : null,
+							address : null,
+							start_time : null,
+							end_time:null,
+							talk:''
+						},
+						time:{
+							start_time:null,
+							end_time:null
+						}
+					},
+					methods : {
+						getDatePicker : function(key) {
+							api.openPicker({
+								type : 'date_time',
+								title : '选择日期'
+							}, function(ret, err) {
+								if (ret) {
+									var y = ret.year;
+									var mm = ret.month < 10 ? '0' + ret.month : ret.month;
+									var d = ret.day < 10 ? '0' + ret.day : ret.day;
+									vm.time[key]=y+mm+d;
+									if(api.systemType=='ios'){
+										var h = ret.hour < 10 ? '0' + ret.hour : ret.hour;
+										var m = ret.minute < 10 ? '0' + ret.minute : ret.minute + ':00';
+										vm.jsonData[key] = y + '-' + mm + '-' + d + ' ' + h + ':' + m;
+									}else{
+										api.openPicker({
+											type : 'time',
+											title : '选择时间'
+										}, function(ret1, err1) {
+											if (ret1) {
+												var h = ret1.hour < 10 ? '0' + ret1.hour : ret1.hour;
+												var m = ret1.minute < 10 ? '0' + ret1.minute : ret1.minute + ':00';
+												vm.jsonData[key] = y + '-' + mm + '-' + d + ' ' + h + ':' + m;
+											}else{
+												alert(JSON.stringify(err1));
+											}
+										});
+									}
+								} else {
+									alert(JSON.stringify(err));
+								}
+							});
+						},
+						addItemInfo : function() {
+							var jsonData = this.jsonData;
+							for (var key in jsonData) {
+								if (jsonData[key] == false) {
+									jsonData[key] = 0;
+								}
+								if (jsonData[key] == true) {
+									jsonData[key] = 1;
+								}
+								if (jsonData[key] == null) {
+									delete jsonData[key];
+								}
+							}
+							log(jsonData);
+							if(jsonData.obj_type==null){
+								H.toast('邀约对象不能为空');
+								return;
+							}
+							if(jsonData.pay_type==null){
+								H.toast('支付方式不能为空');
+								return;
+							}
+							if(jsonData.content_type==null){
+								H.toast('约会内容不能为空');
+								return
+							}
+							if(jsonData.start_time==null){
+								H.toast('约会开始时间不能为空');
+								return
+							}
+							if(jsonData.end_time==null){
+								H.toast('约会结束时间不能为空');
+								return
+							}
+							if(jsonData.address==null){
+								H.toast('约会地址不能为空');
+								return
+							}
+							if((vm.time.end_time-vm.time.start_time)<=0){
+								H.toast('结束时间必大于开始时间');
+								return
+							}
+							var url = '/fengyues/';
+							ajaxs(url,'post',jsonData,true,function(ret){
+								log(ret,true);
+								H.toastSuccess();
+								api.sendEvent({
+									name: 'loadDateInitData',
+									extra: {
+										key: 1
+									}
+								});
+								api.closeWin();
+								api.closeFrame({
+										name: 'add_head'
+								});
+							},function(ret,err){
+								log(err,true)
+							});
+						}
+					}
+				});
+			};
+			function btnSubmit() {
+				H.toast('开发中')
+			};
+			function getFengyueType(){
+				var url = '/fengyue/type/';
+				ajaxs(url,'get',null,false,function(ret){
+					log(ret,true);
+					if(ret.count>0){
+						var data = ret.results;
+						var html = '';
+						for(var i in data){
+							html += '<option value="' + data[i].id + '">' + data[i].type + '</option>';
+						}
+						$('#selectType').html(html);
+						// document.getElementById("selectType").innerHTMl=html;
+					}
+				},function(ret,err){
+					log(err,true)
+				});
+			};
+		</script>
+	</body>
+</html>

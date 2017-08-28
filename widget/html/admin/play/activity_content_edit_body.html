@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>发布活动</title>
+	<link href="../../../css/Hui.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="../../../res/example/css/style.css">
+
+	<style type="text/css">
+
+	</style>
+</head>
+
+<body class="H-flexbox-vertical">
+	<div class="publish-article-content H-flexbox-vertical" style="padding:0;margin:0;border:0;">
+		<!-- <div class="title-tips">
+			正文
+		</div> -->
+		<input type="hidden" id="target">
+		<div class="article-content H-flex-item" id="content" style="border-bottom:0;padding:10px 10px 0 10px;"></div>
+		<div class="footer-btn g-image-upload-box H-center-all" style="position: relative;padding:10px 0;">
+			<div id="btnUpload" class="upload-button">
+				<span class="upload"><i class="upload-img"></i>插入图片</span>
+				<!-- <input class="input-file" id="imageUpload" type="file" name="fileInput" accept="image/*" style="position:absolute;top:0;left:0;opacity:0;width:100%;height:40px;"> -->
+			</div>
+		</div>
+		<div tapmode="" onclick="btnSubmit()" class="H-center-all H-padding-vertical-both-12 H-font-size-16 H-theme-font-color-white" style="background-color:#ff7c48;">
+			完成编辑
+		</div>
+	</div>
+	<script type="text/javascript" src="../../../res/example/js/jquery-1.11.2.js"></script>
+	<script type="text/javascript" src="../../../res/example/js/index.min.js"></script>
+	<script type="text/javascript" src="../../../res/example/js/index.js"></script>
+	<script type="text/javascript" src="../../../script/api.js"></script>
+	<script type="text/javascript" src="../../../script/upload.js"></script>
+	<script type="text/javascript" src="../../../script/setting.js"></script>
+
+	<script type="text/javascript">
+		var content = '',str='';
+		apiready = function() {
+			content = api.pageParam.content;
+			str = api.pageParam.str;
+			$('#content').setValue(content);
+			initRequire();
+		};
+		function initRequire() {
+			require();
+			isIOS = api.systemType == "ios" ? true : false;
+		};
+		function btnSubmit(){
+			var data = $('#content').getValue();
+			console.log(data)
+			//return;
+			// api.execScript({
+			// 	name: 'detail_head_activity_' + str + '_body',
+			// 	frameName: 'activity_' + str + '_body',
+			// 	script: "setContent("' + data + '");"
+			// });
+			api.sendEvent({
+			    name: 'setContentData',
+			    extra: {
+			        content: data
+			    }
+			});
+			api.closeWin();
+		};
+	</script>
+</body>
+
+</html>

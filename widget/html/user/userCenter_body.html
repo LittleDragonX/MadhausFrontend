@@ -1,0 +1,344 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>Hui</title>
+	<link href="../../css/Hui.css" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+		.select {
+			text-align: right;
+			vertical-align: middle;
+			border: 0;
+			width: 100%;
+			height: 48px;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			color: #999;
+			cursor: pointer;
+			background-color: white;
+			outline: none;
+			tap-highlight-color: rgba(255, 255, 255, 0);
+			-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+		}
+
+		.select option {
+			direction: rtl;
+		}
+	</style>
+</head>
+
+<body>
+	<div>
+		<div onclick="openUploadImg()" tapmode="" class="H-text-list H-flexbox-horizontal  H-theme-background-color-white H-border-vertical-both-after H-margin-vertical-top-10 H-vertical-middle H-touch-active">
+			<div class="H-flex-item H-padding-horizontal-both-8">
+				修改头像
+			</div>
+			<div class="H-padding-horizontal-both-10 H-padding-vertical-both-5"><img id="userImg" src="../../image/userImg/nouser.png" onerror="this.src='../../image/userImg/nouser.png'" class="H-height-50 H-vertical-align-middle H-width-50 H-border-radius-circle" />
+			</div>
+			<span class="H-icon H-padding-horizontal-right-10 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-999 H-font-size-14 H-vertical-middle"></i></span>
+		</div>
+		<div onclick="editorNumber()" tapmode="" class="H-theme-background-color-white H-margin-vertical-top-10 H-text-list H-flexbox-horizontal H-vertical-middle H-touch-active">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+				微信联系方式
+			</div>
+			<span id="wxPhone" class="H-padding-horizontal-right-10 H-display-block H-theme-font-color-666">未登录</span>
+			<span class="H-icon H-padding-horizontal-right-10 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-999 H-font-size-14 H-vertical-middle"></i></span>
+		</div>
+		<div onclick="editorName()" tapmode="" class="H-theme-background-color-white H-margin-vertical-top-10 H-text-list H-flexbox-horizontal H-vertical-middle H-touch-active">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+				昵称
+			</div>
+			<span id="userName" class="H-padding-horizontal-right-10 H-display-block H-theme-font-color-666">未登录</span>
+			<span class="H-icon H-padding-horizontal-right-10 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-999 H-font-size-14 H-vertical-middle"></i></span>
+		</div>
+		<div class="H-theme-background-color-white H-margin-vertical-top-10 H-text-list H-flexbox-horizontal H-vertical-middle H-touch-active">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+				性别
+			</div>
+			<!-- <span id="sex" class="H-padding-horizontal-right-10 H-display-block H-theme-font-color-666">未登录</span>
+			<span class="H-icon H-padding-horizontal-right-10 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-999 H-font-size-14 H-vertical-middle"></i></span> -->
+			<div class="H-flex-item">
+				<select id="sex" onchange="updateUserInfo()" class="H-font-size-16 select" dir="rtl">
+					<option value="0">女</option>
+					<option value="1">男</option>
+				</select>
+			</div>
+			<span class="H-icon H-padding-horizontal-right-10 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-999 H-font-size-14 H-vertical-middle"></i></span>
+		</div>
+		<div onclick="editorPassword()" tapmode="" class="H-theme-background-color-white H-margin-vertical-top-10 H-text-list H-flexbox-horizontal H-vertical-middle H-touch-active">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+				修改密码
+			</div>
+			<span class="H-icon H-padding-horizontal-right-10 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-999 H-font-size-14 H-vertical-middle"></i></span>
+		</div>
+		<div id="login" onclick="actionLogoin()" tapmode="" class="H-theme-background-color-white H-center-all H-font-size-18 H-padding-vertical-both-10 H-margin-vertical-top-10" style="color:#FF7C48">
+			退出登录
+		</div>
+	</div>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/H.js"></script>
+	<script type="text/javascript" src="../../script/setting.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/upload.js"></script>
+	<script type="text/javascript">
+		var userInfos = null;
+		apiready = function() {
+			userInfos = $api.getStorage('userInfo');
+			initLoginStatus(userInfos);
+			api.addEventListener({
+				name: 'reEditor'
+			}, function(ret, err) {
+				var v = ret.value.val;
+				var k = ret.value.key;
+				$(k).html(v);
+				console.log(v);
+			});
+			api.addEventListener({
+				name: 'userLoginData'
+			}, function(ret, err) {
+				userInfos = $api.getStorage('userInfo');
+				initLoginStatus(userInfos);
+			});
+			initRequire();
+		};
+
+		function initRequire() {
+			require();
+			isIOS = api.systemType == "ios" ? true : false;
+		};
+
+		function updateUserInfo() {
+			H.toastLoading();
+			var x = document.getElementById("sex");
+  		var genderId = x.options[x.selectedIndex].value;
+			var gender = x.options[x.selectedIndex].text;
+
+			var userInfo = $api.getStorage('userInfo');
+			var userId = userInfo.user.id;
+			var url = '/user-profiles/' + userId + '/';
+			var data = {
+				gender: genderId
+			};
+			ajaxs(url, 'PATCH', data, true, function(ret) {
+
+			}, function(ret, err) {
+				H.closeToast();
+				log(ret, true);
+				log(err, true);
+				if (ret) {
+					if (ret.id) {
+						H.toastTip('修改成功');
+						userInfo.user.gender = genderId;
+						$api.setStorage('userInfo',userInfo);
+						api.sendEvent({
+							name: 'userLoginData',
+							extra: {
+								status: 1
+							}
+						});
+					} else {
+						H.toastErr('修改失败');
+					}
+				} else {
+					log(err, true)
+					api.toast({
+						msg: err.body.detail,
+						duration: 1200,
+						location: 'middle'
+					});
+				}
+			});
+		};
+
+		function initLoginStatus(data) {
+			var x = document.getElementById("sex");
+			if (data == null) {
+				$('#userImg').attr('src', '../../image/userImg/nouser.png');
+				$('#userName').html('未登录');
+				$('#wxPhone').html('未登录');
+				// $('#sex').html('未登录');
+				 $('#sex').css({'display':'none'});
+				$('#manage').css({
+					"display": "none"
+				});
+			} else {
+				$('#userImg').attr('src', data.user.avatar ? data.user.avatar : '../../image/userImg/nouser.png');
+				$('#userName').html(data.user.nickname);
+				$('#wxPhone').html(data.user.wx_openid);
+				// $('#sex').html(data.user.gender == 0 ? '女' : '男');
+				$('#sex').css({'display':'block'});
+				var index = data.user.gender;
+	  		x.options[index].selected = true;
+				$('#login').html('退出登录');
+				$('#manage').css({
+					"display": "-webkit-box"
+				});
+			}
+		};
+
+		function openWins(title, name, url, data) {
+			H.openWin('base_head_' + name, 'widget://html/comPages/base_head.html', {
+				title: title,
+				name: name,
+				url: url,
+				data: data
+			});
+		};
+
+		function editorName() {
+			openWins('修改昵称', 'name', '../user/userCenter_editor_body.html', {
+				x: 1,
+				v: $('#userName').html()
+			});
+		};
+
+		function editorNumber() {
+			openWins('修改手机号', 'name', '../user/userCenter_editor_body.html', {
+				x: 2,
+				v: $('#wxPhone').html()
+			});
+		};
+
+		function editorPassword() {
+			openWins('修改密码', 'name', '../user/userCenter_editor_body.html', {
+				x: 3,
+				v: ''
+			});
+		};
+
+		function actionLogoin() {
+			if (userInfos) {
+				logout();
+			} else {
+				openWins('', 'user_loginRegister_body', '../user/user_loginRegister_body.html');
+			}
+		};
+
+		function logout() {
+			var url = window.server + '/user-profiles/logout/';
+			api.ajax({
+				url: url,
+				method: 'get'
+			}, function(ret, err) {
+				log(ret, true)
+				if (ret) {
+					$api.rmStorage('userInfo');
+					api.sendEvent({
+						name: 'userLoginData',
+						extra: {
+							status: 0
+						}
+					});
+					$('#login').html('戳我登录');
+					api.toast({
+						msg: '已退出',
+						duration: 3000,
+						location: 'middle'
+					});
+				} else {
+					api.toast({
+						msg: '错误码:' + err.code + ";网络状态码:" + err.statusCode,
+						duration: 3000,
+						location: 'middle'
+					});
+				}
+			});
+		};
+
+		function setUserImg(img) {
+			H.toastLoading();
+			var userId = $api.getStorage('userInfo').user.id;
+			var url = '/user-profiles/' + userId + '/';
+			var data = {
+				avatar: img
+			};
+			ajaxs(url, 'PATCH', data, true, function(ret) {
+
+			}, function(ret, err) {
+				H.closeToast();
+				log(ret, true);
+				log(err, true);
+				if (ret) {
+					if (ret.id) {
+						H.toastTip('修改成功');
+					} else {
+						H.toastErr('修改失败');
+					}
+				} else {
+					log(err, true)
+					api.toast({
+						msg: err.body.detail,
+						duration: 1200,
+						location: 'middle'
+					});
+				}
+			});
+		};
+		//上传图片
+		function openUploadImg() {
+			openActionSheet(function(img) {
+				getTokens(img);
+			})
+		};
+
+		function getTokens(img) {
+			api.showProgress({
+				style: 'default',
+				animationType: 'fade',
+				title: '努力加载中...',
+				text: '先喝杯茶...',
+				modal: false
+			});
+			var url = window.server + '/common/qiniu/get/token/';
+			api.ajax({
+				url: url,
+				method: "get",
+				headers: {
+					"X-CSRFToken": $api.getStorage('userInfo').token
+				}
+			}, function(ret, err) {
+				if (ret) {
+					log(ret, true);
+					uploadImg(img, ret.data)
+				} else {
+					log(err, true);
+				}
+			});
+		};
+
+		function uploadImg(img, res) {
+			var data = {
+				files: {
+					file: img
+				},
+				values: {
+					token: res.token,
+					key: res.key
+				}
+			};
+			api.ajax({
+				url: "http://up-z2.qiniu.com/",
+				data: data,
+				dataType: "json",
+				method: "post"
+			}, function(ret, err) {
+				api.hideProgress();
+				if (ret) {
+					log(ret, true);
+					imgUrl = res.pic_path;
+					$("#userImg").attr('src', imgUrl);
+					setUserImg(imgUrl);
+				} else {
+					alert('上传失败');
+					//log(err, true);
+				}
+			});
+		};
+	</script>
+</body>
+
+</html>

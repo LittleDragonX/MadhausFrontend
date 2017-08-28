@@ -1,0 +1,344 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>Hui</title>
+	<link href="../../../css/Hui.css" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+		.bg1 {
+			background-color: #FF7C47;
+		}
+
+		.bg2 {
+			background-color: #66BBFB;
+		}
+
+		.bg3 {
+			background-color: #FC5658;
+		}
+
+		.bg4 {
+			background-color: #2AC09F;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="itemList" class="H-qq-list" style="display:none;">
+		<div class="H-qq-item H-vertical-middle H-overflow-hidden">
+			<div onclick="openDetail('1',1)" tapmode="" class="H-flexbox-horizontal H-box-sizing-border-box H-theme-background-color-white H-border-vertical-bottom-after H-clear-both H-padding-horizontal-both-10 H-padding-vertical-both-8 H-touch-active">
+				<div class="H-flexbox-horizontal H-display-block">
+					<div style="width:50px;height:50px;display: none;"><img src="../../../image/userImg/user01.jpg" class="H-width-100-percent H-height-100-percent H-display-block H-border-radius-circle H-border-both" />
+					</div>
+					<div class="H-flex-item H-padding-horizontal-both-10 H-vertical-middle H-overflow-hidden">
+						<div class="H-width-100-percent">
+							<div class="H-font-weight-normal H-display-block H-font-weight-500 H-font-size-14 H-text-show-row-1 H-padding-vertical-top-3" style="color: #ff7c48;">
+								<span>[:=ist[i].nickname:]</span><span><i class="H-iconfont H-icon-woman H-font-size-13" style="color: #09B79D;padding-left: 3px;"></i></span>
+								<span class="H-font-size-12 H-theme-font-color-999 H-float-right">[:=list[i].create_time.replace('T',' ').split('.')[0]:]</span>
+							</div>
+							<div class="H-theme-font-color-333 H-font-size-16 H-padding-vertical-top-3 H-text-show-row-1">
+								[:=ist[i].title:]
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="H-qq-menu H-vertical-middle H-position-relative H-overflow-hidden">
+				<div class="H-qq-menu H-vertical-middle H-position-relative H-overflow-hidden">
+					<div class="H-font-size-16 H-padding-horizontal-both-20 H-display-block H-theme-font-color-white H-center-all bg1">
+						加精
+					</div>
+					<div class="H-font-size-16 H-padding-horizontal-both-20 H-display-block H-theme-font-color-white H-center-all bg2">
+						编辑
+					</div>
+					<div class="H-font-size-16 H-padding-horizontal-both-20 H-display-block H-theme-font-color-white H-center-all bg3">
+						删除
+					</div>
+					<div class="H-font-size-16 H-padding-horizontal-both-20 H-display-block H-theme-font-color-white H-center-all bg4">
+						黑名单
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script id="tpl_itemList" type="text/html">
+		[:if(list.length>0){:] [: for (var i=0;i
+		<list.length;i++) { :] <div class="H-qq-item H-vertical-middle H-overflow-hidden">
+			<div onclick="openDetail('[:=list[i].id:]',1)" tapmode="" class="H-flexbox-horizontal H-box-sizing-border-box H-theme-background-color-white H-border-vertical-bottom-after H-clear-both H-padding-horizontal-both-10 H-padding-vertical-both-8 H-touch-active">
+				<div class="H-flexbox-horizontal H-display-block">
+					<div style="width:50px;height:50px;"><img src="[:=list[i].user_avatar+'?imageView2/1/w/200/h/200/interlace/0/q/100':]" class="H-width-100-percent H-height-100-percent H-display-block H-border-radius-circle H-border-both" />
+					</div>
+					<div class="H-flex-item H-padding-horizontal-both-10 H-vertical-middle H-overflow-hidden">
+						<div class="H-width-100-percent">
+							<div class="H-font-weight-normal H-display-block H-font-weight-500 H-font-size-14 H-text-show-row-1 H-padding-vertical-top-3" style="color: #ff7c48;">
+								<span>[:=list[i].user_nickname:]</span><span><i class="H-iconfont H-icon-woman H-font-size-13" style="color: #09B79D;padding-left: 3px;"></i></span>
+								<span class="H-font-size-12 H-theme-font-color-999 H-float-right">[:=list[i].create_time.replace('T',' ').split('.')[0]:]</span>
+							</div>
+							<div class="H-theme-font-color-333 H-font-size-16 H-padding-vertical-top-3 H-text-show-row-1">
+								[:if(list[i].status==1){:]
+								<span class="H-badge H-display-inline-block H-margin-vertical-top-8"><label class="H-display-inline-block H-vertical-middle bgColor2 H-theme-font-color-white  H-font-size-12">精</label></span> [:}:] [:=list[i].title:]
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			[:if(list[i].status==0){:]
+			<div class="H-qq-menu H-vertical-middle H-position-relative H-overflow-hidden">
+				<div onclick="setStatus('[:=list[i].id:]',1,1)" tapmode="" class="H-font-size-16 H-padding-horizontal-both-20 H-display-block H-theme-font-color-white H-center-all bg1">
+					加精
+				</div>
+				<div onclick="setStatus('[:=list[i].id:]',2,2)" tapmode="" class="H-font-size-16 H-padding-horizontal-both-20 H-display-block H-theme-font-color-white H-center-all bg3">
+					删除
+				</div>
+				<!-- <div onclick="setBlacklist('[:=list[i].id:]')" tapmode="" class="H-font-size-16 H-padding-horizontal-both-20 H-display-block H-theme-font-color-white H-center-all bg4">
+					黑名单
+				</div> -->
+			</div>
+			[:}else if(list[i].status==1){:]
+			<div class="H-qq-menu H-vertical-middle H-position-relative H-overflow-hidden">
+				<div onclick="setStatus('[:=list[i].id:]',0,0)" tapmode="" class="H-font-size-16 H-padding-horizontal-both-20 H-display-block H-theme-font-color-white H-center-all bg1">
+					取消加精
+				</div>
+				<div onclick="setStatus('[:=list[i].id:]',2,2)" tapmode="" class="H-font-size-16 H-padding-horizontal-both-20 H-display-block H-theme-font-color-white H-center-all bg3">
+					删除
+				</div>
+				<!-- <div onclick="setBlacklist('[:=list[i].id:]')" tapmode="" class="H-font-size-16 H-padding-horizontal-both-20 H-display-block H-theme-font-color-white H-center-all bg4">
+					黑名单
+				</div> -->
+			</div>
+			[:}else{:]
+			<div class="H-qq-menu H-vertical-middle H-position-relative H-overflow-hidden">
+				<div onclick="setStatus('[:=list[i].id:]',0,3)" tapmode="" class="H-font-size-16 H-padding-horizontal-both-20 H-display-block H-theme-font-color-white H-center-all bg3">
+					恢复删除
+				</div>
+			</div>
+			[:}:]
+			</div>
+			[:}}else{:]
+			<div class="H-padding-vertical-both-20 H-theme-font-color-999 H-font-size-16 H-center-all">暂无数据</div>
+			[:}:]
+	</script>
+	<script src="../../../script/api.js" type="text/javascript"></script>
+	<script src="../../../script/H.js" type="text/javascript"></script>
+	<script src="../../../script/setting.js" type="text/javascript"></script>
+	<script src="../../../script/zepto.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		H.ready(function() {
+			initDatas();
+			api.addEventListener({
+				name: 'loadInitData'
+			}, function(ret, err) {
+				if (ret) {
+					initDatas();
+				} else {
+					alert(JSON.stringify(err));
+				}
+			});
+		});
+
+		function initDatas() {
+			log(api.pageParam.id)
+			var url = '/fengliaos/admin/';
+			var data = {
+				status: api.pageParam.id
+			};
+			ajaxs(url, 'get', data, true, function(ret) {
+				log(ret, true)
+				if (ret.success) {
+					var html = H.tppl(H.D('#tpl_itemList').innerHTML, {
+						list: ret.data
+					});
+					$("#itemList").html(html).fadeIn(300);
+					addEventListeners();
+					api.parseTapmode();
+				} else {
+					H.toast('数据异常，请重试');
+				}
+			}, function(ret, err) {
+				log(err, true);
+			});
+		};
+
+		//设置： 普通、加精、删除
+		function setStatus(id, status, index) {
+			var url = '/fengliaos/' + id + '/';
+			var data = {
+				status: status
+			};
+			ajaxs(url, 'PATCH', data, true, function(ret) {
+				log(ret, true);
+				if (ret.id) {
+					// H.toast('已成功删除');
+					var msg = ['已取消加精','已成功加精','已成功删除','已成功恢复'];
+					H.toastTip(msg[index],1000);
+					api.sendEvent({
+						name: 'loadInitData',
+						extra: {
+							key1: 1
+						}
+					});
+				} else {
+					H.toast('操作失败');
+				}
+			}, function(ret, err) {
+				log(err, true);
+			});
+		};
+
+		//黑名单
+		function setBlacklist(id) {
+			var url = '/fengliao/admin/blacklist/';
+			var data = {
+				topic_id: id
+			};
+			ajaxs(url, 'post', data, true, function(ret) {
+				log(ret, true);
+				H.toast('已成功设置黑名单');
+				initDatas();
+			}, function(ret, err) {
+
+			});
+		};
+
+		//取消黑名单
+		function cancelBlacklist(id) {
+			var url = '/fengliao/admin/cancel/blacklist/';
+			var data = {
+				topic_id: id
+			};
+			ajaxs(url, 'post', data, true, function(ret) {
+				log(ret, true);
+				H.toast('已取消黑名单');
+				initDatas();
+			}, function(ret, err) {
+
+			});
+		};
+
+		function openDetail(id, type) {
+			H.openWin('detail_head_user_detail_body', 'widget://html/comPages/detail_head.html', {
+				title: '详情',
+				name: 'manage_user_detail_body',
+				url: '../admin/chat/manage_user_detail_body.html',
+				id: id,
+				type: type
+			});
+		};
+
+		//################## 侧滑全部代码
+		//返回角度
+		function GetSlideAngle(dx, dy) {
+			return Math.atan2(dy, dx) * 180 / Math.PI;
+		};
+		//根据起点和终点返回方向 1：向上，2：向下，3：向左，4：向右,0：未滑动
+		function GetSlideDirection(startX, startY, endX, endY) {
+			var dy = startY - endY;
+			var dx = endX - startX;
+			var result = 0;
+			//如果滑动距离太短
+			if (Math.abs(dx) < 2 && Math.abs(dy) < 2) {
+				return result;
+			}
+			var angle = GetSlideAngle(dx, dy);
+			if (angle >= -45 && angle < 45) {
+				result = 4;
+			} else if (angle >= 45 && angle < 135) {
+				result = 1;
+			} else if (angle >= -135 && angle < -45) {
+				result = 2;
+			} else if ((angle >= 135 && angle <= 180) || (angle >= -180 && angle < -135)) {
+				result = 3;
+			}
+			return result;
+		};
+		// 设置侧滑动画
+		function setScroll(parentElement, value, time) {
+			parentElement.firstElementChild.style.cssText = "-webkit-transition: transform " + time + "s;-webkit-transform:translateX(" + value + "px);";
+			parentElement.lastElementChild.style.cssText = "-webkit-transition: transform " + time + "s;-webkit-transform:translateX(" + value + "px);";
+		};
+
+		function addEventListeners() {
+			var _startX = 0;
+			var _startY = 0;
+			var scrollHeight = 0;
+			var scrollWidth = 0;
+			var currentRange = 0;
+			var parentEle = null;
+			var direction = 1;
+			// 触摸开始
+			window.addEventListener("touchstart", function(event) {
+				if (event.targetTouches.length == 1) {
+					var touch = event.targetTouches[0];
+					parentEle = H.getParents(event.target, "H-qq-item");
+					if (H.isElement(parentEle)) {
+						// 其他兄弟隐藏
+						var siblings = H.siblings(parentEle);
+						for (var i = 0; i < siblings.length; i++) {
+							var _siblingObj = siblings[i];
+							setScroll(_siblingObj, 0, 0);
+						}
+						scrollHeight = parentEle.firstElementChild.clientHeight;
+						scrollWidth = H.D(".H-qq-menu", parentEle).clientWidth;
+						for (var i = 0; i < parentEle.lastElementChild.childNodes.length; i++) {
+							var child = parentEle.lastElementChild.childNodes[i];
+							if (H.isElement(child)) {
+								child.style.cssText = "height:" + scrollHeight + "px;line-height:" + scrollHeight + "px;";
+							}
+						}
+						currentRange = Number(parentEle.firstElementChild.style.WebkitTransform.replace(/translateX\(/g, "").replace(/px\)/g, ""));
+						_startX = touch.pageX;
+						_startY = touch.pageY;
+					}
+				}
+			}, false);
+			// 触摸过程
+			window.addEventListener("touchmove", function(event) {
+				if (event.targetTouches.length == 1) {
+					var touch = event.targetTouches[0];
+					direction = GetSlideDirection(_startX, _startY, touch.pageX, touch.pageY);
+					if (direction == 3 || direction == 4) {
+						event.preventDefault();
+						if (H.isElement(parentEle)) {
+							var range = touch.pageX - _startX;
+							if (range <= 0) {
+								if (range - currentRange >= -scrollWidth && range - currentRange <= 0) {
+									setScroll(parentEle, (range - currentRange), 0);
+								}
+							} else {
+								if (range + currentRange <= 0) {
+									setScroll(parentEle, (range + currentRange), 0);
+								}
+							}
+						}
+					}
+				}
+			}, false);
+			// 触摸接触
+			window.addEventListener("touchend", function(event) {
+				var touch = event.targetTouches[0];
+				if (H.isElement(parentEle)) {
+					currentRange = Number(parentEle.firstElementChild.style.WebkitTransform.replace(/translateX\(/g, "").replace(/px\)/g, ""));
+					if (direction == 3 && (currentRange < 0)) {
+						setScroll(parentEle, -scrollWidth, 0.4);
+					} else if (direction == 4 && currentRange < 80) {
+						setScroll(parentEle, 0, 0.4);
+					} else {
+						setScroll(parentEle, 0, 0.4);
+					}
+				}
+			}, false);
+			// 点击
+			window.addEventListener("click", function(event) {
+				var parentEle = H.getParents(event.target, "H-qq-item");
+				if (H.isElement(parentEle)) {
+					setScroll(parentEle, 0, 0.4);
+				}
+			}, false);
+		};
+	</script>
+</body>
+
+</html>

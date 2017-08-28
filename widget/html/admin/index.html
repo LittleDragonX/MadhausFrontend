@@ -1,0 +1,328 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../../css/Hui.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+	<style type="text/css">
+		.H-theme-font-color1 {
+			color: #FF7C48;
+		}
+
+		.H-theme-background-color1 {
+			background-image: linear-gradient(120deg, #FB6A2F 0%, #f59174 100%);
+			/* background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); */
+			/* background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%); */
+			/*background-image: linear-gradient(-225deg, #5D9FFF 0%, #B8DCFF 48%, #6BBBFF 100%);*/
+			/* background-color: #e6ecfa; */
+			/* background-image: linear-gradient(-225deg, #69EACB 0%, #EACCF8 48%, #6654F1 100%); */
+			/*background-image: linear-gradient(-225deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%);*/
+		}
+		/* 边框线 */
+
+		.b-top,
+		.b-right,
+		.b-bottom,
+		.b-left {
+			position: relative;
+		}
+
+		.b-right:after {
+			content: '';
+			position: absolute;
+			width: 1px;
+			height: 200%;
+			top: 0;
+			right: 0;
+			border-right: 1px solid #e6e6e6;
+			-webkit-transform-origin: 0 0;
+			transform-origin: 0 0;
+			-webkit-transform: scale(.5, .5);
+			transform: scale(.5, .5);
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+
+		.b-bottom:after {
+			content: '';
+			position: absolute;
+			height: 1px;
+			bottom: 0;
+			left: 7px;
+			right: 7px;
+			border-bottom: 2px solid #ff7c48;
+			/*-webkit-transform-origin: 0 0;
+				 transform-origin: 0 0;
+				 -webkit-transform: scale(.5,.5);
+				 transform: scale(.5,.5);*/
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+			-webkit-transition: -webkit-transform .4s ease;
+			transition: transform .4s ease;
+		}
+
+		.active {
+			position: relative;
+			color: #ff7c48;
+		}
+
+		.active:after {
+			content: '';
+			position: absolute;
+			height: 1px;
+			bottom: 5px;
+			/*left: 7px;*/
+			/*right: 7px;*/
+			left: calc(50% - 8px);
+			width: 16px;
+			border-bottom: 3px solid #ff7c48;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+			-webkit-transition: -webkit-transform .4s ease;
+		}
+
+		#footer span,
+		#footer strong {
+			line-height: 1.1;
+		}
+	</style>
+</head>
+
+<body class="H-flexbox-vertical">
+	<header class="H-header H-theme-background-color1 H-border-vertical-bottom-after" id="play-header">
+		<!-- <span tapmode="" onclick="backHome()" class="H-icon H-position-relative H-display-inline-block H-float-left H-vertical-middle H-theme-font-color-white H-padding-horizontal-both-12 H-z-index-100"><i class="H-iconfont H-icon-exit H-font-size-18 H-vertical-middle"></i></span> -->
+		<div class="H-header-title H-center-all H-font-size-18 H-text-show-row-1 H-theme-font-color-white H-position-absolute H-width-100-percent">
+			疯玩
+		</div>
+		<span tapmode="" onclick="backHome()" class="H-icon H-position-relative H-display-inline-block H-float-right H-vertical-middle H-theme-font-color-white H-padding-horizontal-both-12 H-z-index-100"><i class="H-iconfont H-icon-exit H-font-size-20 H-vertical-middle"></i></span>
+	</header>
+	<header class="H-header H-theme-background-color1 H-border-vertical-bottom-after H-display-none" id="date-header">
+		<!-- <span tapmode="" onclick="backHome()" class="H-icon H-position-relative H-display-inline-block H-float-left H-vertical-middle H-theme-font-color-white H-padding-horizontal-both-12 H-z-index-100"><i class="H-iconfont H-icon-exit H-font-size-18 H-vertical-middle"></i></span> -->
+		<div class="H-header-title H-center-all H-font-size-18 H-text-show-row-1 H-theme-font-color-white H-position-absolute H-width-100-percent">
+			疯约
+		</div>
+		<span tapmode="" onclick="backHome()" class="H-icon H-position-relative H-display-inline-block H-float-right H-vertical-middle H-theme-font-color-white H-padding-horizontal-both-12 H-z-index-100"><i class="H-iconfont H-icon-exit H-font-size-20 H-vertical-middle"></i></span>
+	</header>
+	<header class="H-header H-theme-background-color1 H-border-vertical-bottom-after H-display-none" id="chat-header">
+		<!-- <span tapmode="" onclick="backHome()" class="H-icon H-position-relative H-display-inline-block H-float-left H-vertical-middle H-theme-font-color-white H-padding-horizontal-both-12 H-z-index-100"><i class="H-iconfont H-icon-exit H-font-size-18 H-vertical-middle"></i></span> -->
+		<div class="H-header-title H-center-all H-font-size-18 H-text-show-row-1 H-theme-font-color-white H-position-absolute H-width-100-percent">
+			疯聊
+		</div>
+		<span tapmode="" onclick="backHome()" class="H-icon H-position-relative H-display-inline-block H-float-right H-vertical-middle H-theme-font-color-white H-padding-horizontal-both-12 H-z-index-100"><i class="H-iconfont H-icon-exit H-font-size-20 H-vertical-middle"></i></span>
+	</header>
+	<header class="H-header H-theme-background-color1 H-border-vertical-bottom-after H-display-none" id="buy-header">
+		<!-- <span tapmode="" onclick="backHome()" class="H-icon H-position-relative H-display-inline-block H-float-left H-vertical-middle H-theme-font-color-white H-padding-horizontal-both-12 H-z-index-100"><i class="H-iconfont H-icon-exit H-font-size-18 H-vertical-middle"></i></span> -->
+		<div class="H-header-title H-center-all H-font-size-18 H-text-show-row-1 H-theme-font-color-white H-position-absolute H-width-100-percent">
+			疯购
+		</div>
+		<span tapmode="" onclick="backHome()" class="H-icon H-position-relative H-display-inline-block H-float-right H-vertical-middle H-theme-font-color-white H-padding-horizontal-both-12 H-z-index-100"><i class="H-iconfont H-icon-exit H-font-size-20 H-vertical-middle"></i></span>
+	</header>
+	<header class="H-header H-theme-background-color1 H-border-vertical-bottom-after H-display-none" id="user-header">
+		<!-- <span tapmode="" onclick="backHome()" class="H-icon H-position-relative H-display-inline-block H-float-left H-vertical-middle H-theme-font-color-white H-padding-horizontal-both-12 H-z-index-100"><i class="H-iconfont H-icon-exit H-font-size-18 H-vertical-middle"></i></span> -->
+		<div class="H-header-title H-center-all H-font-size-18 H-text-show-row-1 H-theme-font-color-white H-position-absolute H-width-100-percent">
+			用户
+		</div>
+		<span tapmode="" onclick="backHome()" class="H-icon H-position-relative H-display-inline-block H-float-right H-vertical-middle H-theme-font-color-white H-padding-horizontal-both-12 H-z-index-100"><i class="H-iconfont H-icon-exit H-font-size-20 H-vertical-middle"></i></span>
+	</header>
+	<div class="H-main H-flex-item H-position-relative H-overflow-hidden H-overflow-scrolling"></div>
+	<footer class="H-footer H-flexbox-horizontal H-theme-background-color-white H-border-vertical-top-after" id="footer" style="height: 49px;">
+		<div data-header="play" class="H-flex-item H-center-all H-text-align-center H-theme-font-color-999 H-touch-active swipe-item H-theme-font-color1" onclick="showActiveFrame(0)" tapmode="">
+			<div>
+				<span class="H-icon H-display-block H-line-height-normal"> <i class="H-iconfont H-icon-hot H-font-size-24"></i> <!--<img src="../../image/icon/play_select@3x.png" style="width:25px;height: 25px;" />--> </span>
+				<strong class="H-font-size-12 H-display-block H-font-weight-normal H-margin-vertical-top-3">疯玩</strong>
+			</div>
+		</div>
+		<div data-header="date" class="H-flex-item H-center-all H-text-align-center H-theme-font-color-999 H-touch-active swipe-item" onclick="showActiveFrame(1)" tapmode="">
+			<div>
+				<span class="H-icon H-display-block H-line-height-normal"><i class="H-iconfont H-icon-donate H-font-size-24"></i></span>
+				<strong class="H-font-size-12 H-display-block H-font-weight-normal H-margin-vertical-top-3">疯约</strong>
+			</div>
+		</div>
+		<div data-header="chat" class="H-flex-item H-center-all H-text-align-center H-theme-font-color-999 H-touch-active swipe-item" onclick="showActiveFrame(2)" tapmode="">
+			<div>
+				<span class="H-icon H-display-block H-line-height-normal"><i class="H-iconfont H-icon-msg H-font-size-24"></i></span>
+				<strong class="H-font-size-12 H-display-block H-font-weight-normal H-margin-vertical-top-3">疯聊</strong>
+			</div>
+		</div>
+		<div data-header="buy" class="H-flex-item H-center-all H-text-align-center  H-theme-font-color-999 H-touch-active swipe-item" onclick="showActiveFrame(3)" tapmode="">
+			<div>
+				<span class="H-icon H-display-block H-line-height-normal"><i class="H-iconfont H-icon-gouwudai H-font-size-24"></i></span>
+				<strong class="H-font-size-12 H-display-block H-font-weight-normal H-margin-vertical-top-3">疯购</strong>
+			</div>
+		</div>
+		<div data-header="user" class="H-flex-item H-center-all H-text-align-center  H-theme-font-color-999 H-touch-active swipe-item" onclick="showActiveFrame(4)" tapmode="">
+			<div>
+				<span class="H-icon H-display-block H-line-height-normal"><i class="H-iconfont H-icon-user H-font-size-24"></i></span>
+				<strong class="H-font-size-12 H-display-block H-font-weight-normal H-margin-vertical-top-3">用户</strong>
+			</div>
+		</div>
+	</footer>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/common/global.js"></script>
+	<script type="text/javascript" src="../../script/H.js"></script>
+	<script type="text/javascript" src="../../script/setting.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript">
+		// 首页frame组
+		var mySwiper = null,
+			swiperWidth = 0,
+			maxTranslate = 0,
+			maxWidth = 0;
+		var indexFrames = [],
+			play_frames = [],
+			date_frames = [],
+			chat_frames = [],
+			buy_frames = [];
+		//var users = null;
+		H.ready(function() {
+			api.setStatusBarStyle({
+				style: 'light'
+			});
+			var users = $api.getStorage('userInfo');
+			$("#userPhone").html(users.phone);
+			showActiveFrame(0);
+			if (!getStorage("statusBar")) {
+				setFixStatusBar();
+			}
+			H.dblclickToCloseApp();
+			//Window 离开屏幕的事件
+			api.addEventListener({
+				name: 'viewappear'
+			}, function(ret, err) {
+				console.log('window显示');
+				api.setStatusBarStyle({
+					style: 'light'
+				});
+			});
+		});
+		function backHome(){
+			adminLogout();
+			// api.closeWidget();
+			// api.closeToWin({
+			//     name: 'index'
+			// });
+		};
+		function openWins(title, name, url) {
+			H.openWin('base_head_' + name, 'widget://html/comPages/baseNoBorder_head.html', {
+				title: title,
+				name: name,
+				url: url
+			}, {
+				animation: {
+					type: api.systemType == 'ios' ? 'cube' : 'movein',
+					subType: 'from_left',
+					duration: 0
+				}
+			});
+		};
+
+		function login(type) {
+			if (type == 0) {
+				openWins('', 'login', '../com/login.html');
+			} else {
+				H.openSlidPane();
+			}
+		};
+
+		function adminLogout() {
+			var url = window.server + '/user-profiles/logout/';
+			api.ajax({
+				url: url,
+				method: 'get'
+			}, function(ret, err) {
+				log(ret, true)
+				if (ret) {
+					$api.rmStorage('userInfo');
+					api.sendEvent({
+						name: 'userLoginData',
+						extra: {
+							status: 0
+						}
+					});
+					openWins('', 'user_login_body', '../user/user_login_body.html');
+					setTimeout(function(){
+						api.closeWin();
+					},500)
+				} else {
+					api.toast({
+						msg: '错误码:' + err.code + ";网络状态码:" + err.statusCode,
+						duration: 3000,
+						location: 'middle'
+					});
+				}
+			});
+		};
+
+		function showHomeTabNav(index) {
+			H.setFrameGroupIndex('play', index, true);
+			setShowHomeTabNav(index);
+		};
+		Zepto(function($) {
+			$("#date-header .tabNav").on("tap", function() {
+				var index = $(this).index();
+				setShowdateTabNav(index);
+				H.setFrameGroupIndex('date', index, true);
+			});
+			$("#chat-header .H-flex-item").on("tap", function() {
+				var index = $(this).index();
+				//console.log(index);
+				setShowchatTabNav(index);
+				H.setFrameGroupIndex('chat', index, true);
+			});
+			$("#buy-header .H-flex-item").on("tap", function() {
+				var index = $(this).index();
+				//console.log(index);
+				setShowbuyTabNav(index);
+				H.setFrameGroupIndex('buy', index, true);
+			});
+		});
+
+		function hideAllFrame(frameName) {
+			$("#footer .swipe-item").each(function() {
+				var headerId = $(this).attr("data-header");
+				if (frameName != headerId) {
+					H.setFrameAttr(headerId, true);
+				} else {
+					H.setFrameAttr(headerId, false);
+				}
+			});
+		};
+
+		function showActiveFrame(index) {
+			var that = $("#footer .swipe-item").eq(index);
+			// 获取data-header存储的值
+			var headerId = that.attr("data-header");
+			// 对应的dom头部
+			var headerDOM = headerId + "-header";
+			that.addClass("H-theme-font-color1").siblings(".swipe-item").removeClass("H-theme-font-color1");
+			// 设置当前显示的frame名称
+			$("#" + headerDOM).removeClass("H-display-none").siblings(".H-header").addClass("H-display-none");
+			if (indexFrames.indexOf(headerId) == -1) {
+				var url = headerId + "/index_body.html";
+				H.openFrameNavOrFoot(headerId, url, "#" + headerDOM, null, "#footer", {
+					bounces: true,
+					vScrollBarEnabled: false
+				});
+				indexFrames.push(headerId);
+			}
+			hideAllFrame(headerId);
+		};
+
+		function openAdd() {
+			H.openWin('add_head', 'add.html', null, {
+				bgColor: 'rgba(0, 0, 0, 0)',
+				animation: {
+					type: "fade",
+					subType: "from_right",
+					duration: 0
+				}
+			});
+		};
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<title>头部-详情页面</title>
+	<link rel="stylesheet" type="text/css" href="../../css/Hui.css" />
+	<style>
+		.H-theme-background-color1 {
+			background-image: linear-gradient(120deg, #FB6A2F 0%, #f59174 100%);
+		}
+
+		.vux-masker-box {
+			position: relative;
+		}
+
+		.m-img {
+			padding-bottom: 70%;
+			display: block;
+			position: relative;
+			max-width: 100%;
+			background-size: cover;
+			background-position: center center;
+			cursor: pointer;
+			/*border-radius: 2px;*/
+		}
+
+		.vux-masker {
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			border-radius: inherit;
+		}
+
+		.m-title {
+			color: #fff;
+			text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+			font-weight: 500;
+			font-size: 16px;
+			position: absolute;
+			left: 0;
+			right: 0;
+			text-align: right;
+			bottom: 5px;
+			padding-right: 10px;
+			/*width: 100%;
+			 -webkit-transform: translateY(-50%);
+			 transform: translateY(-50%);*/
+		}
+	</style>
+</head>
+
+<body class="H-padding-vertical-both-5">
+	<div id="itemList" class="H-padding-horizontal-left-10">
+		<div class="bbs-item H-border-vertical-bottom-after">
+			<div class="H-flexbox-horizontal H-theme-background-color-white">
+				<div class="H-padding-vertical-both-8">
+					<img src="../../image/userImg/user04.jpg" alt="" title="" class=" H-display-block H-margin-horizontal-left-10 H-border-radius-circle H-width-45 H-height-45" />
+				</div>
+				<div class="H-flex-item H-margin-vertical-both-10 H-margin-horizontal-left-8">
+					<div class="H-theme-font-color-999 H-font-size-14 H-flexbox-horizontal H-text-horizontal-left H-box-sizing-border-box">
+						<span class="H-display-block H-flex-item H-text-align-left H-font-size-14"> <span class="H-theme-font-color4">清水芙蓉</span> <i class="H-iconfont H-icon-woman H-theme-font-color2 H-font-size-12"></i></span>
+					</div>
+					<div class="H-theme-font-color-999 H-text-show-row-1 H-margin-vertical-top-2 H-font-size-12">
+						广西南宁市科园大道888号
+					</div>
+				</div>
+				<div>
+					<div class="H-theme-font-color-white H-font-size-12 H-center-all H-padding-horizontal-both-10" style="height:24px;border-radius:12px 0 0 12px;background:-webkit-linear-gradient(0deg, #FD5658 0%, #c73b03 100%);">
+						我买单
+					</div>
+				</div>
+			</div>
+			<div class="H-flexbox-horizontal H-clear-both H-theme-background-color-white H-padding-8 H-box-sizing-border-box H-border-vertical-bottom-after">
+				<span class="H-font-size-14 H-center-all H-margin-horizontal-both-10 H-theme-font-color4"><i class="H-iconfont H-icon-ding-null H-font-size-18 H-margin-horizontal-right-5"></i><label class="H-display-inline-block H-vertical-middle">好评</label></span>
+				<span class="H-font-size-14 H-center-all H-margin-horizontal-both-10"><i class="H-iconfont H-icon-like-null H-theme-font-color-ccc H-font-size-18 H-margin-horizontal-right-5"></i><label class="H-display-inline-block H-theme-font-color-ccc H-vertical-middle">中评</label></span>
+				<span class="H-font-size-14 H-center-all H-margin-horizontal-both-10"><i class="H-iconfont H-icon-cai-null H-theme-font-color-ccc H-font-size-18 H-margin-horizontal-right-5"></i><label class="H-display-inline-block H-theme-font-color-ccc H-vertical-middle">差评</label></span>
+			</div>
+			<div id="yaoyue" class="H-theme-background-color-white H-padding-vertical-top-8">
+				<div class="H-text-list H-flexbox-horizontal H-vertical-middle">
+					<span class="H-icon H-display-block H-margin-horizontal-left-10"> <i class="H-iconfont H-icon-user H-font-size-22 H-vertical-middle H-theme-font-color-ccc"></i></span>
+					<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-14 H-padding-vertical-both-8 H-theme-font-color-999">
+						约男士
+					</div>
+				</div>
+				<div class="H-text-list H-flexbox-horizontal H-vertical-middle">
+					<span class="H-icon H-display-block H-margin-horizontal-left-10"> <i class="H-iconfont H-icon-log H-font-size-22 H-vertical-middle H-theme-font-color-ccc"></i></span>
+					<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-14 H-padding-vertical-both-8 H-theme-font-color-999">
+						自由恋爱
+					</div>
+				</div>
+				<div class="H-text-list H-flexbox-horizontal H-vertical-middle">
+					<span class="H-icon H-display-block H-margin-horizontal-left-10"> <i class="H-iconfont H-icon-none H-font-size-22 H-vertical-middle H-theme-font-color-ccc"></i></span>
+					<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-14 H-padding-vertical-both-8 H-theme-font-color-999">
+						2017-06-28 16:00
+					</div>
+				</div>
+				<div class="H-text-list H-flexbox-horizontal H-vertical-middle">
+					<span class="H-icon H-display-block H-margin-horizontal-left-10"> <i class="H-iconfont H-icon-where H-font-size-22 H-vertical-middle H-theme-font-color-ccc"></i></span>
+					<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-14 H-padding-vertical-both-8 H-theme-font-color-999">
+						南宁西乡塘区华成都市广场
+					</div>
+				</div>
+				<div class="H-text-list H-flexbox-horizontal H-vertical-middle">
+					<!--<span class="H-icon H-display-block H-margin-horizontal-left-10"> <i class="H-iconfont H-icon-reward H-font-size-22 H-vertical-middle H-theme-font-color-ccc"></i></span>-->
+					<span class="H-icon H-margin-horizontal-left-10 H-display-block H-font-size-14 H-margin-horizontal-left-3 H-theme-font-color-999"> <label>内容:</label> </span>
+					<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-14 H-padding-vertical-both-8 H-theme-font-color-999">
+						据说新开的一家健身房很不错，一起吧！
+					</div>
+				</div>
+			</div>
+			<div class="H-theme-background-color-white H-center-all H-border-vertical-top-after H-padding-vertical-both-20">
+				<button onclick="dialogBoxs()" tapmode="" class="H-button H-font-size-15 H-outline-none H-padding-vertical-both-8 H-padding-horizontal-both-20 H-theme-background-color4 H-theme-font-color-white H-theme-border-color4 H-theme-border-color4-click H-theme-background-color4-click H-theme-font-color4-click" style="border-radius: 20px;-webkit-border-radius: 20px;">
+					选她
+				</button>
+			</div>
+			<div class="H-theme-background-color-white H-text-list H-flexbox-horizontal H-vertical-middle">
+				<span class="H-icon H-display-block H-margin-horizontal-left-10"> <i class="H-iconfont H-icon-find-null H-font-size-16 H-vertical-middle H-theme-font-color-ccc"></i></span>
+				<div class="H-flex-item H-icon H-display-block H-font-size-12 H-margin-horizontal-left-3 H-theme-font-color-999">
+					<label class="H-theme-font-color4">38</label>人应约 | <label class="H-theme-font-color4">88</label>人看过
+				</div>
+				<span class="H-icon H-display-block H-margin-horizontal-right-3"> <i class="H-iconfont H-icon-none H-font-size-16 H-vertical-middle H-theme-font-color-ccc"></i></span>
+				<div class="H-padding-horizontal-right-10 H-font-size-12 H-padding-vertical-both-8 H-theme-font-color-999">
+					2017-06-25 18:00
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../../script/H.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript">
+		apiready = function() {};
+
+		function openFrameGroups() {
+			api.openFrameGroup({
+				name: api.pageParam.name,
+				rect: {
+					x: 0,
+					y: 88 + parseInt(getStorage("statusBar")),
+					w: 'auto',
+					h: api.winHeight - (44 + parseInt(getStorage("statusBar")))
+				},
+				frames: [{
+					name: 'user_homepage_activity_body',
+					url: 'user_homepage_activity_body.html',
+					bgColor: '#fff',
+					bounces: false,
+					vScrollBarEnabled: true,
+					hScrollBarEnabled: false,
+					useWKWebView: true
+				}, {
+					name: 'user_homepage_goods_body',
+					url: 'user_homepage_goods_body.html',
+					bgColor: '#fff',
+					bounces: false,
+					vScrollBarEnabled: true,
+					hScrollBarEnabled: false,
+					useWKWebView: true
+				}]
+			}, function(ret, err) {
+				var index = ret.index;
+				setShowTabNav(index);
+			});
+		};
+		Zepto(function($) {
+			$(".H-flex-item").on("tap", function() {
+				var index = $(this).index();
+				console.log(index)
+				setShowTabNav(index);
+				H.setFrameGroupIndex(api.pageParam.name, index, true);
+			});
+		});
+
+		function setShowTabNav(index) {
+			$("#nav .active").removeClass('active');
+			$("#nav .tabNav").eq(index).addClass('active');
+		};
+
+		function goBack() {
+			api.closeWin();
+		};
+
+		function openShopingCart() {
+			H.openWin('base_head_shopingCart', 'widget://html/comPages/base_head.html', {
+				title: '购物车',
+				name: 'shopingCart_body',
+				url: '../user/buy_shopingCart_body.html'
+			});
+		}
+	</script>
+</body>
+
+</html>

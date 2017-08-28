@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<title>头部-详情页面</title>
+	<link rel="stylesheet" type="text/css" href="../../css/Hui.css" />
+	<script type="text/javascript" src="../../script/global.js"></script>
+	<style>
+
+	</style>
+	<script type="text/javascript">
+		initTopBar('#fff', 1);
+	</script>
+</head>
+
+<body class="H-flexbox-vertical">
+	<header class="H-header H-border-vertical-bottom-after H-theme-background-color-white" id="header">
+		<span tapmode="" onclick="goBack()" class="H-icon H-position-relative H-display-inline-block H-float-left H-vertical-middle headColor H-padding-horizontal-both-12 H-z-index-100"><i class="H-iconfont H-icon-arrow-left H-font-size-18 H-vertical-middle"></i><label class="H-display-block H-vertical-middle H-font-size-15"></label></span>
+		<div id="title" class="H-header-title H-center-all H-font-size-18 H-text-show-row-1 headColor H-position-absolute H-width-100-percent H-font-weight-bold"></div>
+		<span onclick="love()" tapmode="" class="H-icon H-position-relative H-display-inline-block H-float-right H-vertical-middle H-theme-font-color-black H-padding-horizontal-both-12 H-z-index-100">
+			<i class="H-iconfont H-icon-star-null H-font-size-18 H-vertical-middle bgc"></i>
+		</span>
+	</header>
+	<script src="../../script/api.js"></script>
+	<script src="../../script/H.js"></script>
+	<script src="../../script/zepto.min.js"></script>
+	<script src="../../script/setting.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+			if (api.systemType == 'ios') {
+				api.setStatusBarStyle({
+					style: 'dark'
+				});
+			}
+			//            islove = api.pageParam.islove;
+			document.getElementById("title").innerHTML = api.pageParam.title;
+			openFrames();
+		};
+
+		function openFrames() {
+			api.openFrame({
+				name: api.pageParam.name,
+				url: api.pageParam.url,
+				rect: {
+					x: 0,
+					y: 44 + parseInt(getStorage("statusBar")),
+					w: 'auto',
+					h: api.winHeight - (44 + parseInt(getStorage("statusBar")))
+				},
+				pageParam: {
+					id: api.pageParam.id
+				},
+				bounces: false,
+				vScrollBarEnabled: true,
+				hScrollBarEnabled: false,
+				useWKWebView: true
+			});
+		};
+
+		function goBack() {
+			api.closeWin();
+		};
+
+		function love() {
+			return H.toastTip('收藏失败');
+			var url = '/fengliao/browse/'+api.pageParam.id+'/';
+			var data = {
+				collection: 1
+			};
+			ajaxs(url, 'PATCH', data, true, function(ret) {
+
+			}, function(ret, err) {
+				H.closeToast();
+				log(ret, true);
+				log(err, true);
+				if (ret) {
+					if (ret.id) {
+						H.toastTip('收藏成功');
+					} else {
+						H.toastErr('收藏失败');
+					}
+				} else {
+					log(err, true)
+					api.toast({
+						msg: err.body.detail,
+						duration: 1200,
+						location: 'middle'
+					});
+				}
+			});
+		};
+		//收藏功能
+		function clickHouse(cip) {
+			var url = '/fengliao/party/collection/article/';
+			var data = {
+				article_id: api.pageParam.id,
+				collection: cip
+			}
+			var token = $api.getStorage("userInfo");
+			ajax(url, 'post', data, token, function(ret) {
+				log(ret, true);
+				H.toast(JSON.stringify(data.collection));
+				data.collection == 1 ? $(".bgc").css("color", "#FF7C47") : $(".bgc").css("color", "#000")
+
+			}, function(ret, err) {
+
+			})
+		}
+
+		var count = 0;
+
+		function House() {
+			if (count % 2 == 0) {
+				count += 1;
+				clickHouse(1);
+				//                api.pageParam.islove = count;
+			} else if (count % 2 != 0) {
+				count += 1;
+				clickHouse(0);
+				//                api.pageParam.islove = count;
+			}
+		}
+	</script>
+</body>
+
+</html>

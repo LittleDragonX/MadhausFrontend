@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>用户登陆</title>
+		<link type="text/css" rel="stylesheet" href="../../css/Hui.css" />
+		<script type="text/javascript" src="../../script/common/global.js"></script>
+		<style>
+			.H-theme-background-color4 {
+				background: -moz-linear-gradient(120deg, #ff7c48 0%, #f59174 100%);
+				background: -o-linear-gradient(120deg, #ff7c48 0%, #f59174 100%);
+				background: -webkit-linear-gradient(120deg, #ff7c48 0%, #f59174 100%);
+				background: linear-gradient(120deg, #ff7c48 0%, #f59174 100%);
+			}
+			.H-theme-border-color4 {
+				border: 1px solid #ffa977;
+			}
+			.H-theme-background-color4-click:active {
+				/* background-color: #FC8B4A; */
+				background: linear-gradient(120deg, #FB6A2F 0%, #f59174 100%);
+			}
+		</style>
+	</head>
+	<body class="H-height-100-percent H-box-sizing-border-box H-overflow-hidden">
+		<div class="H-height-100-percent H-width-100-percent H-center-all">
+			<div class="H-width-100-percent H-margin-vertical-bottom-25">
+				<div class="H-padding-vertical-bottom-20">
+					<div class="H-flexbox-horizontal H-center-all">
+						<img src="../../image/logo.png" class="H-border-radius-12" style="width:100px;height:100px;" />
+					</div>
+					<div class="H-center-all H-font-size-18" style="color:#FB6A2F;">
+						MADHAUS
+					</div>
+				</div>
+				<div class="H-padding-15 H-padding-horizontal-both-20 H-margin-vertical-top-10">
+					<button onclick="openRegister()" tapmode="" class="H-button H-width-100-percent H-font-size-16 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color4 H-theme-font-color-white H-theme-border-color4 H-theme-border-color4-click H-theme-background-color4-click H-theme-font-color4-click H-border-radius-3 H-font-weight-bold">
+						注册
+					</button>
+				</div>
+				<div class="H-padding-15 H-padding-horizontal-both-20 H-margin-vertical-top-10">
+					<button class="H-button H-width-100-percent H-font-size-16 H-outline-none H-theme-background-color-transparent H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-font-color4 H-theme-border-color4 H-theme-border-color4-click H-theme-background-color4-click H-theme-font-color4-click H-border-radius-3 H-font-weight-bold">
+						一键登录
+					</button>
+				</div>
+			</div>
+		</div>
+		<script	type="text/javascript" src="../../script/H.js"></script>
+		<script type="text/javascript" src="../../script/setting.js"></script>
+		<script type="text/javascript">
+			var UILoading = null, loadId = 0;
+			apiready = function() {
+				//UILoading = api.require('UILoading');
+			};
+			function openWin(title, name, url) {
+				H.openWin('base_head_' + name, 'widget://html/comPages/baseBottom_head.html', {
+					title : title,
+					name : name,
+					url : url
+				}, {
+					animation : {
+						type : "movein",
+						subType : "from_bottom",
+						duration : 0
+					}
+				});
+			};
+			function openRegister() {
+				openWin('注册', 'register_body', '../com/register_body.html');
+			};
+			function showLoading() {
+				UILoading.flower({
+					center : {
+						x : api.winWidth / 2.0,
+						y : api.winHeight / 2.0
+					},
+					mask : 'rgba(0,0,0,0)',
+					size : 30,
+					fixed : true
+				}, function(ret) {
+					if (ret)
+						loadId = ret.id;
+				});
+			};
+			function closeLoading() {
+				UILoading.closeFlower({
+					id : loadId
+				});
+			};
+			function userLogin() {
+				var username = document.getElementById("userName").value;
+				var password = document.getElementById("password").value;
+				if (username == '' || password == '') {
+					api.toast({
+						msg : '手机号和密码不能为空',
+						duration : 2000,
+						location : 'bottom'
+					});
+					return;
+				}
+				return;
+				showLoading();
+				var url = '/login/api/login/';
+				var data = {
+					username : username,
+					password : password
+				};
+				http(url, 'post', data, function(ret) {
+					api.openWin({
+						rect : {
+							x : 0,
+							y : 0,
+							w : 'auto',
+							h : 'auto'
+						},
+						name : 'main',
+						url : 'html/main.html',
+						animation : {
+							type : "fade",
+							duration : 300
+						},
+						bounces : false,
+						reload : true,
+						slidBackEnabled : false
+					});
+				}, closeLoading);
+			};
+			function openWins() {
+				H.openWin('register_body', 'register_body.html', null, {
+					animation : {
+						type : "fade",
+						subType : "from_bottom",
+						duration : 0
+					}
+				});
+			};
+		</script>
+	</body>
+</html>

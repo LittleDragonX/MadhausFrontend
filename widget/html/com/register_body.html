@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>用户登陆</title>
+		<link type="text/css" rel="stylesheet" href="../../css/Hui.css" />
+		<script type="text/javascript" src="../../script/common/global.js"></script>
+		<style>
+			.H-theme-background-color4 {
+				background: -moz-linear-gradient(120deg, #ff7c48 0%, #f59174 100%);
+				background: -o-linear-gradient(120deg, #ff7c48 0%, #f59174 100%);
+				background: -webkit-linear-gradient(120deg, #ff7c48 0%, #f59174 100%);
+				background: linear-gradient(120deg, #ff7c48 0%, #f59174 100%);
+			}
+			.H-theme-border-color4 {
+				border: 1px solid #ffa977;
+			}
+			.H-theme-background-color4-click:active {
+				/* background-color: #FC8B4A; */
+				background: linear-gradient(120deg, #FB6A2F 0%, #f59174 100%);
+			}
+		</style>
+	</head>
+	<body class="H-height-100-percent H-box-sizing-border-box H-overflow-hidden">
+		<div class="H-height-100-percent H-width-100-percent H-center-all">
+			<div class="H-width-100-percent H-margin-vertical-bottom-25">
+				<div class="H-padding-vertical-bottom-20">
+					<div class="H-center-all H-font-size-20 H-theme-font-color-333">
+						请验证您的手机号码
+					</div>
+				</div>
+				<div class="H-padding-15 H-padding-horizontal-both-20 H-margin-vertical-top-10">
+					<div class="H-flexbox-horizontal H-border-radius-3" style="background-color: #f4f5f9;border: 1px solid #ddd;">
+						<input type="number" class="H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="请输入手机号码" style="background-color: #f4f5f9;">
+					</div>
+				</div>
+				<div class="H-padding-15 H-padding-horizontal-both-20 H-margin-vertical-top-10">
+					<div class="H-flexbox-horizontal H-border-radius-3" style="background-color: #f4f5f9;border: 1px solid #ddd;">
+						<input type="number" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12" placeholder="请输入验证码" style="background-color: #f4f5f9;">
+						<span class="H-vertical-middle H-padding-horizontal-both-8 H-theme-background-color-white H-theme-font-color-white H-font-size-14" style="background-color: #ff7c48;border-radius: 0 3px 3px 0;">获取验证码</span>
+					</div>
+				</div>
+				<!--<div class="H-padding-15 H-padding-horizontal-both-20 H-margin-vertical-top-10">
+					<button class="H-button H-width-100-percent H-font-size-16 H-outline-none H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-background-color4 H-theme-font-color-white H-theme-border-color4 H-theme-border-color4-click H-theme-background-color4-click H-theme-font-color4-click H-border-radius-3 H-font-weight-bold">
+						下一步
+					</button>
+				</div>-->
+				<div class="H-padding-15 H-padding-horizontal-both-20 H-margin-vertical-top-10">
+					<button class="H-button H-width-100-percent H-font-size-16 H-outline-none H-theme-background-color-ccc H-padding-vertical-both-12 H-padding-horizontal-both-20 H-theme-font-color-white H-border-radius-3 H-font-weight-bold" style="border: 1px solid #ccc;">
+						下一步
+					</button>
+				</div>
+			</div>
+		</div>
+		<script	type="text/javascript" src="../../script/H.js"></script>
+		<script type="text/javascript" src="../../script/setting.js"></script>
+		<script type="text/javascript">
+			var UILoading = null, loadId = 0;
+			apiready = function() {
+				//UILoading = api.require('UILoading');
+			};
+			function showLoading() {
+				UILoading.flower({
+					center : {
+						x : api.winWidth / 2.0,
+						y : api.winHeight / 2.0
+					},
+					mask : 'rgba(0,0,0,0)',
+					size : 30,
+					fixed : true
+				}, function(ret) {
+					if (ret)
+						loadId = ret.id;
+				});
+			};
+			function closeLoading() {
+				UILoading.closeFlower({
+					id : loadId
+				});
+			};
+			function openWins() {
+				H.openWin('register_body', 'register_body.html', null, {
+					animation : {
+						type : "fade",
+						subType : "from_bottom",
+						duration : 0
+					}
+				});
+			};
+		</script>
+	</body>
+</html>

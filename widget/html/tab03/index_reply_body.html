@@ -1,0 +1,519 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>回复</title>
+    <link rel="stylesheet" href="../../script/plugins/swiper/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/Hui.css" />
+  	<link rel="stylesheet" href="http://at.alicdn.com/t/font_354149_exsg44gib0pphkt9.css">
+    <style type="text/css">
+        .scrolling {
+            color: white;
+            /*left: 0;*/
+            margin: 0;
+            /*padding: 10px 0;*/
+            position: fixed;
+            text-align: center;
+            width: 100%;
+        }
+
+        .scrolling--down {
+            background-color: green;
+            -webkit-transition: top .5s ease;
+            transition: top .5s ease;
+            top: -91px;
+            z-index: 10000;
+            /*background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);*/
+            background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+        }
+
+        [data-scrolldir=down] .scrolling--down {
+            top: 0;
+        }
+
+        .scrolling--up {
+            bottom: 10px;
+            right: 10px;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            bottom: -91px;
+            -webkit-transition: bottom .5s ease;
+            transition: bottom .5s ease;
+            z-index: 10000;
+            background-image: linear-gradient(60deg, #64b3f4 0%, #c2e59c 100%);
+        }
+
+        [data-scrolldir=up] .scrolling--up {
+            bottom: 10px;
+            right: 10px;
+            width: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="H-padding-vertical-bottom-5"></div>
+    <!-- <div id="scroll-up" class="H-center-all H-border-radius-circle scrolling scrolling--up">
+        <span class="H-icon H-display-block H-horizontal-center"><i
+				class="H-iconfont H-icon-msg H-font-size-28 H-vertical-middle"></i></span>
+    </div> -->
+    <div class="H-channel-title H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-border-vertical-bottom-after">
+        <div class="H-channel-line H-theme-background-color4 H-padding-vertical-top-20 H-padding-horizontal-left-3"></div>
+        <div class="H-channel-text H-flex-item H-font-size-16 H-theme-font-color-black H-padding-10 H-margin-horizontal-right-10 H-text-show-row-1">
+            达人榜
+        </div>
+        <!-- <span class=" H-font-size-13 H-vertical-middle H-padding-horizontal-left-3 H-theme-font-color-999">更多<i
+				class="H-iconfont H-icon-arrow-right H-font-size-13 H-display-block H-padding-horizontal-right-10"></i></span> -->
+    </div>
+    <div class="H-theme-background-color-white H-swiper H-position-relative H-width-100-percent H-box-sizing-border-box H-overflow-scrolling" style="height: 86px;">
+        <div class="swiper-container swiper3 H-width-100-percent H-position-absolute H-height-100-percent swiper-container-horizontal swiper-container-free-mode">
+            <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
+                <div class="swiper-slide swiper-slide-active" style="width: 381px;">
+                    <div class="H-flexbox-horizontal H-text-align-center H-theme-background-color-white H-padding-vertical-both-10">
+                        <div class="H-flex-item">
+                            <span class="H-icon H-center-all H-border-radius-circle H-margin-horizontal-auto" style="height: 42px; width: 42px;"><img id="userImg" src="../../image/userImg/user01.jpg" class="H-vertical-align-middle H-border-radius-circle" style="width: 38px;height: 38px;"/></span>
+                            <label class="H-display-block H-font-size-13 H-margin-vertical-top-5">云卷云舒</label>
+                        </div>
+                        <div class="H-flex-item">
+                            <span class="H-icon H-center-all H-border-radius-circle H-margin-horizontal-auto" style="height: 42px; width: 42px;"><img id="userImg" src="../../image/userImg/user04.jpg"
+									class="H-vertical-align-middle H-border-radius-circle"
+									style="width: 38px;height: 38px;"/></span>
+                            <label class="H-display-block H-font-size-13 H-margin-vertical-top-5">清水芙蓉</label>
+                        </div>
+                        <div class="H-flex-item">
+                            <span class="H-icon H-center-all H-border-radius-circle H-margin-horizontal-auto" style="height: 42px; width: 42px;"><img id="userImg" src="../../image/userImg/user03.jpg"
+									class="H-vertical-align-middle H-border-radius-circle"
+									style="width: 38px;height: 38px;"/></span>
+                            <label class="H-display-block H-font-size-13 H-margin-vertical-top-5">海阔天空</label>
+                        </div>
+                        <div class="H-flex-item">
+                            <span class="H-icon H-center-all H-border-radius-circle H-margin-horizontal-auto" style="height: 42px; width: 42px;"><img id="userImg" src="../../image/userImg/user02.jpg"
+									class="H-vertical-align-middle H-border-radius-circle"
+									style="width: 38px;height: 38px;"/></span>
+                            <label class="H-display-block H-font-size-13 H-margin-vertical-top-5">东方彧卿</label>
+                        </div>
+                        <div class="H-flex-item">
+                            <span class="H-icon H-center-all H-border-radius-circle H-margin-horizontal-auto" style="height: 42px; width: 42px;"><img id="userImg" src="../../image/userImg/user05.jpg"
+									class="H-vertical-align-middle H-border-radius-circle"
+									style="width: 38px;height: 38px;"/></span>
+                            <label class="H-display-block H-font-size-13 H-margin-vertical-top-5">花千骨</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide swiper-slide-next" style="width: 381px;">
+                    <div class="H-flexbox-horizontal H-text-align-center H-theme-background-color-white H-padding-vertical-both-10">
+                        <div class="H-flex-item">
+                            <span class="H-icon H-center-all H-border-radius-circle H-margin-horizontal-auto" style="height: 42px; width: 42px;"><img id="userImg" src="../../image/userImg/user01.jpg"
+									class="H-vertical-align-middle H-border-radius-circle"
+									style="width: 38px;height: 38px;"/></span>
+                            <label class="H-display-block H-font-size-13 H-margin-vertical-top-5">白子画</label>
+                        </div>
+                        <div class="H-flex-item">
+                            <span class="H-icon H-center-all H-border-radius-circle H-margin-horizontal-auto" style="height: 42px; width: 42px;"><img id="userImg" src="../../image/userImg/user04.jpg"
+									class="H-vertical-align-middle H-border-radius-circle"
+									style="width: 38px;height: 38px;"/></span>
+                            <label class="H-display-block H-font-size-13 H-margin-vertical-top-5">霓漫天</label>
+                        </div>
+                        <div class="H-flex-item">
+                            <span class="H-icon H-center-all H-border-radius-circle H-margin-horizontal-auto" style="height: 42px; width: 42px;"><img id="userImg" src="../../image/userImg/user03.jpg"
+									class="H-vertical-align-middle H-border-radius-circle"
+									style="width: 38px;height: 38px;"/></span>
+                            <label class="H-display-block H-font-size-13 H-margin-vertical-top-5">孟玄朗</label>
+                        </div>
+                        <div class="H-flex-item">
+                            <span class="H-icon H-center-all H-border-radius-circle H-margin-horizontal-auto" style="height: 42px; width: 42px;"><img id="userImg" src="../../image/userImg/user02.jpg"
+									class="H-vertical-align-middle H-border-radius-circle"
+									style="width: 38px;height: 38px;"/></span>
+                            <label class="H-display-block H-font-size-13 H-margin-vertical-top-5">落十一</label>
+                        </div>
+                        <div class="H-flex-item">
+                            <span class="H-icon H-center-all H-border-radius-circle H-margin-horizontal-auto" style="height: 42px; width: 42px;"><img id="userImg" src="../../image/userImg/user05.jpg"
+									class="H-vertical-align-middle H-border-radius-circle"
+									style="width: 38px;height: 38px;"/></span>
+                            <label class="H-display-block H-font-size-13 H-margin-vertical-top-5">轻水</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="H-padding-vertical-bottom-10"></div>
+    <div id="itemList" class="H-display-none">
+        <div class="bbs-item H-theme-background-color-white H-margin-vertical-bottom-10">
+            <div class="H-flexbox-horizontal H-box-sizing-border-box H-clear-both H-padding-horizontal-both-10 H-padding-vertical-both-8">
+                <div style="width:45px;height:45px;">
+                    <img src="../../image/userImg/user03.jpg" class="H-width-100-percent H-height-100-percent H-display-block H-border-radius-circle H-border-both">
+                </div>
+                <div class="H-flex-item H-padding-horizontal-both-10 H-vertical-middle H-overflow-hidden">
+                    <div class="H-width-100-percent">
+                        <span class="H-display-block H-font-size-15 H-theme-font-color4 H-text-show-row-1">海阔天空</span>
+                        <div class="H-theme-font-color-999 H-font-size-13 H-text-show-row-1 H-padding-vertical-top-2">
+                            10分钟前
+                        </div>
+                    </div>
+                </div>
+                <div class="H-font-size-12 H-theme-font-color-999 white-space-nowrap H-text-align-right">
+                    <i class="H-iconfont H-icon-pointmore H-theme-font-color-ccc H-margin-horizontal-right-5"></i>
+                </div>
+            </div>
+            <div class="H-theme-font-color-333 H-padding-horizontal-both-10 H-margin-vertical-top-10 H-font-size-15" onclick="openDetail(0)" tapmode="">
+                如果你无法简洁的表达你的想法，那说明你还不够了解它。
+            </div>
+            <div class="H-theme-font-color-666 H-text-show-row-2 H-padding-horizontal-both-10 H-font-size-14 H-margin-vertical-both-10" onclick="openDetail(1)" tapmode="">
+                如果你无法简洁的表达你的想法，那说明你还不够了解它。如果你无法简洁的表达你的想法，那说明你还不够了解它。
+            </div>
+            <div class="H-theme-background-color-white H-clear-both H-width-100-percent H-display-table H-box-sizing-border-box H-padding-horizontal-left-10">
+                <div class="H-display-table-cell H-float-left H-box-sizing-border-box H-width-avg-1 H-padding-horizontal-right-10 H-margin-vertical-bottom-10">
+                    <img src="../../image/userImg/bg03.png" class="H-width-100-percent H-display-block" alt="" title="" />
+                </div>
+            </div>
+            <div class="H-flexbox-horizontal">
+                <div class="H-flex-item H-center-all H-theme-border-color-white H-font-size-16">
+                    <div class="H-vertical-middle H-padding-horizontal-both-10 H-margin-horizontal-both-10 tabNav active" style="height:42px;">
+                        <i class="H-iconfont H-icon-like-null H-theme-font-color-ccc H-font-size-18 H-margin-horizontal-right-5"></i><label class="H-display-inline-block H-theme-font-color-ccc H-vertical-middle">3</label>
+                    </div>
+                    <div class="H-vertical-middle H-padding-horizontal-both-10 H-margin-horizontal-both-10 tabNav" style="height:42px;">
+                        <i class="H-iconfont H-icon-like-null H-theme-font-color-ccc H-font-size-18 H-margin-horizontal-right-5"></i><label class="H-display-inline-block H-theme-font-color-ccc H-vertical-middle">3</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bbs-item H-theme-background-color-white H-margin-vertical-bottom-10">
+            <div class="H-flexbox-horizontal H-box-sizing-border-box H-clear-both H-padding-horizontal-both-10 H-padding-vertical-both-8">
+                <div style="width:45px;height:45px;">
+                    <img src="../../image/userImg/user03.jpg" class="H-width-100-percent H-height-100-percent H-display-block H-border-radius-circle H-border-both">
+                </div>
+                <div class="H-flex-item H-padding-horizontal-both-10 H-vertical-middle H-overflow-hidden">
+                    <div class="H-width-100-percent">
+                        <span class="H-display-block H-font-size-15 H-theme-font-color4 H-text-show-row-1">海阔天空</span>
+                        <div class="H-theme-font-color-999 H-font-size-13 H-text-show-row-1 H-padding-vertical-top-2">
+                            10分钟前
+                        </div>
+                    </div>
+                </div>
+                <div class="H-font-size-12 H-theme-font-color-999 white-space-nowrap H-text-align-right">
+                    <i class="H-iconfont H-icon-pointmore H-theme-font-color-ccc H-margin-horizontal-right-5"></i>
+                </div>
+            </div>
+            <div class="H-theme-font-color-333 H-padding-10 H-font-size-14" onclick="openDetail(1)" tapmode="">
+                如果你无法简洁的表达你的想法，那说明你还不够了解它。
+            </div>
+            <div class="H-theme-background-color-white H-clear-both H-width-100-percent H-display-table H-box-sizing-border-box H-padding-horizontal-left-10">
+                <div class="H-display-table-cell H-float-left H-box-sizing-border-box H-width-avg-2 H-padding-horizontal-right-10 H-margin-vertical-bottom-10">
+                    <img src="../../image/logo.png" class="H-width-100-percent H-display-block" alt="" title="" />
+                </div>
+                <div class="H-display-table-cell H-float-left H-box-sizing-border-box H-width-avg-2 H-padding-horizontal-right-10 H-margin-vertical-bottom-10">
+                    <img src="../../image/logo.png" class="H-width-100-percent H-display-block" alt="" title="" />
+                </div>
+            </div>
+            <div class="H-flexbox-horizontal">
+                <div class="H-flex-item H-center-all H-theme-border-color-white H-font-size-16">
+                    <div class="H-vertical-middle H-padding-horizontal-both-10 H-margin-horizontal-both-10 tabNav active" style="height:42px;">
+                        <i class="H-iconfont H-icon-like-null H-theme-font-color-ccc H-font-size-18 H-margin-horizontal-right-5"></i><label class="H-display-inline-block H-theme-font-color-ccc H-vertical-middle">3</label>
+                    </div>
+                    <div class="H-vertical-middle H-padding-horizontal-both-10 H-margin-horizontal-both-10 tabNav" style="height:42px;">
+                        <i class="H-iconfont H-icon-like-null H-theme-font-color-ccc H-font-size-18 H-margin-horizontal-right-5"></i><label class="H-display-inline-block H-theme-font-color-ccc H-vertical-middle">3</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bbs-item H-theme-background-color-white H-margin-vertical-bottom-10">
+            <div class="H-flexbox-horizontal H-box-sizing-border-box H-clear-both H-padding-horizontal-both-10 H-padding-vertical-both-8">
+                <div style="width:45px;height:45px;">
+                    <img src="../../image/userImg/user03.jpg" class="H-width-100-percent H-height-100-percent H-display-block H-border-radius-circle H-border-both">
+                </div>
+                <div class="H-flex-item H-padding-horizontal-both-10 H-vertical-middle H-overflow-hidden">
+                    <div class="H-width-100-percent">
+                        <span class="H-display-block H-font-size-15 H-theme-font-color4 H-text-show-row-1">海阔天空</span>
+                        <div class="H-theme-font-color-999 H-font-size-13 H-text-show-row-1 H-padding-vertical-top-2">
+                            10分钟前
+                        </div>
+                    </div>
+                </div>
+                <div class="H-font-size-12 H-theme-font-color-999 white-space-nowrap H-text-align-right">
+                    <i class="H-iconfont H-icon-pointmore H-theme-font-color-ccc H-margin-horizontal-right-5"></i>
+                </div>
+            </div>
+            <div class="H-theme-font-color-333 H-padding-10 H-font-size-14" onclick="openDetail(1)" tapmode="">
+                如果你无法简洁的表达你的想法，那说明你还不够了解它。
+            </div>
+            <div class="H-clear-both H-width-100-percent H-display-table H-box-sizing-border-box H-padding-horizontal-left-10">
+                <div class="H-display-table-cell H-float-left H-box-sizing-border-box H-width-avg-3 H-padding-horizontal-right-10 H-margin-vertical-bottom-10">
+                    <img src="../../image/logo.png" class="H-width-100-percent H-display-block" alt="" title="" />
+                </div>
+                <div class="H-display-table-cell H-float-left H-box-sizing-border-box H-width-avg-3 H-padding-horizontal-right-10 H-margin-vertical-bottom-10">
+                    <img src="../../image/logo.png" class="H-width-100-percent H-display-block" alt="" title="" />
+                </div>
+                <div class="H-display-table-cell H-float-left H-box-sizing-border-box H-width-avg-3 H-padding-horizontal-right-10 H-margin-vertical-bottom-10">
+                    <img src="../../image/logo.png" class="H-width-100-percent H-display-block" alt="" title="" />
+                </div>
+            </div>
+            <div class="H-flexbox-horizontal">
+                <div class="H-flex-item H-center-all H-theme-border-color-white H-font-size-16">
+                    <div class="H-vertical-middle H-padding-horizontal-both-10 H-margin-horizontal-both-10 tabNav active" style="height:42px;">
+                        <i class="H-iconfont H-icon-like-null H-theme-font-color-ccc H-font-size-18 H-margin-horizontal-right-5"></i><label class="H-display-inline-block H-theme-font-color-ccc H-vertical-middle">3</label>
+                    </div>
+                    <div class="H-vertical-middle H-padding-horizontal-both-10 H-margin-horizontal-both-10 tabNav" style="height:42px;">
+                        <i class="H-iconfont H-icon-like-null H-theme-font-color-ccc H-font-size-18 H-margin-horizontal-right-5"></i><label class="H-display-inline-block H-theme-font-color-ccc H-vertical-middle">3</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script id="tpl_itemList" type="text/html">
+        [:if(list.length>0){:] [: for (var i=0;i
+        <list.length;i++) { :] <div class="bbs-item H-theme-background-color-white H-margin-vertical-bottom-10">
+            <div class="H-flexbox-horizontal H-box-sizing-border-box H-clear-both H-padding-horizontal-both-10 H-padding-vertical-both-8">
+                <div style="width:45px;height:45px;">
+                    <img src="[:=list[i].user_avatar+'?imageView2/1/w/200/h/200/interlace/0/q/100':]"onerror="this.src='../../image/userImg/nouser.png'" class="H-width-100-percent H-height-100-percent H-display-block H-border-radius-circle H-border-both">
+                </div>
+                <div class="H-flex-item H-padding-horizontal-both-10 H-vertical-middle H-overflow-hidden">
+                    <div class="H-width-100-percent">
+                        <span class="H-display-block H-font-size-15 H-text-show-row-1" style="color:#ff7c48;">[:=list[i].user_nickname:]</span>
+                        <div class="H-theme-font-color-999 H-font-size-13 H-text-show-row-1 H-padding-vertical-top-2">
+                            [:=(list[i].create_time).replace('T',' ').split('.')[0]:]
+                        </div>
+                    </div>
+                </div>
+                [:var permission = getPermission()==1002?'':'H-display-none';:]
+                <div onclick="showManage('[:=list[i].id:]')" class="H-font-size-12 H-theme-font-color-999 white-space-nowrap H-text-align-right [:=permission:] showManage">
+                    <i class="H-iconfont H-icon-arrow-down H-theme-font-color4 H-margin-horizontal-right-5"></i>
+                </div>
+            </div>
+            <div onclick="openDetail('[:=list[i].id:]','[:=list[i].get_article_collection:]')" tapmode="">
+                <div>
+                    <div class="H-theme-font-color-333 H-padding-horizontal-both-10 H-margin-vertical-top-10 H-font-size-18">
+                      <!-- <div class="H-badge H-display-inline-block H-margin-vertical-top-8"><label class="H-display-inline-block H-vertical-middle bgColor2 H-theme-font-color-white H-font-size-12">精</label></div> -->
+                      <strong>[:=list[i].title?list[i].title:'':]</strong>
+                    </div>
+                    <div class="H-theme-font-color-666 H-text-show-row-2 H-padding-horizontal-both-10 H-font-size-14 H-margin-vertical-both-10">
+                        [:=list[i].content?list[i].content:'':]
+                    </div>
+                </div>
+                <div class="H-theme-background-color-white H-clear-both H-width-100-percent H-display-table H-box-sizing-border-box H-padding-horizontal-left-10">
+                    [:var len = list[i].ap_article.length,num = len
+                    <=2?2:3;:] [: for (var p=0;p<len;p++) { :] <div id="image[:=list[i].ap_article[p].id:]" class="H-display-table-cell H-float-left H-box-sizing-border-box H-width-avg-[:=num:] H-padding-horizontal-right-10 H-margin-vertical-bottom-10">
+                        <img src="[:=list[i].ap_article[p].pic+'?imageView2/1/w/300/h/300/interlace/0/q/100':]" class="H-width-100-percent H-display-block" alt="" title="" />
+                </div>
+                [:}:]
+            </div>
+            </div>
+            <div class="H-flexbox-horizontal">
+                <div class="H-flex-item H-center-all H-theme-border-color-white H-font-size-16">
+                    <div onclick="openDetail('[:=list[i].id:]','[:=list[i].get_article_collection:]')" tapmode="" class="H-vertical-middle H-padding-horizontal-both-10 H-margin-horizontal-both-10 tabNav active" style="height:42px;">
+                        <i class="H-iconfont H-font-size-16 icon-dianzan H-theme-font-color-ccc H-font-size-18 H-margin-horizontal-right-5"></i><label class="H-display-inline-block H-theme-font-color-ccc H-vertical-middle">[:=list[i].get_article_praise:]</label>
+                    </div>
+                    <div onclick="openDetail('[:=list[i].id:]','[:=list[i].get_article_collection:]')" tapmode="" class="H-vertical-middle H-padding-horizontal-both-10 H-margin-horizontal-both-10 tabNav" style="height:42px;">
+                        <i class="H-iconfont icon-fengwanshouye-pinglun H-theme-font-color-ccc H-font-size-18 H-margin-horizontal-right-5"></i><label class="H-display-inline-block H-theme-font-color-ccc H-vertical-middle">[:=list[i].get_article_reply:]</label>
+                    </div>
+                </div>
+            </div>
+            </div>
+            [:}}else{:]
+            <div class="H-padding-vertical-both-20 H-theme-font-color-999 H-font-size-16 H-center-all">暂无数据</div>
+            [:}:]
+    </script>
+    <script type="text/javascript" src="../../script/H.js"></script>
+    <script type="text/javascript" src="../../script/setting.js"></script>
+    <script type="text/javascript" src="../../script/common/scrolldir.min.js"></script>
+    <script type="text/javascript" src="../../script/plugins/swiper/swiper.min.js"></script>
+    <script type="text/javascript" src="../../script/zepto.min.js"></script>
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript">
+        // scrollDir();
+        // initSwiper();
+        var h = 0;
+        H.ready(function() {
+            initDatas();
+            loadDatas(function() {
+                initDatas();
+            });
+            api.addEventListener({
+                name: 'loadChatInitData'
+            }, function(ret, err) {
+                if (ret) {
+                    initDatas();
+                } else {
+                    alert(JSON.stringify(err));
+                }
+            });
+            api.execScript({
+                name: 'topic_head',
+                frameName: 'topic_body',
+                script: 'initComment();'
+            });
+            api.addEventListener({
+      				name: 'userLoginData'
+      			}, function(ret, err) {
+              var p = getPermission();
+              if(p==1002){
+      				  $('.showManage').css({'display':'block'})
+              }else{
+      				  $('.showManage').css({'display':'none'})
+              }
+      			});
+        });
+        function getPermission(){
+          var userInfo = $api.getStorage("userInfo");
+          var permission = userInfo?userInfo.user.permission:0;
+          return permission;
+        }
+        function showManage(id) {
+            H.actionSheet(function(ret, err) {
+                if (ret.buttonIndex == 1) {
+                    // H.toast('已加精');
+                    // jiajing(api.pageParam.id, id);
+                    setStatus(id,1);
+                    initDatas();
+                } else if (ret.buttonIndex == 2) {
+                    // H.toast('已成功删除');
+                    // del(api.pageParam.id, id);
+                    setStatus(id,2);
+                    initDatas();
+                } else if (ret.buttonIndex == 3) {
+                    // H.toast('已加入黑名单');
+                    // heimingdan(api.pageParam.id, id);
+                    setStatus(id,3);
+                    initDatas();
+                }
+            }, null, ['加精', '删除', '黑名单']);
+        };
+
+        function initSwiper() {
+            var swiper3 = new Swiper('.swiper3', {
+                slidesPerView: 1,
+                pagination: '.swiper-pagination',
+                paginationClickable: true,
+                spaceBetween: 0,
+                freeMode: true
+            });
+        };
+
+        //渲染页面
+        function initDatas() {
+            var url = window.server + '/fengliaos/home/list/';
+            api.ajax({
+                url: url,
+                data: {
+                    values: {
+                        tab: api.pageParam.id
+                    }
+                },
+                method: 'get'
+            }, function(ret, err) {
+                api.refreshHeaderLoadDone();
+                log(ret, true);
+                if (ret) {
+                    if (ret.success) {
+                        var html = H.tppl(H.D('#tpl_itemList').innerHTML, {
+                            list: ret.data
+                        });
+                        $("#itemList").html(html).fadeIn();
+                        // h = $('#image').width();
+                        // $('#image').height(h);
+                        api.parseTapmode();
+                    } else {
+                        api.toast({
+                            msg: ret.msg,
+                            duration: 3000,
+                            location: 'middle'
+                        });
+                    }
+                } else {
+                    log(err, true);
+                    api.toast({
+                        msg: '错误码:' + err.code + ";网络状态码:" + err.statusCode,
+                        duration: 3000,
+                        location: 'middle'
+                    });
+                }
+            });
+        };
+
+        function openDetail(id, islove) {
+            H.openWin('topic_head', 'topic_head.html', {
+                title: '话题详情',
+                name: 'topic_body',
+                url: 'topic_body.html',
+                id: id,
+                islove: islove
+            });
+        };
+
+        function setStatus(id,status) {
+            var msg = ['加精成功', '删除成功', '已设为黑名单'];
+            var url = '/fengliaos/' + id + '/';
+            var data = {
+              status: status
+            };
+            ajaxs(url, 'PATCH', data, true, function(ret) {
+
+            }, function(ret, err) {
+              log(ret, true);
+              log(err, true);
+              if(ret){
+                H.toastTip(msg[status-1]);
+              }else{
+                H.toastErr('操作失败');
+              }
+            });
+        };
+
+        function jiajing(id) {
+            var url = '/fengliaos/' + id + '/';
+            var data = {
+              status: 1
+            };
+            ajaxs(url, 'PATCH', data, true, function(ret) {
+
+      			}, function(ret, err) {
+      				H.closeToast();
+      				log(ret, true);
+      				log(err, true);
+      			});
+        };
+
+        function del(id) {
+            var url = window.server + "/fengliaos/" + id + "/";
+            api.ajax({
+                url: url,
+                method: 'PATCH',
+                data: {
+                    values: {
+                        status: 2
+                    }
+                },
+                headers: {
+                    "X-CSRFToken": $api.getStorage("userInfo").token
+                }
+            }, function(ret, err) {
+                log(ret);
+            });
+        }
+
+        function heimingdan(i, id) {
+            var i = i;
+            var url = window.server + "/fengliaos/" + id + "/";
+            api.ajax({
+                url: url,
+                method: 'PATCH',
+                data: {
+                    values: {
+                        status: 3
+                    }
+                },
+                headers: {
+                    "X-CSRFToken": $api.getStorage("userInfo").token
+                }
+            }, function(ret, err) {
+                log(ret);
+            });
+        }
+    </script>
+</body>
+
+</html>

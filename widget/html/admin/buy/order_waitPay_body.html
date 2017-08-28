@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>play_waitpay_body</title>
+	<link rel="stylesheet" type="text/css" href="../../../css/Hui.css">
+	<style type="text/css">
+
+	</style>
+</head>
+
+<body>
+	<div id="itemList" style="display:none;">
+		<div class="H-border-radius3-px H-theme-background-color-white H-margin-vertical-top-10">
+			<div class="H-padding-10 H-flexbox-horizontal H-theme-font-color-999 H-font-size-14 H-flexbox-horizontal H-text-horizontal-left H-box-sizing-border-box">
+				<span class="H-display-block H-flex-item H-text-align-left">2017-05-07 16:10</span>
+				<span class="H-display-block H-flex-item H-text-align-right" style="color: #00BC98;">待付款 </span>
+			</div>
+			<div class="H-flexbox-horizontal" style="background-color: #FAFAFA;">
+				<div onclick="openDetail(1,0)" tapmode="" class="H-padding-vertical-both-10 H-center-all">
+					<img src="../../../image/logo.png" srcs="" alt="" title="" class="imgCache H-display-block H-margin-horizontal-left-10" style="width: 65px; height: 65px;">
+				</div>
+				<div onclick="openDetail(1,1)" tapmode="" class="H-flex-item H-padding-10">
+					<strong class="H-font-weight-normal font-weight-500 H-font-size-16 H-display-block H-text-show-row-1">MARINE国际展览，让你一饱眼福!</strong>
+					<div class=" H-theme-font-color-999 H-text-show-row-1 H-margin-vertical-top-5 H-font-size-13">
+						规格: 蓝色套装
+					</div>
+					<div class=" H-theme-font-color-999 H-text-show-row-2 H-font-size-13">
+						<span>¥250</span>
+						<span class="H-float-right H-icon"><i class="H-iconfont H-icon-nice H-font-size-14"></i>x 1</span>
+					</div>
+				</div>
+			</div>
+			<div class="H-padding-10 H-text-align-right H-border-vertical-bottom-after H-font-size-14 H-theme-font-color-999">
+				<span style="color: #31304C;">合计：</span>
+				<span style="color: #FC3337;">￥20</span>
+				<span class="H-font-size-13">(含运费：12元)</span>
+			</div>
+			<div class="H-padding-10 H-flexbox-horizontal H-theme-font-color-999 H-font-size-14 H-flexbox-horizontal H-text-horizontal-left H-box-sizing-border-box">
+				<div class="H-display-block H-flex-item H-text-align-right H-theme-font-color7-active">
+					<span onclick="openPhone('10086')" tapmode="" class="H-badge H-display-inline-block"> <label class="H-display-inline-block H-vertical-middle H-theme-font-color-white H-font-size-12 H-center-all" id="oldtype1" style="color: #FC6D35; border: 1px solid #FC6D35; width: 60px; height: 30px; border-radius: 25px; margin-left: 5px;">联系买家</label> </span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script id="tpl_itemList" type="text/html">
+		[:if(list.length>0){:]
+		[: for (var i=0;i<list.length;i++) { :]
+			<div class="H-border-radius3-px H-theme-background-color-white H-margin-vertical-top-10">
+			<div class="H-padding-10 H-flexbox-horizontal H-theme-font-color-999 H-font-size-14 H-flexbox-horizontal H-text-horizontal-left H-box-sizing-border-box">
+				<span class="H-display-block H-flex-item H-text-align-left">[:=list[i].create_time.replace('T',' ').split('.')[0]:]</span>
+				<!-- <span class="H-display-block H-flex-item H-text-align-right" style="color: #00BC98;">待付款 </span> -->
+			</div>
+			[: for (var n=0;n<list[i].op_order.length;n++) { :]
+			<div class="H-flexbox-horizontal" style="background-color: #FAFAFA;">
+				<div onclick="openDetail('[:=list[i].op_order[n].id:]',0)" tapmode="" class="H-padding-vertical-both-10 H-center-all">
+					<img src="[:=list[i].op_order[n].pro_pic+'?imageView2/1/w/200/h/200/interlace/0/q':]" srcs="" alt="" title="" class="imgCache H-display-block H-margin-horizontal-left-10" style="width: 65px; height: 65px;">
+				</div>
+				<div onclick="openDetail('[:=list[i].op_order[n].id:]',1)" tapmode="" class="H-flex-item H-padding-10">
+					<strong class="H-font-weight-normal font-weight-500 H-font-size-16 H-display-block H-text-show-row-1">[:=list[i].op_order[n].pro_name:]</strong>
+					<div class=" H-theme-font-color-999 H-text-show-row-1 H-margin-vertical-top-5 H-font-size-13">
+						规格: [:=list[i].op_order[n].pro_spec:]
+					</div>
+					<div class=" H-theme-font-color-999 H-text-show-row-2 H-font-size-13">
+						<span>¥[:=list[i].op_order[n].pro_total_fee:]</span>
+						<span class="H-float-right H-icon"><i class="H-iconfont H-icon-nice H-font-size-14"></i>x [:=list[i].op_order[n].pro_num:]</span>
+					</div>
+				</div>
+			</div>
+			[:}:]
+			<div class="H-padding-10 H-text-align-right H-border-vertical-bottom-after H-font-size-14 H-theme-font-color-999">
+				<span style="color: #31304C;">合计：</span>
+				<span style="color: #FC3337;">￥[:=list[i].pro_fee:]</span>
+				<span class="H-font-size-13">(含运费：[:=list[i].log_fee:]元)</span>
+			</div>
+			<div class="H-padding-10 H-flexbox-horizontal H-theme-font-color-999 H-font-size-14 H-flexbox-horizontal H-text-horizontal-left H-box-sizing-border-box">
+				<div class="H-display-block H-flex-item H-text-align-right H-theme-font-color7-active">
+					<span onclick="openPhone('[:=list[i].receive_address.contact_number:]')" tapmode="" class="H-badge H-display-inline-block"> <label class="H-display-inline-block H-vertical-middle H-theme-font-color-white H-font-size-12 H-center-all" id="oldtype1" style="color: #FC6D35; border: 1px solid #FC6D35; width: 60px; height: 30px; border-radius: 25px; margin-left: 5px;">联系买家</label> </span>
+				</div>
+			</div>
+			</div>
+			[:}}else{:]
+			<div class="H-padding-vertical-both-20 H-theme-font-color-999 H-font-size-16 H-center-all">暂无数据</div>
+			[:}:]
+	</script>
+	<script src="../../../script/api.js" type="text/javascript"></script>
+	<script src="../../../script/H.js" type="text/javascript"></script>
+	<script src="../../../script/setting.js" type="text/javascript"></script>
+	<script src="../../../script/zepto.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		H.ready(function() {
+			initDatas();
+		});
+
+		function initDatas() {
+			var url = '/fenggou/orders/admin/';
+			var data = {
+				pay_status: 0
+			};
+			ajaxs(url, 'get', data, true, function(ret) {
+				log(ret, true);
+				if (ret.success) {
+					var html = H.tppl(H.D('#tpl_itemList').innerHTML, {
+						list: ret.data
+					});
+					$("#itemList").html(html).fadeIn(300);
+					api.parseTapmode();
+				} else {
+					api.toast({
+						msg: ret.msg,
+						duration: 2000,
+						location: 'middle'
+					});
+				}
+			}, function(ret, err) {
+
+			});
+		};
+
+		function initData1() {
+			var url = '/fenggou/admin/order/check/by/sign/';
+			var data = {
+				status: 0
+			};
+			http(url, 'get', data, function(ret) {
+				log(ret, true);
+				var html = H.tppl(H.D('#tpl_itemList').innerHTML, {
+					list: ret.data.order_list
+				});
+				$("#itemList").html(html).fadeIn(300);
+				api.parseTapmode();
+			}, function(ret, err) {
+
+			});
+		};
+
+		function openWins(title, name, url) {
+			H.openWin('base_head_' + name, 'widget://html/comPages/baseNoBorder_head.html', {
+				title: title,
+				name: name,
+				url: url
+			});
+		};
+
+		function pay() {
+			openWins('订单详情', 'payInfo', '../../user/play_waitPayInfo_body.html');
+		};
+
+		function openDetail(id, type) {
+			if (type == 0) {
+				H.openWin('goods_head', '../../tab04/goods_head.html', {
+					title: '商品详情',
+					name: 'goods_body',
+					url: 'goods_body.html',
+					id: id,
+					isManage:1
+				});
+			} else if (type == 1) {
+				H.openWin('base_head_payOrderInfo_body', 'widget://html/comPages/base_head.html', {
+					title: '订单详情',
+					name: 'buy_payOrderInfo_body',
+					url: '../user/buy_payOrderInfo_body.html',
+					id: id,
+					isManage:1
+				});
+			} else if (type == 2) {
+				H.openWin('base_head_waitSendOrderInfo_body', 'widget://html/comPages/base_head.html', {
+					title: '订单详情',
+					name: 'buy_waitSendOrderInfo_body',
+					url: '../user/buy_waitSendOrderInfo_body.html',
+					id: id,
+					isManage:1
+				});
+			} else if (type == 3) {
+				H.openWin('base_head_waitTakeOrderInfo_body', 'widget://html/comPages/base_head.html', {
+					title: '订单详情',
+					name: 'buy_waitTakeOrderInfo_body',
+					url: '../user/buy_waitTakeOrderInfo_body.html',
+					id: id,
+					isManage:1
+				});
+			} else if (type == 4) {
+				H.openWin('base_head_takeOrderInfo_body', 'widget://html/comPages/base_head.html', {
+					title: '订单详情',
+					name: 'buy_takeOrderInfo_body',
+					url: '../user/buy_takeOrderInfo_body.html',
+					id: id,
+					isManage:1
+				});
+			}
+		};
+
+		function openPhone(num) {
+			api.call({
+				type: 'tel_prompt',
+				number: num
+			});
+		};
+	</script>
+</body>
+
+</html>

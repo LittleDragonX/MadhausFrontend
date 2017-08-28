@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>play_waitattendinfo_body</title>
+	<link rel="stylesheet" type="text/css" href="../../../css/Hui.css">
+	<style type="text/css">
+		input.H-textbox {
+			border-width: 0;
+			color: #999;
+			min-width: 100px;
+		}
+
+		.select {
+			text-align: right;
+			vertical-align: middle;
+			border: 0;
+			width: 100%;
+			height: 48px;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			color: #999;
+			cursor: pointer;
+			background-color: white;
+			outline: none;
+			tap-highlight-color: rgba(255, 255, 255, 0);
+			-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+		}
+
+		.select option {
+			direction: rtl;
+		}
+
+		#list1 {
+			-webkit-box-shadow: 0 0 10px rgba(133, 146, 146, .5);
+			-moz-box-shadow: 0 0 10px rgba(133, 146, 146, .5);
+			box-shadow: 0 0 10px rgba(133, 146, 146, .5);
+		}
+
+		.radous {
+			-webkit-box-shadow: 0 0 10px rgba(133, 146, 146, .5);
+			-moz-box-shadow: 0 0 10px rgba(133, 146, 146, .5);
+			box-shadow: 0 0 10px rgba(133, 146, 146, .5);
+		}
+
+		#button1 {
+			color: #FF8453;
+			background-color: #FFF;
+			border-radius: 0 0 5px 5px;
+			-webkit-border-radius: 0 0 5px 5px;
+		}
+
+		#button1:active {
+			background-color: #FF8453;
+			color: #FFF;
+		}
+
+		#button2 {
+			background-color: #FF8453;
+		}
+
+		#button2:active {
+			background-color: #ff5c43;
+			color: #FFF;
+		}
+	</style>
+</head>
+
+<body id="bdy" class="H-display-none">
+	<div id="itemList" class="H-padding-10 H-main H-flex-item H-position-relative H-overflow-hidden H-overflow-scrolling">
+		<div id="list1" class="H-theme-background-color-white H-border-radius-5">
+			<div class="H-flexbox-horizontal H-box-sizing-border-box H-theme-background-color-white H-center-all H-clear-both H-padding-10 H-border-radius-5">
+				<div style="width:60px;height:60px;"><img src="../../../image/userImg/user03.jpg" class="H-width-100-percent H-height-100-percent H-display-block H-border-radius-circle H-border-both">
+				</div>
+			</div>
+			<div class="H-flexbox-horizontal H-padding-vertical-bottom-8">
+				<div class="H-flex-item H-padding-horizontal-both-10">
+					<div class="H-text-list H-flexbox-horizontal H-vertical-middle">
+						<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-3 H-center-all" style="color: #FF732E;">
+							海阔天空
+						</div>
+					</div>
+					<div class="H-text-list H-flexbox-horizontal H-vertical-middle">
+						<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-14 H-padding-vertical-both-3 H-theme-font-color-999 H-center-all">
+							注册时间：2017-06-28 16:00
+						</div>
+					</div>
+					<div class="H-text-list H-flexbox-horizontal H-vertical-middle">
+						<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-14 H-padding-vertical-both-3 H-theme-font-color-666 H-center-all">
+							手机号码：15588889999
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="list2">
+		<div class="H-theme-background-color-white H-margin-vertical-top-10 H-text-list H-flexbox-horizontal H-vertical-middle">
+			<div class="H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+				他的话题
+			</div>
+			<div class="H-flex-item">
+				<!--<select v-model="jsonData.obj_type" class="H-font-size-16 select" dir="rtl">
+					<option value="0">女</option>
+					<option value="1">男</option>
+					</select>-->
+			</div>
+			<span class="H-icon H-padding-horizontal-right-10 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-999 H-font-size-14 H-vertical-middle"></i></span>
+		</div>
+		<div class="H-theme-background-color-white H-margin-vertical-top-10 H-text-list H-flexbox-horizontal H-vertical-middle">
+			<div class="H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+				他的删帖
+			</div>
+			<div class="H-flex-item">
+				<!--<select v-model="jsonData.obj_type" class="H-font-size-16 select" dir="rtl">
+					<option value="0">女</option>
+					<option value="1">男</option>
+					</select>-->
+			</div>
+			<span class="H-icon H-padding-horizontal-right-10 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-999 H-font-size-14 H-vertical-middle"></i></span>
+		</div>
+		<div class="H-theme-background-color-white H-margin-vertical-top-10 H-text-list H-flexbox-horizontal H-vertical-middle">
+			<div class="H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+				他的黑名单
+			</div>
+			<div class="H-flex-item">
+				<!--<select v-model="jsonData.obj_type" class="H-font-size-16 select" dir="rtl">
+					<option value="0">女</option>
+					<option value="1">男</option>
+					</select>-->
+			</div>
+			<span class="H-icon H-padding-horizontal-right-10 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-999 H-font-size-14 H-vertical-middle"></i></span>
+		</div>
+		<div class="H-theme-background-color-white H-margin-vertical-top-10 H-text-list H-flexbox-horizontal H-vertical-middle">
+			<div class="H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+				他的加精
+			</div>
+			<div class="H-flex-item">
+				<!--<select v-model="jsonData.obj_type" class="H-font-size-16 select" dir="rtl">
+					<option value="0">女</option>
+					<option value="1">男</option>
+					</select>-->
+			</div>
+			<span class="H-icon H-padding-horizontal-right-10 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-999 H-font-size-14 H-vertical-middle"></i></span>
+		</div>
+	</div>
+	<div style="height: 48px;"></div>
+	<div class="H-flexbox-horizontal H-box-sizing-border-box" style="position: fixed;bottom:0px;z-index: 10000;">
+		<div tapmode="" onclick="setPermission()" class="H-flex-item H-center-all H-padding-vertical-both-12 H-font-size-16 H-theme-font-color-white" style="background-color:#ff7c48;">
+			取消管理员
+		</div>
+	</div>
+	<script id="tpl_itemList" type="text/html">
+		<div id="list" class="H-padding-10 H-main H-flex-item H-position-relative H-overflow-hidden H-overflow-scrolling">
+			<div id="list1" class="H-theme-background-color-white H-border-radius-5">
+				<div class="H-flexbox-horizontal H-box-sizing-border-box H-theme-background-color-white H-center-all H-clear-both H-padding-10 H-border-radius-5">
+					<div style="width:60px;height:60px;"><img src="[:=list.avatar+'?imageView2/1/w/200/h/200/interlace/0/q/100':]" class="H-width-100-percent H-height-100-percent H-display-block H-border-radius-circle H-border-both">
+					</div>
+				</div>
+				<div class="H-flexbox-horizontal H-padding-vertical-bottom-8">
+					<div class="H-flex-item H-padding-horizontal-both-10">
+						<div class="H-text-list H-flexbox-horizontal H-vertical-middle">
+							<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-3 H-center-all" style="color: #FF732E;">
+								[:=list.nickname:]
+							</div>
+						</div>
+						<div class="H-text-list H-flexbox-horizontal H-vertical-middle">
+							<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-14 H-padding-vertical-both-3 H-theme-font-color-999 H-center-all">
+								注册时间：[:=list.create_time.replace('T',' ').split('.')[0]:]
+							</div>
+						</div>
+						<div class="H-text-list H-flexbox-horizontal H-vertical-middle">
+							<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-14 H-padding-vertical-both-3 H-theme-font-color-666 H-center-all">
+								手机号码：[:=list.phone?'list.phone':'xxx':]
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</script>
+	<script type="text/javascript" src="../../../script/H.js"></script>
+	<script type="text/javascript" src="../../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../../script/api.js"></script>
+	<script type="text/javascript" src="../../../script/setting.js"></script>
+	<script>
+		H.ready(function() {
+			initDatas();
+		});
+
+		function initDatas() {
+			var url = '/user-profiles/' + api.pageParam.id + '/';
+			ajaxs(url, 'get', null, true, function(ret) {
+				if (ret.id) {
+					var html = H.tppl(H.D('#tpl_itemList').innerHTML, {
+						list: ret
+					});
+					$("#itemList").html(html);
+					$("#bdy").fadeIn();
+					api.parseTapmode();
+				} else {
+
+				}
+			}, function(ret, err) {
+				log(ret, true);
+				log(err, true);
+			});
+		};
+
+		function setStatus() {
+			H.toastTip('操作成功')
+			api.sendEvent({
+				name: 'loadManageData',
+				extra: {
+					key1: 1
+				}
+			});
+			api.closeWin();
+		};
+
+		//设为:管理员
+		function setPermission() {
+			var url = '/user-profiles/' + api.pageParam.id + '/';
+			var data = {
+				permission: 0
+			};
+			ajaxs(url, 'PATCH', data, true, function(ret) {
+				if (ret.id) {
+					setStatus();
+				} else {
+					H.toastTip('操作失败，请重试')
+				}
+			}, function(ret, err) {
+				log(ret, true);
+				log(err, true);
+			});
+		};
+	</script>
+</body>
+
+</html>

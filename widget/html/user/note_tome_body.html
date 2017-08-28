@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport"
+		content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0">
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>play_paysuccess_body</title>
+		<link rel="stylesheet" type="text/css" href="../../css/Hui.css">
+		<style type="text/css">
+			#button2 {
+				background-color: #FF8453;
+			}
+			#button2:active {
+				background-color: #ff5c43;
+				color: #FFF;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="bbs-item H-margin-vertical-top-5 H-border-vertical-bottom-after">
+			<div class="H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-after">
+				<div class="H-padding-vertical-both-8">
+					<img src="../../image/logo.png" alt="" title="" class=" H-display-block H-margin-horizontal-left-10 H-border-radius-circle H-width-45 H-height-45">
+				</div>
+				<div class="H-flex-item H-margin-10">
+					<div class="H-theme-font-color-999 H-font-size-14 H-flexbox-horizontal H-text-horizontal-left H-box-sizing-border-box">
+						<span class="H-display-block H-flex-item H-text-align-left H-font-size-14"><span class="H-theme-font-color1">海阔天空</span></span>
+					</div>
+					<div class="H-theme-font-color-999 H-text-show-row-1 H-margin-vertical-top-2 H-font-size-12">
+						2017-08-06
+					</div>
+				</div>
+			</div>
+			<div class="H-theme-background-color-white H-theme-font-color-333 H-padding-10 H-font-size-14">
+				一切从简，只为了更懒！Hui是新生帝个人开发，版权所有为中山赢友网络科技有限公司！
+			</div>
+			<div class="H-padding-10 H-font-size-14" style="background-color: #FAFAFA;">
+				原话题：最新电影《战狼2》
+			</div>
+			<div class="H-flexbox-horizontal H-clear-both H-theme-background-color-white H-padding-8 H-box-sizing-border-box">
+				<div class="H-flex-item"></div>
+				<span class="H-font-size-14 H-center-all"><i class="H-iconfont H-icon-msg H-theme-font-color-ccc H-font-size-18 H-margin-horizontal-right-5"></i><label class="H-display-inline-block H-theme-font-color-ccc H-vertical-middle">3</label></span>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../script/H.js"></script>
+		<script type="text/javascript">
+			function openWins(title, name, url) {
+				H.openWin('base_head_' + name, 'widget://html/comPages/baseNoBorder_head.html', {
+					title : title,
+					name : name,
+					url : url
+				});
+			};
+			function cancel() {
+				api.closeWin();
+			};
+			function openDetail() {
+				openWins('订单详情', 'play_waitAttendInfo_body', '../user/play_waitAttendInfo_body.html');
+			}
+		</script>
+	</body>
+</html>

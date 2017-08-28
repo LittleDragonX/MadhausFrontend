@@ -1,0 +1,343 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>广场</title>
+	<link href="../../css/Hui.css" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+		.vux-masker-box {
+			position: relative;
+		}
+
+		.m-img {
+			padding-bottom: 70%;
+			display: block;
+			position: relative;
+			max-width: 100%;
+			background-size: cover;
+			background-position: center center;
+			cursor: pointer;
+			/*border-radius: 2px;*/
+		}
+
+		.vux-masker {
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			border-radius: inherit;
+		}
+
+		.m-title {
+			color: #fff;
+			text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+			font-weight: 500;
+			font-size: 16px;
+			position: absolute;
+			left: 0;
+			right: 0;
+			text-align: right;
+			bottom: 5px;
+			padding-right: 10px;
+			/*width: 100%;
+				 -webkit-transform: translateY(-50%);
+				 transform: translateY(-50%);*/
+		}
+
+		.border-radius {
+			border-radius: 4px;
+			-webkit-border-radius: 4px;
+			box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 5px;
+		}
+
+		.H-border-radius-top {
+			border-radius: 4px 4px 0 0;
+			-webkit-border-radius: 4px 4px 0 0;
+		}
+
+		.H-border-radius-bottom {
+			border-radius: 4px 4px 0 0;
+			-webkit-border-radius: 4px 4px 0 0;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="banner"></div>
+	<div class="H-padding-vertical-bottom-10"></div>
+	<div class="H-text-list H-flexbox-horizontal H-center-all">
+		<span class="H-icon H-display-block H-margin-horizontal-left-10">
+			<!-- <i class="H-iconfont H-icon-hot H-font-size-18 H-vertical-middle" style="color: #FB6A2F;"></i> -->
+			<img src="../../image/pics/fenggou_hot@3x.png" class="H-display-block" style="height:20px;width:20px;">
+		</span>
+		<div class="H-padding-horizontal-both-8 H-font-size-16 H-padding-vertical-both-10 H-theme-font-color-444">
+			热卖不可错过
+		</div>
+	</div>
+	<div id="itemList" class="H-padding-horizontal-left-10" style="display:none;">
+		<div onclick="openDetail(0)" tapmode="" class="H-display-table-cell H-float-left H-box-sizing-border-box H-width-avg-2 H-padding-horizontal-right-10 H-margin-vertical-bottom-10">
+			<div class="router-view H-margin-vertical-both-5">
+				<div style="overflow: hidden;">
+					<div class="vux-masker-box">
+						<div class="m-img" style="background-image: url(https://gju1.alicdn.com/tps/i3/1937406077520429753/TB2PPVbvwNlpuFjy0FfXXX3CpXa_!!0-juitemmedia.jpg);"></div>
+						<div class="vux-masker" style="background: -webkit-gradient(linear,50% 100%,50% 50%,from(rgb(0, 0, 0)),to(rgba(255, 255, 255, 0)));">
+							<div class="m-title">
+								<span class="m-time H-font-size-13 H-theme-font-color-ccc">已购人数：222</span>
+							</div>
+						</div>
+					</div>
+					<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-padding-vertical-both-5 H-font-size-15 H-padding-horizontal-both-5">
+						南宁科园大道
+					</div>
+					<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-padding-vertical-both-5">
+						<span class="H-display-block H-font-size-18 H-margin-horizontal-left-5 H-theme-font-color-red">¥88.00</span>
+						<div class="H-flex-item H-padding-horizontal-both-5 H-font-size-15 H-theme-font-color-999 H-text-align-right">
+							188人关注
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div onclick="openDetail(0)" tapmode="" class="H-display-table-cell H-float-left H-box-sizing-border-box H-width-avg-2 H-padding-horizontal-right-10 H-margin-vertical-bottom-10">
+			<div class="router-view H-margin-vertical-both-5">
+				<div style="overflow: hidden;">
+					<div class="vux-masker-box">
+						<div class="m-img" style="background-image: url(https://gju1.alicdn.com/tps/i3/1937406077520429753/TB2PPVbvwNlpuFjy0FfXXX3CpXa_!!0-juitemmedia.jpg);"></div>
+						<div class="vux-masker" style="background: -webkit-gradient(linear,50% 100%,50% 50%,from(rgb(0, 0, 0)),to(rgba(255, 255, 255, 0)));">
+							<div class="m-title">
+								<span class="m-time H-font-size-13 H-theme-font-color-ccc">已购人数：222</span>
+							</div>
+						</div>
+					</div>
+					<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-padding-vertical-both-5 H-font-size-15 H-padding-horizontal-both-5">
+						南宁科园大道
+					</div>
+					<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-padding-vertical-both-5">
+						<span class="H-display-block H-font-size-18 H-margin-horizontal-left-5 H-theme-font-color-red">¥88.00</span>
+						<div class="H-flex-item H-padding-horizontal-both-5 H-font-size-15 H-theme-font-color-999 H-text-align-right">
+							188人关注
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script id="tpl_itemList" type="text/html">
+		[:if(list.length>0){:] [: for (var i=0;i
+		<list.length;i++) { :] <div onclick="openDetail('[:=list[i].id:]')" tapmode="" class="H-display-table-cell H-float-left H-box-sizing-border-box H-width-avg-2 H-padding-horizontal-right-10 H-margin-vertical-bottom-10">
+			<div class="router-view H-margin-vertical-both-5">
+				<div class="border-radius" style="overflow: hidden;">
+					<div class="vux-masker-box">
+						<div class="m-img" style="background-image: url([:=list[i].pic:]);"></div>
+						<div class="vux-masker" style="background: -webkit-gradient(linear,50% 100%,50% 50%,from(rgb(0, 0, 0)),to(rgba(255, 255, 255, 0)));">
+							<div class="m-title">
+								<span class="m-time H-font-size-13 H-theme-font-color-ccc">已购人数：[:=list[i].buy_user:]</span>
+							</div>
+						</div>
+					</div>
+					<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-padding-vertical-both-5 H-font-size-15 H-padding-horizontal-both-10">
+						[:=list[i].name:]
+					</div>
+					<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-padding-vertical-both-5">
+						<span class="H-display-block H-font-size-18 H-margin-horizontal-left-10 color2">¥[:=list[i].fee:]</span>
+						<!-- <div class="H-flex-item H-padding-horizontal-both-5 H-font-size-15 H-theme-font-color-999 H-text-align-right">
+							188人关注
+						</div> -->
+					</div>
+				</div>
+			</div>
+			</div>
+			[:}:]
+			<div class="H-text-list H-flexbox-horizontal H-center-all H-padding-vertical-top-20">
+				<img src="../../image/pics/fenggou_more@3x.png" class="H-display-block" style="height:49px;width:65px;">
+			</div>
+			<div class="H-text-list H-flexbox-horizontal H-center-all H-padding-vertical-both-10 H-theme-font-color-999 H-font-size-12">
+				更多精彩内容即将来袭
+			</div>
+			[:}else{:]
+			<div class="H-padding-vertical-both-20 H-theme-font-color-999 H-font-size-16 H-center-all">暂无数据</div>
+			[:}:]
+	</script>
+	<script src="../../script/api.js" type="text/javascript"></script>
+	<script src="../../script/H.js" type="text/javascript"></script>
+	<script src="../../script/setting.js" type="text/javascript"></script>
+	<script src="../../script/zepto.min.js" type="text/javascript"></script>
+	<script>
+		var scrollPicture = null;
+		var bannerImg = 9 / 16,
+			bannerImg_H = 0;
+		H.ready(function() {
+			bannerImg_H = bannerImg * api.winWidth;
+			$('#banner').height(bannerImg_H);
+			scrollPicture = api.require('UIScrollPicture');
+			initDatas(api.pageParam.id);
+			loadDatas(function() {
+				initDatas(api.pageParam.id);
+			});
+		});
+
+		function refData() {
+			api.setCustomRefreshHeaderInfo({
+				bgColor: '#f4f5f9',
+				image: {
+					pull: ['widget://image/loading/d1.png', 'widget://image/loading/d2.png', 'widget://image/loading/d3.png', 'widget://image/loading/d4.png', 'widget://image/loading/d5.png', 'widget://image/loading/d6.png', 'widget://image/loading/d7.png',
+						'widget://image/loading/d8.png', 'widget://image/loading/d9.png', 'widget://image/loading/d10.png', 'widget://image/loading/d11.png'
+					],
+					load: ['widget://image/loading/r1.png', 'widget://image/loading/r2.png', 'widget://image/loading/r3.png', 'widget://image/loading/r4.png', 'widget://image/loading/r5.png', 'widget://image/loading/r6.png']
+				}
+			}, function() {});
+		};
+
+		function initDatas(type) {
+			var url = '/fenggou/products/home/';
+			var data = {
+				type_id: type
+			};
+			ajaxs(url, 'get', data, false, function(ret) {
+				log(ret, true);
+				imgBanner(ret.results.pro_scroll_list);
+				var html = H.tppl(H.D('#tpl_itemList').innerHTML, {
+					list: ret.results.pro_list
+				});
+				$("#itemList").html(html).fadeIn(300);
+				api.parseTapmode();
+			}, function(ret, err) {
+				// setTimeout(function(){
+				// 	api.refreshHeaderLoadDone();
+				// },2000);
+				api.refreshHeaderLoadDone();
+				log(ret, true);
+			})
+		};
+
+		function initDatas1(type) {
+			var url = '/products/';
+			ajaxs(url, 'get', null, false, function(ret) {
+				log(ret, true);
+				imgBanner(null);
+				var html = H.tppl(H.D('#tpl_itemList').innerHTML, {
+					list: ret.results
+				});
+				$("#itemList").html(html).fadeIn(300);
+				api.parseTapmode();
+			}, function(ret, err) {
+
+			})
+		};
+
+		function initData(type) {
+			api.ajax({
+				url: window.server + '/products/',
+				method: 'get',
+				headers: {
+					"X-CSRFToken": $api.getStorage('userInfo')
+				},
+			}, function(ret, err) {
+				log(ret, true)
+				log(err, true)
+				if (ret) {
+					log(ret, true);
+					imgBanner(null);
+					var html = H.tppl(H.D('#tpl_itemList').innerHTML, {
+						list: ret.results
+					});
+					$("#itemList").html(html).fadeIn(300);
+					api.parseTapmode();
+				} else {
+					api.toast({
+						msg: '错误码:' + err.code + ";网络状态码:" + err.statusCode,
+						duration: 3000,
+						location: 'middle'
+					});
+				}
+			});
+		};
+
+		function initData1(type) {
+			var url = '/fenggou/home/product/list/by/sign/';
+			var data = {
+				type: type
+			};
+			http(url, 'get', data, function(ret) {
+				log(ret, true);
+				imgBanner(ret.data.product_level_list);
+				var html = H.tppl(H.D('#tpl_itemList').innerHTML, {
+					list: ret.data.product_list
+				});
+				$("#itemList").html(html).fadeIn(300);
+				api.parseTapmode();
+			}, function(ret, err) {
+
+			});
+		};
+
+		function openDetail(id) {
+			H.openWin('goods_head', 'goods_head.html', {
+				title: '商品详情',
+				name: 'goods_body',
+				url: 'goods_body.html',
+				id: id,
+				isManage: 0
+			});
+		};
+
+		function imgBanner(data) {
+			//alert(JSON.stringify(data));
+			var paths = [],
+				captions = [],
+				ids = [];
+			for (var i in data) {
+				paths.push(data[i].pic + '?imageView2/1/w/750/h/334/interlace/0/q/100');
+				captions.push(data[i].name);
+				ids.push(data[i].id);
+			}
+			scrollPicture.open({
+				rect: {
+					x: 0,
+					y: 0,
+					w: api.winWidth,
+					h: bannerImg_H
+				},
+				data: {
+					paths: paths,
+					captions: captions
+				},
+				styles: {
+					caption: {
+						height: 35,
+						color: '#FFF',
+						size: 17,
+						bgColor: 'rgba(0, 0, 0, 0.5)',
+						position: 'overlay'
+					},
+					indicator: {
+						align: 'right',
+						color: '#FFFFFF',
+						activeColor: '#ff7c48'
+					}
+				},
+				//placeholderImg : 'widget://res/slide1.jpg',
+				contentMode: 'scaleToFill',
+				interval: 3,
+				loop: true,
+				fixedOn: api.frameName,
+				fixed: false
+			}, function(ret, err) {
+				if (ret.status) {
+					if (ret.eventType == 'click') {
+						//H.toast(urls[ret.index]);
+						var i = ret.index;
+						//openInfo(urls[i], names[i], paths[i]);
+						openDetail(ids[i]);
+					}
+				}
+			});
+		};
+	</script>
+</body>
+
+</html>

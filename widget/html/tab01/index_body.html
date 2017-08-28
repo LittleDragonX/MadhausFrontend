@@ -1,0 +1,271 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>Hui</title>
+	<link href="../../css/Hui.css" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+		.H-center-end {
+			display: -webkit-box;
+			-webkit-box-orient: horizontal;
+			-webkit-box-pack: inherit;
+			-webkit-box-align: end;
+			display: box;
+			box-orient: horizontal;
+			box-pack: center;
+			box-align: center;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="banner"></div>
+	<div class="H-padding-vertical-bottom-10"></div>
+	<div class="H-channel-title H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-border-vertical-bottom-after">
+		<div class="H-channel-line H-theme-background-color4 H-padding-vertical-top-20 H-padding-horizontal-left-3"></div>
+		<div class="H-channel-text H-flex-item H-font-size-16 H-theme-font-color-black H-padding-10 H-margin-horizontal-right-10 H-text-show-row-1">
+			新鲜活动
+		</div>
+		<!-- <span class=" H-font-size-13 H-vertical-middle H-padding-horizontal-left-3 H-theme-font-color-999">更多<i class="H-iconfont H-icon-arrow-right H-font-size-13 H-display-block H-padding-horizontal-right-10"></i></span> -->
+	</div>
+	<div id="itemList" class="H-display-none">
+		<div onclick="openDetail()" tapmode="" class="H-theme-background-color-white H-position-relative H-flexbox-horizontal H-box-sizing-border-box H-padding-horizontal-both-10">
+			<div class="H-vertical-middle">
+				<img src="../../image/logo.png" class="H-width-75 H-display-block" style="height:75px">
+			</div>
+			<div class="H-flex-item H-box-sizing-border-box H-overflow-hidden H-border-vertical-bottom-margin-left-10-after H-padding-vertical-both-10">
+				<strong class="H-font-weight-normal H-display-block H-font-size-16 H-padding-horizontal-both-10 H-text-show-row-1">137亿美元拿下乔布斯最爱的超市，亚马逊到底要干什么？</strong>
+				<div class="H-flexbox-horizontal H-box-sizing-border-box H-padding-horizontal-left-10">
+					<div class="H-flex-item H-text-show-row-1">
+						<div class="H-flexbox-horizontal H-width-100-percent H-padding-vertical-both-5">
+							<span class="H-font-size-13 H-theme-font-color-999 H-display-block "> 8月28号 14:35开始 </span>
+							<!--<span class="H-font-size-13 H-vertical-middle H-flex-item H-margin-horizontal-both-5 H-text-show-row-1">
+								2222
+								</span>-->
+						</div>
+						<div class="H-font-size-15 H-theme-font-color-999 H-flexbox-horizontal H-width-100-percent H-text-show-row-1">
+							<span class="H-flex-item">1288人已报名</span>
+							<span class="H-theme-font-color-red">¥88.8</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script id="tpl_itemList" type="text/html">
+		[:if(list.length>0){:] [: for (var i=0;i
+		<list.length;i++) { :] <div onclick="openDetail('[:=list[i].id:]')" tapmode="" class="H-theme-background-color-white H-position-relative H-flexbox-horizontal H-box-sizing-border-box H-padding-horizontal-both-10">
+			<div class="H-vertical-middle">
+				<img src="[:=list[i].pic+'?imageView2/1/w/200/h/200/interlace/0/q/100':]" data-src="../../image/logo.png" class="H-width-75 H-display-block" style="height:75px">
+			</div>
+			<div class="H-flex-item H-box-sizing-border-box H-overflow-hidden H-border-vertical-bottom-margin-left-10-after H-padding-vertical-both-10">
+				<strong class="H-font-weight-normal H-display-block H-font-size-17 H-padding-horizontal-both-10 H-text-show-row-1">[:=list[i].name:]</strong>
+				<div class="H-flexbox-horizontal H-box-sizing-border-box H-padding-horizontal-left-10">
+					<div class="H-flex-item H-text-show-row-1">
+						<div class="H-flexbox-horizontal H-width-100-percent H-padding-vertical-both-5">
+							<span class="H-font-size-13 H-theme-font-color-999 H-display-block ">[:=(list[i].start_time).replace('T',' '):]开始 </span>
+							<!--<span class="H-font-size-13 H-vertical-middle H-flex-item H-margin-horizontal-both-5 H-text-show-row-1">
+			2222
+			</span>-->
+						</div>
+						<div class="H-font-size-13 H-theme-font-color-999 H-flexbox-horizontal H-width-100-percent H-text-show-row-1 color1">
+							[:var money = list[i].fee==0?'免费':'¥'+(list[i].fee);var color = list[i].fee==0?'color1':'color2';:]
+							<span class="H-flex-item H-font-size-13">[:=list[i].get_join_person_number:]人已报名</span>
+							<span class="H-font-weight-blod H-font-size-18 [:=color:]">[:=money:]</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+			[:}:]
+			<div class="H-center-all H-padding-vertical-top-20">
+				<img src="../../image/pics/fengwan_more@3x.png" class="H-display-block" style="height:49px;width:65px;">
+			</div>
+			<div class="H-center-all H-padding-vertical-both-10 H-theme-font-color-999 H-font-size-12">
+				更多精彩内容即将来袭
+			</div>
+			[:}else{:]
+			<div class="H-padding-vertical-both-20 H-theme-font-color-999 H-font-size-16 H-center-all">暂无数据</div>
+			[:}:]
+	</script>
+	<script src="../../script/H.js" type="text/javascript"></script>
+	<script src="../../script/setting.js" type="text/javascript"></script>
+	<script src="../../script/zepto.min.js" type="text/javascript"></script>
+	<script>
+		var scrollPicture = null,
+			imgBannerData = [];
+		var bannerImg = 9 / 16,
+			bannerImg_H = 0;
+		H.ready(function() {
+			scrollPicture = api.require('UIScrollPicture');
+			initDatas();
+			loadDatas(function() {
+				initDatas();
+			});
+			api.addEventListener({
+				name: 'loadingPlayData'
+			}, function(ret, err) {
+				if (ret) {
+					initDatas();
+				} else {
+					alert(JSON.stringify(err));
+				}
+			});
+		});
+		//列表分页追加
+		function initData() {
+			var url = '/fengwan/home/get/list/by/sign/1/';
+			var data = {
+				type_id: api.pageParam.id
+			};
+			http(url, 'get', data, function(ret) {
+				log(ret, true);
+				imgBannerData = ret.data.activity_level_list;
+				initBannerDatas(imgBannerData);
+				var html = H.tppl(H.D('#tpl_itemList').innerHTML, {
+					list: ret.data.list
+				});
+				$("#itemList").html(html).fadeIn(300);
+				sendBannerData();
+				api.parseTapmode();
+			}, function(ret, err) {
+				api.refreshHeaderLoadDone();
+			});
+		};
+
+		function sendBannerData() {
+			api.sendEvent({
+				name: 'sendBannerData',
+				extra: {
+					data: imgBannerData
+				}
+			});
+		};
+
+		function initDatas() {
+			var url = '/fengwan/home/activity/list/by/sign/';
+			var data = {
+				type: api.pageParam.title
+			};
+			http(url, 'get', data, function(ret) {
+				log(ret, true);
+				imgBannerData = ret.data.activity_level_list;
+				initBannerDatas(imgBannerData);
+				var html = H.tppl(H.D('#tpl_itemList').innerHTML, {
+					list: ret.data.activity_list
+				});
+				$("#itemList").html(html).fadeIn(300);
+				sendBannerData(imgBannerData);
+				api.parseTapmode();
+			}, function(ret, err) {
+				api.refreshHeaderLoadDone();
+			});
+		};
+
+		function initBannerDatas(data) {
+			if (data.length > 0) {
+				bannerImg_H = bannerImg * api.winWidth;
+				$('#banner').height(bannerImg_H);
+				imgBanner(data);
+			} else {
+				$('#banner').height(0);
+			}
+		};
+
+		function initBannerData() {
+			var url = window.server + '/activities/';
+			api.ajax({
+				url: url,
+				method: 'get',
+				data: {
+					values: {
+						a_type: api.pageParam.id,
+						level: 1
+					}
+				}
+			}, function(ret, err) {
+				if (ret) {
+					if (ret.results) {
+						if (ret.results.length > 0) {
+							bannerImg_H = api.winWidth * 9 / 16
+							$('#banner').height(bannerImg_H);
+							imgBanner(ret.results);
+						} else {
+							$('#banner').height(0);
+						}
+					} else {
+						alert('数据异常')
+					}
+				} else {
+					api.toast({
+						msg: '错误码:' + err.code + ";网络状态码:" + err.statusCode,
+						duration: 3000,
+						location: 'middle'
+					});
+				}
+			});
+		};
+
+		function openDetail(id) {
+			H.openWin('activity_head', 'activity_head.html', {
+				title: '活动详情',
+				name: 'activity_body',
+				url: 'activity_body.html',
+				id: id
+			});
+		};
+
+		function imgBanner(data) {
+			var paths = [],
+				captions = [];
+			for (var i in data) {
+				paths[i] = data[i].pic + '?imageView2/1/w/750/h/334/interlace/0/q/100';
+				captions[i] = '  '+data[i].name;
+			}
+			scrollPicture.open({
+				rect: {
+					x: 0,
+					y: 0,
+					w: api.winWidth,
+					h: bannerImg_H
+				},
+				data: {
+					paths: paths,
+					captions: captions
+				},
+				styles: {
+					caption: {
+						height: 35,
+						color: '#FFF',
+						size: 17,
+						bgColor: 'rgba(0, 0, 0, 0.5)',
+						position: 'overlay'
+					},
+					indicator: {
+						align: 'right',
+						color: '#FFFFFF',
+						activeColor: '#ff7c48'
+					}
+				},
+				//placeholderImg : 'widget://res/slide1.jpg',
+				contentMode: 'scaleToFill',
+				interval: 3,
+				loop: true,
+				fixedOn: api.frameName,
+				fixed: false
+			}, function(ret, err) {
+				if (ret.status) {
+					if (ret.eventType == 'click') {
+						var i = ret.index;
+						openDetail(data[i].id);
+					}
+				}
+			});
+		};
+	</script>
+</body>
+
+</html>

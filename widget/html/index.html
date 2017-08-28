@@ -1,0 +1,849 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="../css/Hui.css" />
+	<link rel="stylesheet" type="text/css" href="../css/swiper.min.css" />
+	<style type="text/css">
+		.H-theme-background-color1 {
+			background-image: linear-gradient(120deg, #FB6A2F 0%, #f59174 100%);
+			/* background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); */
+			/* background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%); */
+			/*background-image: linear-gradient(-225deg, #5D9FFF 0%, #B8DCFF 48%, #6BBBFF 100%);*/
+			/* background-color: #e6ecfa; */
+			/* background-image: linear-gradient(-225deg, #69EACB 0%, #EACCF8 48%, #6654F1 100%); */
+			/*background-image: linear-gradient(-225deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%);*/
+		}
+		/* 边框线 */
+
+		.b-top,
+		.b-right,
+		.b-bottom,
+		.b-left {
+			position: relative;
+		}
+
+		.b-right:after {
+			content: '';
+			position: absolute;
+			width: 1px;
+			height: 200%;
+			top: 0;
+			right: 0;
+			border-right: 1px solid #e6e6e6;
+			-webkit-transform-origin: 0 0;
+			transform-origin: 0 0;
+			-webkit-transform: scale(.5, .5);
+			transform: scale(.5, .5);
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+
+		.b-bottom:after {
+			content: '';
+			position: absolute;
+			height: 1px;
+			bottom: 0;
+			left: 7px;
+			right: 7px;
+			border-bottom: 2px solid #ff7c48;
+			/*-webkit-transform-origin: 0 0;
+				 transform-origin: 0 0;
+				 -webkit-transform: scale(.5,.5);
+				 transform: scale(.5,.5);*/
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+			-webkit-transition: -webkit-transform .4s ease;
+			transition: transform .4s ease;
+		}
+		/* 顶部菜单 滚动区域 */
+
+		#topNav {
+			width: 100%;
+			overflow: hidden;
+		}
+
+		#topNav .swiper-slide {
+			height: 42px;
+			padding: 0 10px;
+			letter-spacing: 1px;
+			width: initial;
+			display: -webkit-box;
+			-webkit-box-orient: horizontal;
+			-webkit-box-pack: center;
+			-webkit-box-align: center;
+			display: box;
+			box-orient: horizontal;
+			box-pack: center;
+			box-align: center;
+		}
+
+		#topNav .active {
+			position: relative;
+		}
+
+		#topNav .active:after {
+			content: '';
+			position: absolute;
+			height: 1px;
+			bottom: 5px;
+			/*left: 7px;*/
+			/*right: 7px;*/
+			left: calc(50% - 8px);
+			width: 16px;
+			border-bottom: 3px solid #ff7c48;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+			-webkit-transition: -webkit-transform .4s ease;
+		}
+
+		#topNav .swiper-slide span {
+			transition: all .3s ease;
+			display: block;
+		}
+
+		#topNav .active span {
+			/*transform: scale(1.1);*/
+			color: #ff7c48;
+		}
+
+		.H-theme-font-color1 {
+			color: #ff7c48;
+		}
+		/* 滚动区域结束 */
+
+		.active {
+			position: relative;
+			color: #ff7c48;
+		}
+
+		.active:after {
+			content: '';
+			position: absolute;
+			height: 1px;
+			bottom: 5px;
+			/*left: 7px;*/
+			/*right: 7px;*/
+			left: calc(50% - 8px);
+			width: 16px;
+			border-bottom: 3px solid #ff7c48;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+			-webkit-transition: -webkit-transform .4s ease;
+		}
+		.isShow{
+			display:none;
+		}
+	</style>
+</head>
+
+<body class="H-flexbox-vertical">
+	<header class="H-header H-theme-background-color1 H-border-vertical-bottom-after" id="tab01-header">
+		<span tapmode="" onclick="login(1)" class="H-icon H-position-relative H-display-inline-block H-float-left H-vertical-middle H-theme-font-color-white H-padding-horizontal-both-12 H-z-index-100"> <!--<i class="H-iconfont H-icon-more-menu H-font-size-18 H-vertical-middle"></i>--> <img src="../image/userImg/nouser.png" onerror="this.src='../image/userImg/nouser.png'" class="H-vertical-align-middle H-border-radius-circle userImg" style="width: 38px;height: 38px;" /> </span>
+		<div class="H-header-title H-center-all H-font-size-18 H-text-show-row-1 H-theme-font-color-white H-position-absolute H-width-100-percent">
+			MADHAUS
+		</div>
+		<span onclick="checkQiandao()" tapmode="" class="H-icon H-position-relative H-display-block H-float-right H-vertical-middle H-theme-font-color-white H-padding-horizontal-both-12 H-z-index-1000 isShow qiandao"><label class="H-display-inline-block H-vertical-middle H-theme-font-color-white H-font-size-14" style="padding: 2px 12px;border-radius: 15px;border: 1px solid #fff;">签到</label></span>
+		<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-vertical-middle">
+			<div class="H-flex-item H-font-size-15 H-theme-font-color-444">
+				<div id="topNav" class="swiper-container swiper-container-horizontal swiper-container-free-mode swiper-container-android">
+					<div class="swiper-wrapper" style="transition-duration: 300ms;">
+						<div class="swiper-slide active">
+							<span>推荐</span>
+						</div>
+						<div class="swiper-slide">
+							<span>热点</span>
+						</div>
+						<div class="swiper-slide">
+							<span>深圳</span>
+						</div>
+						<div class="swiper-slide">
+							<span>视频</span>
+						</div>
+						<div class="swiper-slide">
+							<span>社会</span>
+						</div>
+						<div class="swiper-slide">
+							<span>娱乐</span>
+						</div>
+						<div class="swiper-slide">
+							<span>科技</span>
+						</div>
+						<div class="swiper-slide">
+							<span>问答</span>
+						</div>
+						<div class="swiper-slide">
+							<span>汽车</span>
+						</div>
+						<div class="swiper-slide">
+							<span>财经</span>
+						</div>
+						<div class="swiper-slide">
+							<span>军事</span>
+						</div>
+						<div class="swiper-slide">
+							<span>体育</span>
+						</div>
+						<div class="swiper-slide">
+							<span>段子</span>
+						</div>
+						<div class="swiper-slide">
+							<span>美女</span>
+						</div>
+						<div class="swiper-slide">
+							<span>国际</span>
+						</div>
+						<div class="swiper-slide">
+							<span>趣图</span>
+						</div>
+						<div class="swiper-slide">
+							<span>健康</span>
+						</div>
+						<div class="swiper-slide">
+							<span>特产</span>
+						</div>
+						<div class="swiper-slide">
+							<span>房产</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="indexCate" onclick="showIndexDropMenu(this)" tapmode="" data-open="false" class="H-display-inline-block H-vertical-middle H-theme-font-color-333 H-padding-horizontal-both-12 H-z-index-100" style="height: 42px;box-shadow: -2px 2px 8px #e6e6e6;">
+				<i class="H-iconfont H-icon-arrow-down H-theme-font-color1 H-font-size-18 H-vertical-middle"></i>
+			</div>
+		</div>
+	</header>
+	<header class="H-header H-theme-background-color1 H-border-vertical-bottom-afters H-display-none" id="tab02-header">
+		<span tapmode="" onclick="login(0)" class="H-icon H-position-relative H-display-inline-block H-float-left H-vertical-middle H-theme-font-color-white H-padding-horizontal-both-12 H-z-index-100"> <img src="../image/userImg/nouser.png" onerror="this.src='../image/userImg/nouser.png'" class="H-vertical-align-middle H-border-radius-circle userImg" style="width: 38px;height: 38px;" /> </span>
+		<div class="H-header-title H-center-all H-font-size-18 H-text-show-row-1 H-theme-font-color-white H-position-absolute H-width-100-percent">
+			MADHAUS
+		</div>
+		<span onclick="checkQiandao()" tapmode="" class="H-icon H-position-relative H-display-block H-float-right H-vertical-middle H-theme-font-color-white H-padding-horizontal-both-12 H-z-index-1000  isShow qiandao"><label class="H-display-inline-block H-vertical-middle H-theme-font-color-white H-font-size-14" style="padding: 2px 12px;border-radius: 15px;border: 1px solid #fff;">签到</label></span>
+		<!--<div class="H-flexbox-horizontal H-theme-background-color-white">
+				<div class="H-flex-item H-center-all H-theme-border-color-white H-font-size-16">
+					<div class="H-vertical-middle H-padding-horizontal-both-10 H-margin-horizontal-both-10 tabNav active" style="height:42px;">
+						广场
+					</div>
+					<div class="H-vertical-middle H-padding-horizontal-both-10 H-margin-horizontal-both-10 tabNav" style="height:42px;">
+						发邀约
+					</div>
+				</div>
+			</div>-->
+	</header>
+	<header class="H-header H-theme-background-color1 H-border-vertical-bottom-after H-display-none" id="tab03-header">
+		<span tapmode="" onclick="login(0)" class="H-icon H-position-relative H-display-inline-block H-float-left H-vertical-middle H-theme-font-color-white H-padding-horizontal-both-12 H-z-index-100"> <img src=".../image/userImg/nouser.png" class="H-vertical-align-middle H-border-radius-circle userImg" style="width: 38px;height: 38px;" /> </span>
+		<div class="H-header-title H-center-all H-font-size-18 H-text-show-row-1 H-theme-font-color-white H-position-absolute H-width-100-percent">
+			MADHAUS
+		</div>
+		<span onclick="openChatManage()" tapmode="" class="H-icon H-position-relative H-display-block H-float-right H-vertical-middle H-theme-font-color-white H-padding-horizontal-both-12 H-z-index-1000 isShow isAdminShow"><label class="H-display-inline-block H-vertical-middle H-theme-font-color-white H-font-size-14" style="padding: 2px 12px;border-radius: 15px;border: 1px solid #fff;">管理</label></span>
+		<div class="H-flexbox-horizontal H-theme-background-color-white">
+			<div class="H-flex-item H-center-all H-theme-border-color-white H-font-size-16">
+				<div class="H-vertical-middle H-padding-horizontal-both-10 tabNav active" style="height:42px;">
+					最后回复
+				</div>
+			</div>
+			<div class="H-flex-item H-center-all H-theme-border-color-white H-font-size-16">
+				<div class="H-vertical-middle H-padding-horizontal-both-10 tabNav" style="height:42px;">
+					最新发表
+				</div>
+			</div>
+			<div class="H-flex-item H-center-all H-theme-border-color-white H-font-size-16">
+				<div class="H-vertical-middle H-padding-horizontal-both-10 tabNav" style="height:42px;">
+					查看精华
+				</div>
+			</div>
+		</div>
+	</header>
+	<header class="H-header H-theme-background-color1 H-border-vertical-bottom-after H-display-none" id="tab04-header">
+		<span tapmode="" onclick="login(0)" class="H-icon H-position-relative H-display-inline-block H-float-left H-vertical-middle H-theme-font-color-white H-padding-horizontal-both-12 H-z-index-100"> <img src="../image/userImg/nouser.png" onerror="this.src='../image/userImg/nouser.png'" class="H-vertical-align-middle H-border-radius-circle userImg" style="width: 38px;height: 38px;" /> </span>
+		<div class="H-header-title H-center-all H-font-size-18 H-text-show-row-1 H-theme-font-color-white H-position-absolute H-width-100-percent">
+			MADHAUS
+		</div>
+		<span onclick="checkQiandao()" tapmode="" class="H-icon H-position-relative H-display-block H-float-right H-vertical-middle H-theme-font-color-white H-padding-horizontal-both-12 H-z-index-1000 isShow qiandao"><label class="H-display-inline-block H-vertical-middle H-theme-font-color-white H-font-size-14" style="padding: 2px 12px;border-radius: 15px;border: 1px solid #fff;">签到</label></span>
+		<div class="H-flexbox-horizontal H-theme-background-color-white">
+			<div class="H-flex-item H-center-all H-theme-border-color-white H-font-size-16">
+				<div class="H-vertical-middle H-padding-horizontal-both-10 tabNav active" style="height:42px;">
+					特惠组合
+				</div>
+			</div>
+			<div class="H-flex-item H-center-all H-theme-border-color-white H-font-size-16">
+				<div class="H-vertical-middle H-padding-horizontal-both-10 tabNav" style="height:42px;">
+					衍生品
+				</div>
+			</div>
+			<div class="H-flex-item H-center-all H-theme-border-color-white H-font-size-16">
+				<div class="H-vertical-middle H-padding-horizontal-both-10 tabNav" style="height:42px;">
+					艺术品
+				</div>
+			</div>
+		</div>
+	</header>
+	<!--<header class="H-header H-theme-background-color19 H-display-none" id="tab04-header" style="background: -webkit-gradient(linear,50% 0%, 10% 100%, from(#A646FF), to(#9C48FF));min-height: 1px;">
+		<div class="H-header-title H-center-all H-font-size-18 H-text-show-row-1 H-theme-font-color-white H-position-absolute H-width-100-percent">
+		我的
+		</div>
+		<span class="H-icon H-position-relative H-display-block H-float-right H-vertical-middle H-theme-font-color-white H-padding-horizontal-both-10 H-z-index-1000"><i class="H-iconfont H-icon-search H-font-size-18 H-vertical-middle"></i></span>
+		</header>-->
+	<div class="H-main H-flex-item H-position-relative H-overflow-hidden H-overflow-scrolling"></div>
+	<footer class="H-footer H-flexbox-horizontal H-theme-background-color-white H-border-vertical-top-after" id="footer" style="height: 49px;">
+		<div data-header="tab01" class="H-flex-item H-center-all H-text-align-center H-theme-font-color-999 swipe-item H-theme-font-color1" onclick="showFrameTabBar(0)" tapmode="">
+			<div style="height: 49px;position: relative;">
+				<div class="H-icon H-display-block" style="height: 35px;padding-top: 0;">
+					<!--<i class="H-iconfont H-icon-hot H-font-size-24"></i>-->
+					<img src="../image/icon/play_select@3x.png" style="width:35px;height: 35px;" />
+				</div>
+				<div class="H-font-size-11 H-display-block H-center-all" style="width:100%;height:14px;line-height:14px;position: absolute;top: 33px;">
+					疯玩
+				</div>
+			</div>
+		</div>
+		<div data-header="tab02" class="H-flex-item H-center-all H-text-align-center H-theme-font-color-999 swipe-item" onclick="showFrameTabBar(1)" tapmode="">
+			<div style="height: 49px;position: relative;">
+				<div class="H-icon H-display-block" style="height: 35px;padding-top: 0;">
+					<img src="../image/icon/date@3x.png" style="width:35px;height: 35px;" />
+				</div>
+				<div class="H-font-size-11 H-display-block H-center-all" style="width:100%;height:14px;line-height:14px;position: absolute;top: 33px;">
+					疯约
+				</div>
+			</div>
+		</div>
+		<div class="H-flex-item H-center-all H-text-align-center H-theme-font-color-999">
+			<div onclick="openAdd()" tapmode="" style="background-image: linear-gradient(120deg, #FB6A2F 0%, #f59174 100%);color:#fff;padding: 8px 15px;border-radius: 20px;">
+				<span class="H-icon H-display-block H-line-height-normal"><i class="H-iconfont H-icon-add H-font-size-20"></i></span>
+			</div>
+		</div>
+		<div data-header="tab03" class="H-flex-item H-center-all H-text-align-center H-theme-font-color-999 swipe-item" onclick="showFrameTabBar(2)" tapmode="">
+			<div style="height: 49px;position: relative;">
+				<div class="H-icon H-display-block" style="height: 35px;padding-top: 0;">
+					<img src="../image/icon/chat@3x.png" style="width:35px;height: 35px;" />
+				</div>
+				<div class="H-font-size-11 H-display-block H-center-all" style="width:100%;height:14px;line-height:14px;position: absolute;top: 33px;">
+					疯聊
+				</div>
+			</div>
+		</div>
+		<div data-header="tab04" class="H-flex-item H-center-all H-text-align-center  H-theme-font-color-999 swipe-item" onclick="showFrameTabBar(3)" tapmode="">
+			<div style="height: 49px;position: relative;">
+				<div class="H-icon H-display-block" style="height: 35px;padding-top: 0;">
+					<img src="../image/icon/buy@3x.png" style="width:35px;height: 35px;" />
+				</div>
+				<div class="H-font-size-11 H-display-block H-center-all" style="width:100%;height:14px;line-height:14px;position: absolute;top: 33px;">
+					疯购
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script type="text/javascript" src="../script/swiper.min.js"></script>
+	<script type="text/javascript" src="../script/common/global.js"></script>
+	<script type="text/javascript" src="../script/H.js"></script>
+	<script type="text/javascript" src="../script/setting.js"></script>
+	<script type="text/javascript" src="../script/zepto.min.js"></script>
+	<script type="text/javascript">
+		// 首页frame组
+		var mySwiper = null,
+			swiperWidth = 0,
+			maxTranslate = 0,
+			maxWidth = 0;
+		var indexFrames = [],
+			tab01_frames = [],
+			tab02_frames = [],
+			tab03_frames = [],
+			tab04_frames = [];
+		var indexCateData = [];
+		H.ready(function() {
+			api.setStatusBarStyle({
+				style: 'light'
+			});
+			initUserLoginData();
+			getTab02Frames();
+			getTab03Frames();
+			getTab04Frames();
+			getHomeTabNavData();
+			//showActiveFrame(0);
+			if (!getStorage("statusBar")) {
+				setFixStatusBar();
+			}
+			H.dblclickToCloseApp();
+			api.addEventListener({
+				name: "closeCateFrame0"
+			}, function(ret, err) {
+				var obj = ret.value.ok;
+				$("#cate").attr("data-open", "false");
+			});
+			api.addEventListener({
+				name: "showCateTitleToIndex0"
+			}, function(ret, err) {
+				document.getElementById("cateTile").innerHTML = ret.value.title;
+				showCateListDefault();
+			});
+			//Window 离开屏幕的事件
+			api.addEventListener({
+				name: 'viewappear'
+			}, function(ret, err) {
+				console.log('window显示');
+				api.setStatusBarStyle({
+					style: 'light'
+				});
+			});
+			//监听用户登录
+			api.addEventListener({
+				name: 'userLoginData'
+			}, function(ret, err) {
+				initUserLoginData();
+			});
+		});
+
+		function initUserLoginData() {
+			var userInfo = getStorage("userInfo");
+			if (userInfo) {
+				$('.userImg').attr('src', userInfo.user.avatar?userInfo.user.avatar:'../image/userImg/nouser.png');
+				$('.qiandao').css({'display':'-webkit-box'});
+				if(userInfo.user.permission==1002){
+					$('.isAdminShow').css({'display':'-webkit-box'});
+				}else{
+					$('.isAdminShow').css({'display':'none'});
+				}
+			} else {
+				$('.userImg').attr('src', '../image/userImg/nouser.png');
+				$('.qiandao').css({'display':'none'});
+			}
+		};
+		function checkQiandao(){
+			var val = $('.qiandao').find('label');
+			if(val.html()=='签到'){
+				val.html('已签到');
+				api.toast({
+						msg: '已签到',
+						duration: 1500,
+						location: 'middle'
+				});
+			}
+		};
+		function openWins(title, name, url) {
+			H.openWin('base_head_' + name, 'widget://html/comPages/baseNoBorder_head.html', {
+				title: title,
+				name: name,
+				url: url
+			}, {
+				animation: {
+					type: api.systemType == 'ios' ? 'cube' : 'movein',
+					subType: 'from_left',
+					duration: 0
+				}
+			});
+		};
+
+		function login(type) {
+			var userInfo = getStorage('userInfo');
+			if (userInfo) {
+				H.openSlidPane();
+			} else {
+				openWins('', 'user_loginRegister_body', '../user/user_loginRegister_body.html');
+			}
+		};
+
+		function openAdmin() {
+			H.openWin('indexAdmin', 'admin/index.html', null, {
+				animation: {
+					type: api.systemType == 'ios' ? 'cube' : 'movein',
+					subType: 'from_right',
+					duration: api.systemType == 'ios' ? 0 : 300
+				}
+			});
+		};
+
+		function initData() {
+			mySwiper = new Swiper('#topNav', {
+				initialSlide: 0,
+				freeMode: true,
+				freeModeMomentumRatio: 0.5,
+				slidesPerView: 'auto',
+			});
+			swiperWidth = mySwiper.container[0].clientWidth;
+			maxTranslate = mySwiper.maxTranslate();
+			maxWidth = -maxTranslate + swiperWidth / 2;
+			$(".swiper-container").on('touchstart', function(e) {
+				e.preventDefault();
+			});
+			mySwiper.on('tap', function(swiper, e) {
+				//e.preventDefault()
+				var index = swiper.clickedIndex;
+				var slide = swiper.slides[index];
+				//console.log(slide);
+				var slideLeft = slide.offsetLeft;
+				//console.log(slideLeft);
+				var slideWidth = slide.clientWidth;
+				//console.log(slideWidth);
+				var slideCenter = slideLeft + slideWidth / 2;
+				//console.log(slideCenter);
+				// 被点击slide的中心点
+				mySwiper.setWrapperTransition(300);
+				if (slideCenter < swiperWidth / 2) {
+					mySwiper.setWrapperTranslate(0);
+				} else if (slideCenter > maxWidth) {
+					mySwiper.setWrapperTranslate(maxTranslate);
+				} else {
+					nowTlanslate = slideCenter - swiperWidth / 2;
+					mySwiper.setWrapperTranslate(-nowTlanslate);
+				}
+				$("#topNav .active").removeClass('active');
+				$("#topNav .swiper-slide").eq(index).addClass('active');
+				H.setFrameGroupIndex('tab01', index, true);
+			});
+		};
+
+		function showHomeTabNav(index) {
+			H.setFrameGroupIndex('tab01', index, true);
+			setShowHomeTabNav(index);
+		};
+		// 设置Home对应分类选中
+		function setShowHomeTabNav(index) {
+			var slide = $("#topNav .swiper-slide").eq(index);
+			var slideLeft = slide.position().left;
+			//console.log(slideLeft);
+			var slideWidth = slide.width();
+			//console.log(slideWidth);
+			var slideCenter = slideLeft + slideWidth / 2;
+			//console.log(slideCenter);
+			mySwiper.setWrapperTransition(300);
+			if (slideCenter < swiperWidth / 2) {
+				mySwiper.setWrapperTranslate(0);
+			} else if (slideCenter > maxWidth) {
+				mySwiper.setWrapperTranslate(maxTranslate);
+			} else {
+				nowTlanslate = slideCenter - swiperWidth / 2;
+				mySwiper.setWrapperTranslate(-nowTlanslate);
+			}
+			$("#topNav .active").removeClass('active');
+			$("#topNav .swiper-slide").eq(index).addClass('active');
+			//H.setFrameGroupIndex('tab01', index, true);
+		};
+
+		function setShowTab02TabNav(index) {
+			$("#tab02-header .active").removeClass('active');
+			$("#tab02-header .tabNav").eq(index).addClass('active');
+		};
+
+		function setShowTab03TabNav(index) {
+			$("#tab03-header .active").removeClass('active');
+			$("#tab03-header .tabNav").eq(index).addClass('active');
+		};
+
+		function setShowTab04TabNav(index) {
+			$("#tab04-header .active").removeClass('active');
+			$("#tab04-header .tabNav").eq(index).addClass('active');
+		};
+		Zepto(function($) {
+			$("#tab02-header .tabNav").on("tap", function() {
+				var index = $(this).index();
+				setShowTab02TabNav(index);
+				H.setFrameGroupIndex('tab02', index, true);
+			});
+			$("#tab03-header .H-flex-item").on("tap", function() {
+				var index = $(this).index();
+				//console.log(index);
+				setShowTab03TabNav(index);
+				H.setFrameGroupIndex('tab03', index, true);
+			});
+			$("#tab04-header .H-flex-item").on("tap", function() {
+				var index = $(this).index();
+				//console.log(index);
+				setShowTab04TabNav(index);
+				H.setFrameGroupIndex('tab04', index, true);
+			});
+		});
+
+		function showFrameTabBar(index) {
+			showActiveFrame(index);
+		};
+		// 隐藏所有的frame
+		function hideAllFrame(frameName) {
+			$("#footer .swipe-item").each(function() {
+				var headerId = $(this).attr("data-header");
+				if (frameName != headerId) {
+					if (headerId != "tab01" && headerId != "tab03" && headerId != "tab04") {
+						// 设置所有的frame先隐藏起来
+						H.setFrameAttr(headerId, true);
+					} else {
+						H.setFrameGroupAttr(headerId, true);
+					}
+				} else {
+					if (headerId != "tab01" && headerId != "tab03" && headerId != "tab04") {
+						// 直接显示出来
+						H.setFrameAttr(headerId, false);
+					} else {
+						H.setFrameGroupAttr(headerId, false);
+					}
+				}
+			});
+		};
+		// 显示对应frame
+		function showActiveFrame(index) {
+			var that = $("#footer .swipe-item").eq(index);
+			var imgs = [{
+				url: '../image/icon/play@3x.png',
+				seelctUrl: '../image/icon/play_select@3x.png'
+			}, {
+				url: '../image/icon/date@3x.png',
+				seelctUrl: '../image/icon/date_select@3x.png'
+			}, {
+				url: '../image/icon/chat@3x.png',
+				seelctUrl: '../image/icon/chat_select@3x.png'
+			}, {
+				url: '../image/icon/buy@3x.png',
+				seelctUrl: '../image/icon/buy_select@3x.png'
+			}];
+			var c_mg = $("#footer .H-theme-font-color1").find("img");
+			c_mg.attr("src", c_mg.attr("src").replace("_select", ""));
+			that.find("img").attr("src", imgs[index].seelctUrl);
+			// 获取data-header存储的值
+			var headerId = that.attr("data-header");
+			// 对应的dom头部
+			var headerDOM = headerId + "-header";
+			that.addClass("H-theme-font-color1").siblings(".swipe-item").removeClass("H-theme-font-color1");
+			// 设置当前显示的frame名称
+			$("#" + headerDOM).removeClass("H-display-none").siblings(".H-header").addClass("H-display-none");
+			if (indexFrames.indexOf(headerId) == -1) {
+				if (headerId == "tab01") {
+					//console.log(JSON.stringify(tab01_frames))
+					H.openFrameGroupNavOrFoot(function(ret, err) {
+						setShowHomeTabNav(ret.index);
+					}, headerId, tab01_frames, 0, "#" + headerDOM, "#footer", {
+						preload: 0
+					});
+				} else if (headerId == "tab02") {
+					//console.log(JSON.stringify(tab01_frames))
+					var url = headerId + "/index_public_body.html";
+					H.openFrameNavOrFoot(headerId, url, "#" + headerDOM, null, "#footer", {
+						bounces: true,
+						vScrollBarEnabled: false
+					});
+				} else if (headerId == "tab03") {
+					//console.log(JSON.stringify(tab01_frames))
+					H.openFrameGroupNavOrFoot(function(ret, err) {
+						setShowTab03TabNav(ret.index);
+					}, headerId, tab03_frames, 0, "#" + headerDOM, "#footer", {
+						preload: 0
+					});
+				} else if (headerId == "tab04") {
+					//console.log(JSON.stringify(tab01_frames))
+					H.openFrameGroupNavOrFoot(function(ret, err) {
+						setShowTab04TabNav(ret.index);
+					}, headerId, tab04_frames, 0, "#" + headerDOM, "#footer", {
+						preload: 0
+					});
+				} else {
+					var url = headerId + "/index_body.html";
+					H.openFrameNavOrFoot(headerId, url, "#" + headerDOM, null, "#footer", {
+						bounces: true,
+						vScrollBarEnabled: false
+					});
+				}
+				indexFrames.push(headerId);
+			}
+			hideAllFrame(headerId);
+		};
+
+		function logout() {
+			var url = window.server + '/user-profiles/logout/';
+			api.ajax({
+				url: url,
+				method: 'get'
+			}, function(ret, err) {
+				log(ret, true)
+				if (ret) {
+					rmStorage('userInfo');
+					api.sendEvent({
+						name: 'userLoginData',
+						extra: {
+							status: 0
+						}
+					});
+					api.toast({
+						msg: '已退出',
+						duration: 3000,
+						location: 'middle'
+					});
+				} else {
+					api.toast({
+						msg: '错误码:' + err.code + ";网络状态码:" + err.statusCode,
+						duration: 3000,
+						location: 'middle'
+					});
+				}
+			});
+		};
+		//模拟首页顶部导航菜单数据请求
+		function getHomeTabNavData() {
+			var url = '/fengwan/home/get/type/';
+			http(url, 'get', null, function(ret) {
+				var html = "",
+					frames0 = {};
+				data = ret.data.activity_type_list;
+				for (var i = 0; i < data.length; i++) {
+					var frames = {};
+					html = html + '<div class="swiper-slide"><span>' + data[i].name + '</span></div>';
+					frames.url = "tab01/index_body.html";
+					frames.name = "tab01_index_body" + (i + 1);
+					frames.vScrollBarEnabled = true;
+					frames.useWKWebView = true;
+					frames.bounces = true;
+					frames.pageParam = {
+						id: data[i].id,
+						title: data[i].name
+					};
+					tab01_frames.push(frames);
+					indexCateData.push({
+						id: i + 1,
+						name: data[i].name
+					});
+				}
+				$(".swiper-wrapper").html(html);
+				if (mySwiper == null) {
+					initData();
+				}
+				showActiveFrame(0);
+			}, function(ret, err) {
+
+			});
+		};
+
+		function getTab02Frames() {
+			tab02_frames = [{
+				url: "tab02/index_public_body.html",
+				name: "tab02_index_body1",
+				vScrollBarEnabled: true,
+				useWKWebView: true,
+				bounces: true
+			}, {
+				url: "tab02/index_date_body.html",
+				name: "tab02_index_body2",
+				vScrollBarEnabled: true,
+				useWKWebView: true,
+				bounces: true
+			}];
+		};
+
+		function getTab03Frames() {
+			tab03_frames = [{
+				url: "tab03/index_reply_body.html",
+				name: "tab03_index_body1",
+				vScrollBarEnabled: true,
+				useWKWebView: true,
+				bounces: true,
+				pageParam: {
+					id: 1
+				}
+			}, {
+				url: "tab03/index_reply_body.html",
+				name: "tab03_index_body2",
+				vScrollBarEnabled: true,
+				useWKWebView: true,
+				bounces: true,
+				pageParam: {
+					id: 2
+				}
+			}, {
+				url: "tab03/index_reply_body.html",
+				name: "tab03_index_body3",
+				vScrollBarEnabled: true,
+				useWKWebView: true,
+				bounces: true,
+				pageParam: {
+					id: 3
+				}
+			}];
+		};
+
+		function getTab04Frames() {
+			tab04_frames = [{
+				url: "tab04/index_body.html",
+				name: "tab04_index_body1",
+				vScrollBarEnabled: true,
+				useWKWebView: true,
+				bounces: true,
+				pageParam: {
+					id: 1
+				}
+			}, {
+				url: "tab04/index_body.html",
+				name: "tab04_index_body2",
+				vScrollBarEnabled: true,
+				useWKWebView: true,
+				bounces: true,
+				pageParam: {
+					id: 2
+				}
+			}, {
+				url: "tab04/index_body.html",
+				name: "tab04_index_body3",
+				vScrollBarEnabled: true,
+				useWKWebView: true,
+				bounces: true,
+				pageParam: {
+					id: 3
+				}
+			}];
+		};
+
+		function showIndexDropMenu(obj) {
+			var h = 44 + parseInt(getStorage("statusBar"));
+			H.fixStatusBar(function(offset) {
+				H.openFrame('indexCate_body', 'tab01/cate_body.html', {
+					data: indexCateData
+				}, {
+					rect: {
+						x: 0,
+						y: h,
+						w: 'auto',
+						h: 'auto'
+					},
+					bounces: false
+				});
+				//$(obj).attr("data-open", "true");
+			}, '#tab02-header');
+		};
+
+		function closeIndexCateFrame() {
+			api.closeFrame({
+				name: 'indexCate_body'
+			});
+			$("#indexCate").attr("data-open", "false");
+		};
+
+		function setIndexCateFrameStatus() {
+			$("#indexCate").attr("data-open", "false");
+		};
+
+		function openAdd() {
+			H.openWin('add_head', 'add.html', null, {
+				bgColor: 'rgba(0, 0, 0, 0)',
+				animation: {
+					type: "fade",
+					subType: "from_right",
+					duration: 0
+				}
+			});
+		};
+
+		function openChatManage() {
+			H.openWin('chat_manage_head', 'tab03/chat_manage_head.html', {
+				title: '疯聊管理',
+				name: 'group_manage'
+			});
+		};
+
+		function shuaxin() {
+			api.execScript({
+				name: 'index_reply_body',
+				script: 'initData();'
+			});
+		}
+	</script>
+</body>
+
+</html>

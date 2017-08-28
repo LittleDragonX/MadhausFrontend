@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<title>头部-详情页面</title>
+	<link rel="stylesheet" type="text/css" href="../../css/Hui.css" />
+	<style>
+		.H-theme-background-color1 {
+			background-image: linear-gradient(120deg, #FB6A2F 0%, #f59174 100%);
+		}
+
+		.vux-masker-box {
+			position: relative;
+		}
+
+		.m-img {
+			padding-bottom: 70%;
+			display: block;
+			position: relative;
+			max-width: 100%;
+			background-size: cover;
+			background-position: center center;
+			cursor: pointer;
+			/*border-radius: 2px;*/
+		}
+
+		.vux-masker {
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			border-radius: inherit;
+		}
+
+		.m-title {
+			color: #fff;
+			text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+			font-weight: 500;
+			font-size: 16px;
+			position: absolute;
+			left: 0;
+			right: 0;
+			text-align: right;
+			bottom: 5px;
+			padding-right: 10px;
+			/*width: 100%;
+			 -webkit-transform: translateY(-50%);
+			 transform: translateY(-50%);*/
+		}
+	</style>
+</head>
+
+<body class="H-padding-vertical-both-5">
+	<div id="itemList" class="H-padding-horizontal-left-10">
+		<div onclick="openDetail(0)" tapmode="" class="H-display-table-cell H-float-left H-box-sizing-border-box H-width-avg-2 H-padding-horizontal-right-10 H-margin-vertical-bottom-10">
+			<div class="router-view H-margin-vertical-both-5">
+				<div style="overflow: hidden;">
+					<div class="vux-masker-box">
+						<div class="m-img" style="background-image: url(https://gju1.alicdn.com/tps/i3/1937406077520429753/TB2PPVbvwNlpuFjy0FfXXX3CpXa_!!0-juitemmedia.jpg);"></div>
+						<div class="vux-masker" style="background: -webkit-gradient(linear,50% 100%,50% 50%,from(rgb(0, 0, 0)),to(rgba(255, 255, 255, 0)));">
+							<div class="m-title">
+								<span class="m-time H-font-size-13 H-theme-font-color-ccc">已购人数：222</span>
+							</div>
+						</div>
+					</div>
+					<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-padding-vertical-both-5 H-font-size-15 H-padding-horizontal-both-5">
+						南宁科园大道
+					</div>
+					<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-padding-vertical-both-5">
+						<span class="H-display-block H-font-size-18 H-margin-horizontal-left-5 H-theme-font-color-red">¥88.00</span>
+						<div class="H-flex-item H-padding-horizontal-both-5 H-font-size-15 H-theme-font-color-999 H-text-align-right">
+							188人关注
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div onclick="openDetail(0)" tapmode="" class="H-display-table-cell H-float-left H-box-sizing-border-box H-width-avg-2 H-padding-horizontal-right-10 H-margin-vertical-bottom-10">
+			<div class="router-view H-margin-vertical-both-5">
+				<div style="overflow: hidden;">
+					<div class="vux-masker-box">
+						<div class="m-img" style="background-image: url(https://gju1.alicdn.com/tps/i3/1937406077520429753/TB2PPVbvwNlpuFjy0FfXXX3CpXa_!!0-juitemmedia.jpg);"></div>
+						<div class="vux-masker" style="background: -webkit-gradient(linear,50% 100%,50% 50%,from(rgb(0, 0, 0)),to(rgba(255, 255, 255, 0)));">
+							<div class="m-title">
+								<span class="m-time H-font-size-13 H-theme-font-color-ccc">已购人数：222</span>
+							</div>
+						</div>
+					</div>
+					<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-padding-vertical-both-5 H-font-size-15 H-padding-horizontal-both-5">
+						南宁科园大道
+					</div>
+					<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-vertical-middle H-padding-vertical-both-5">
+						<span class="H-display-block H-font-size-18 H-margin-horizontal-left-5 H-theme-font-color-red">¥88.00</span>
+						<div class="H-flex-item H-padding-horizontal-both-5 H-font-size-15 H-theme-font-color-999 H-text-align-right">
+							188人关注
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../../script/H.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript">
+		apiready = function() {};
+
+		function openFrameGroups() {
+			api.openFrameGroup({
+				name: api.pageParam.name,
+				rect: {
+					x: 0,
+					y: 88 + parseInt(getStorage("statusBar")),
+					w: 'auto',
+					h: api.winHeight - (44 + parseInt(getStorage("statusBar")))
+				},
+				frames: [{
+					name: 'user_homepage_activity_body',
+					url: 'user_homepage_activity_body.html',
+					bgColor: '#fff',
+					bounces: false,
+					vScrollBarEnabled: true,
+					hScrollBarEnabled: false,
+					useWKWebView: true
+				}, {
+					name: 'user_homepage_goods_body',
+					url: 'user_homepage_goods_body.html',
+					bgColor: '#fff',
+					bounces: false,
+					vScrollBarEnabled: true,
+					hScrollBarEnabled: false,
+					useWKWebView: true
+				}]
+			}, function(ret, err) {
+				var index = ret.index;
+				setShowTabNav(index);
+			});
+		};
+		Zepto(function($) {
+			$(".H-flex-item").on("tap", function() {
+				var index = $(this).index();
+				console.log(index)
+				setShowTabNav(index);
+				H.setFrameGroupIndex(api.pageParam.name, index, true);
+			});
+		});
+
+		function setShowTabNav(index) {
+			$("#nav .active").removeClass('active');
+			$("#nav .tabNav").eq(index).addClass('active');
+		};
+
+		function goBack() {
+			api.closeWin();
+		};
+
+		function openShopingCart() {
+			H.openWin('base_head_shopingCart', 'widget://html/comPages/base_head.html', {
+				title: '购物车',
+				name: 'shopingCart_body',
+				url: '../user/buy_shopingCart_body.html'
+			});
+		}
+	</script>
+</body>
+
+</html>

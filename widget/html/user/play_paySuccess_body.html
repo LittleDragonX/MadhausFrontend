@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport"
+		content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0">
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>play_paysuccess_body</title>
+		<link rel="stylesheet" type="text/css" href="../../css/Hui.css">
+		<style type="text/css">
+			#button2 {
+				background-color: #FF8453;
+			}
+			#button2:active {
+				background-color: #ff5c43;
+				color: #FFF;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="H-width-100-percent">
+			<div class="H-flex-item H-theme-font-color-white H-flexbox-horizontal" style="background-image: linear-gradient(120deg, #FA6B30 0%, #FF8656 100%);">
+				<div class="H-padding-vertical-both-25 H-margin-horizontal-both-25">
+					<div class="H-font-size-16">
+						等待付款
+					</div>
+					<div class="H-font-size-15 H-margin-vertical-top-3">
+						剩23小时53分21秒自动关闭
+					</div>
+				</div>
+				<div class="H-center-all H-margin-horizontal-both-25" style="margin-bottom: auto; margin-top: auto;">
+					<img src="../../image/callbackimg.png" srcs="" alt="" title=""
+					class="imgCache H-display-block" style="width: 75px; height: 75px;">
+				</div>
+			</div>
+			<div class="H-flex-item H-theme-background-color-white H-padding-vertical-both-10 H-padding-horizontal-left-25">
+				<div class="H-theme-font-color-black H-opacity-1-half">
+					姓名 : 雷小春
+				</div>
+				<div class="H-theme-font-color-black H-opacity-1-half">
+					联系手机 : 13597119560
+				</div>
+			</div>
+		</div>
+		<div class="H-border-radius3-px H-theme-background-color-white H-margin-vertical-top-10 ">
+			<div class="H-flexbox-horizontal H-border-vertical-bottom-after">
+				<div class="H-padding-vertical-both-10 H-center-all">
+					<img src="../../image/logo.png" srcs="" alt="" title=""
+					class="imgCache H-display-block H-margin-horizontal-left-10" style="width: 65px; height: 65px;">
+				</div>
+				<div class="H-flex-item H-padding-10">
+					<strong class="H-font-weight-normal font-weight-500 H-font-size-16 H-display-block H-text-show-row-1">MARINE国际展览，让你一饱眼福!</strong>
+					<div class="H-font-size-13 H-theme-font-color-999 H-text-show-row-1 H-margin-vertical-top-5">
+						时间: 2017-08-26 15:00开始
+					</div>
+					<div class="H-font-size-13 H-theme-font-color-999 H-text-show-row-2">
+						地点: 南宁市西乡塘区华成都市广场B座1220
+					</div>
+				</div>
+			</div>
+			<div class="H-flexbox-horizontal H-padding-vertical-both-10">
+				<div class="H-font-size-13 H-padding-horizontal-left-12 H-opacity-1-half" style="width: 48%; margin-bottom: auto; margin-top: auto;">
+					报名费 :  ￥12.00
+				</div>
+				<div class="H-font-size-14 H-theme-font-color-999">
+					<span class=" H-padding-horizontal-right-5" style="color: #31304C;">共2人报名</span>
+					<span style="color: #31304C;">合计：</span>
+					<span style="color: #FC3337;">￥260</span>
+				</div>
+			</div>
+		</div>
+		<div class="H-border-radius3-px H-theme-background-color-white H-margin-vertical-top-10">
+			<div class="H-padding-horizontal-left-12 H-padding-vertical-both-8">
+				<div class="H-font-size-13 H-opacity-1-half">
+					订单号 : 33267291804243069
+				</div>
+				<div class="H-font-size-13 H-opacity-1-half">
+					创建时间 : 2017-07-01 12:06:46
+				</div>
+			</div>
+		</div>
+		<div class="H-width-100-percent" style="position: fixed; bottom: 0;">
+			<button id="button2" onclick="openDetail()" tapmode=""
+			class="H-button H-width-100-percent  H-font-size-18 H-outline-none H-padding-vertical-both-10 H-padding-horizontal-both-20 H-theme-font-color-white"
+			style="border: 1px solid #FF8453;">
+				查看订单详情
+			</button>
+		</div>
+		<script type="text/javascript" src="../../script/H.js"></script>
+		<script type="text/javascript">
+			function openWins(title, name, url) {
+				H.openWin('base_head_' + name, 'widget://html/comPages/baseNoBorder_head.html', {
+					title : title,
+					name : name,
+					url : url
+				});
+			};
+			function cancel() {
+				api.closeWin();
+			};
+			function openDetail() {
+				openWins('订单详情', 'play_waitAttendInfo_body', '../user/play_waitAttendInfo_body.html');
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<title>头部-详情页面</title>
+	<link rel="stylesheet" type="text/css" href="../../css/Hui.css" />
+	<script type="text/javascript" src="../../script/global.js"></script>
+	<style>
+		.active {
+			position: relative;
+			color: #ff7c48;
+		}
+
+		.active:after {
+			content: '';
+			position: absolute;
+			height: 1px;
+			bottom: 5px;
+			/*left: 7px;*/
+			/*right: 7px;*/
+			left: calc(50% - 8px);
+			width: 16px;
+			border-bottom: 3px solid #ff7c48;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+			-webkit-transition: -webkit-transform .4s ease;
+		}
+	</style>
+	<script type="text/javascript">
+		initTopBar('#fff', 1);
+	</script>
+</head>
+
+<body class="H-flexbox-vertical">
+	<header class="H-header H-border-vertical-bottom-after H-theme-background-color-white">
+		<span tapmode="" onclick="goBack()" class="H-icon H-position-relative H-display-inline-block H-float-left H-vertical-middle headColor H-padding-horizontal-both-12 H-z-index-100"><i class="H-iconfont H-icon-arrow-left H-font-size-18 H-vertical-middle"></i><label class="H-display-block H-vertical-middle H-font-size-15"></label></span>
+		<div id="title" class="H-header-title H-center-all H-font-size-18 H-text-show-row-1 headColor H-position-absolute H-width-100-percent H-font-weight-bold"></div>
+		<span id="openWins" onclick="openAddItem()" tapmode="" class="H-icon H-position-relative H-display-inline-block H-float-right H-vertical-middle headColor H-padding-horizontal-both-12 H-z-index-100"><i class="H-iconfont H-icon-plus H-font-size-18 H-vertical-middle"></i></span>
+	</header>
+	<script type="text/javascript" src="../../script/H.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+			if (api.systemType == 'ios') {
+				api.setStatusBarStyle({
+					style: 'dark'
+				});
+			}
+			var type = api.pageParam.type;
+			if(type==1){
+				$('#openWins').css({'display':'none'})
+			}
+			document.getElementById("title").innerHTML = api.pageParam.title;
+			openFrames();
+		};
+
+		function openFrames() {
+			api.openFrame({
+				name: api.pageParam.name,
+				url: api.pageParam.url,
+				rect: {
+					x: 0,
+					y: 44 + parseInt(getStorage("statusBar")),
+					w: 'auto',
+					h: api.winHeight - (44 + parseInt(getStorage("statusBar")))
+				},
+				pageParam: api.pageParam,
+				bounces: false,
+				vScrollBarEnabled: false,
+				hScrollBarEnabled: false,
+				//useWKWebView : true
+			});
+		};
+		function openAddItems() {
+			H.openWin('goods_address_add_head', 'goods_wins_head.html', {
+				title: '新增编辑收货地址',
+				name: 'goods_address_add_body',
+				url: 'goods_address_add_body.html'
+			});
+		};
+
+		function openAddItem() {
+			openWins('新增收货地址','goods_address_add_head','../tab04/goods_address_add_body.html',1);
+			// var type = api.pageParam.type;
+			// if(type==1){
+			// 	openWins('新增收货地址','goods_type_add_body','../admin/buy/goods_type_add_body.html',type);
+			// }else if(type==2){
+			// 	openWins('编辑收货地址','goods_spec_add_body','../admin/buy/goods_spec_add_body.html',type);
+			// }
+		};
+
+		function openWins(title,name,url,type) {
+			H.openWin('base_head_' + name, 'widget://html/comPages/detail_head.html', {
+				title: title,
+				name: name,
+				url: url,
+				type: type
+			});
+		};
+
+		function goBack() {
+			api.closeWin();
+		};
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,177 @@
+﻿@charset "UTF-8";
+
+/*!
+ * 自定义CSS样式
+ */
+
+/* 重置样式 */
+html { font-family: "Microsoft YaHei",Arial,Helvetica,sans-serif;; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-size: 62.5%; -webkit-overflow-scrolling: touch; width: 100%; height: 100%; }
+/*字体图标*/
+/*引入字体图标*/
+
+@font-face {font-family: "iconfont";
+  src: url('../fonts/iconfont.eot?t=1472446369'); /* IE9*/
+  src: url('../fonts/iconfont.eot?t=1472446369#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../fonts/iconfont.woff?t=1472446369') format('woff'), /* chrome, firefox */
+  url('../fonts/iconfont.ttf?t=1472446369') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('../fonts/iconfont.svg?t=1472446369#H-iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.H-iconfont {
+  font-family:"iconfont" !important;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+.H-icon-weixin:before { content: "\e61d"; }
+.H-icon-shezhi:before { content: "\e602"; }
+.H-icon-list:before { content: "\e600"; }
+.H-icon-iconfontcha:before { content: "\e610"; }
+.H-icon-unie61d:before { content: "\e61e"; }
+.H-icon-xuanzhong:before { content: "\e60f"; }
+.H-icon-iconfontgantanhao:before { content: "\e63c"; }
+.H-icon-iconfontshouye1:before { content: "\e603"; }
+.H-icon-guanbi:before { content: "\e62b"; }
+.H-icon-zhifubao:before { content: "\e612"; }
+.H-icon-jikediancanicon17:before { content: "\e630"; }
+.H-icon-tianjiatupian:before { content: "\e62c"; }
+.H-icon-shoucang:before { content: "\e604"; }
+.H-icon-zuopinb:before { content: "\e605"; }
+.H-icon-biaoqing:before { content: "\e633"; }
+.H-icon-qq:before { content: "\e61f"; }
+.H-icon-back:before { content: "\e635"; }
+.H-icon-yonghu:before { content: "\e620"; }
+.H-icon-fenxiang:before { content: "\e606"; }
+.H-icon-icontuichu:before { content: "\e607"; }
+.H-icon-pinglun:before { content: "\e608"; }
+.H-icon-xinxi:before { content: "\e627"; }
+.H-icon-shanchu:before { content: "\e61a"; }
+.H-icon-eoc:before { content: "\e609"; }
+.H-icon-sousuo:before { content: "\e601"; }
+.H-icon-yanjing:before { content: "\e618"; }
+.H-icon-zhuangshi:before { content: "\e63a"; }
+.H-icon-yiguanzhu:before { content: "\e624"; }
+.H-icon-qiandao:before { content: "\e625"; }
+.H-icon-shijian:before { content: "\e619"; }
+.H-icon-quanziline:before { content: "\e60a"; }
+.H-icon-add:before { content: "\e611"; }
+.H-icon-zhuti:before { content: "\e629"; }
+.H-icon-mail1:before { content: "\e621"; }
+.H-icon-wechat:before { content: "\e613"; }
+.H-icon-hua:before { content: "\e63e"; }
+.H-icon-wenhao:before { content: "\e614"; }
+.H-icon-zankongxingai:before { content: "\e60b"; }
+.H-icon-tianjiataolun:before { content: "\e616"; }
+.H-icon-baobao:before { content: "\e63b"; }
+.H-icon-lipin:before { content: "\e60c"; }
+.H-icon-chuangyi:before { content: "\e636"; }
+.H-icon-qita:before { content: "\e61c"; }
+.H-icon-fenlei:before { content: "\e62f"; }
+.H-icon-youjiantou:before { content: "\e626"; }
+.H-icon-duihuaqipao:before { content: "\e615"; }
+.H-icon-duihuanjifen:before { content: "\e62a"; }
+.H-icon-recharge:before { content: "\e632"; }
+.H-icon-jiangjiatixing42:before { content: "\e628"; }
+.H-icon-loading:before { content: "\e63d"; }
+.H-icon-wo:before { content: "\e60d"; }
+.H-icon-xuanze:before { content: "\e62d"; }
+.H-icon-tongyi:before { content: "\e623"; }
+.H-icon-zan1:before { content: "\e61b"; }
+.H-icon-jiahaoyou:before { content: "\e631"; }
+.H-icon-gongwenbao:before { content: "\e637"; }
+.H-icon-xuanzhong1:before { content: "\e634"; }
+.H-icon-ziliao2:before { content: "\e60e"; }
+.H-icon-lianyiqun:before { content: "\e638"; }
+.H-icon-pinglun1:before { content: "\e617"; }
+.H-icon-mima:before { content: "\e622"; }
+.H-icon-xuanze1:before { content: "\e62e"; }
+.H-icon-jiaju:before { content: "\e639"; }
+.H-icon-buyi:before { content: "\e63f"; }
+.H-icon-bianzhi:before { content: "\e640"; }
+.H-icon-2-copy:before { content: "\e641"; }
+
+/* 扁平化主题字体颜色 */
+.H-theme-font-color1 { color: #52ace5; }
+.H-theme-font-color2 { color: #e63058; }
+.H-theme-font-color3 { color: #3c4146; }
+.H-theme-font-color4 { color: #ffa977; }
+.H-theme-font-color5 { color: #4db7ad; }
+.H-theme-font-color6 { color: #337ab7; }
+.H-theme-font-color7 { color: #d9534f; }
+.H-theme-font-color8 { color: #f0ad4e; }
+.H-theme-font-color9 { color: #15c288; }
+/* 扁平化主题字体高亮颜色 */
+.H-theme-font-color1-active { color: #408CBB; }
+.H-theme-font-color2-active { color: #e8747e; }
+.H-theme-font-color3-active { color: #222427; }
+.H-theme-font-color4-active { color: #FC8B4A; }
+.H-theme-font-color5-active { color: #3F9189; }
+.H-theme-font-color6-active { color: #266dab; }
+.H-theme-font-color7-active { color: #D83632; }
+.H-theme-font-color8-active { color: #C89041; }
+.H-theme-font-color9-active { color: #28A028; }
+.H-theme-font-color1-click:active, .H-theme-font-color2-click:active, .H-theme-font-color3-click:active, .H-theme-font-color4-click:active, .H-theme-font-color5-click:active, .H-theme-font-color6-click:active, .H-theme-font-color7-click:active, .H-theme-font-color8-click:active, .H-theme-font-color9-click:active { color: #fff; }
+
+/* 扁平化主题字背景颜色 */
+.H-theme-background-color1 { background-color: #ffffff; }
+.H-theme-background-color2 { background-color: #e63058; }
+
+/* 扁平化主题背景高亮颜色 */
+.H-theme-background-color0-active { background-color: #f79408; }
+.H-theme-background-color1-active { background-color: #00a0e9; }
+.H-theme-background-color2-active { background-color: #e8747e; }
+.H-theme-background-color3-active { background-color: #222427;}
+.H-theme-background-color4-active { background-color: #FC8B4A; }
+.H-theme-background-color5-active { background-color: #3F9189; }
+.H-theme-background-color6-active { background-color: #266dab; }
+.H-theme-background-color7-active { background-color: #D83632; }
+.H-theme-background-color8-active { background-color: #C89041; }
+.H-theme-background-color9-active { background-color: #fc0d08; }
+.H-theme-background-color10-active { background-color: #15c288; }
+.H-theme-background-color1-click:active { background-color: #408CBB; }
+.H-theme-background-color2-click:active { background-color: #e8747e; }
+.H-theme-background-color3-click:active { background-color: #222427; }
+.H-theme-background-color4-click:active { background-color: #FC8B4A; }
+.H-theme-background-color5-click:active { background-color: #3F9189; }
+.H-theme-background-color6-click:active { background-color: #266dab; }
+.H-theme-background-color7-click:active { background-color: #D83632; }
+.H-theme-background-color8-click:active { background-color: #C89041; }
+.H-theme-background-color9-click:active { background-color: #fc0d08; }
+.H-theme-background-color10-click:active { background-color: #15c288; }
+
+/*常用边框颜色*/
+/*四边线*/
+.H-theme-border-color-white { border: 1px solid #fff; }
+.H-theme-border-color-red { border: 1px solid #e63058; }
+
+/* 扁平化边框颜色 */
+.H-theme-border-color1 { border: 1px solid #52ace5; }
+.H-theme-border-color2 { border: 1px solid #e63058; }
+.H-theme-border-color3 { border: 1px solid #3c4146; }
+.H-theme-border-color4 { border: 1px solid #ffa977; }
+.H-theme-border-color5 { border: 1px solid #4db7ad; }
+.H-theme-border-color6 { border: 1px solid #337ab7; }
+.H-theme-border-color7 { border: 1px solid #d9534f; }
+.H-theme-border-color8 { border: 1px solid #f0ad4e; }
+.H-theme-border-color9 { border: 1px solid #5cb85c; }
+/* 扁平化边框高亮颜色 */
+.H-theme-border-color0-active { border: 1px solid #f79408; }
+.H-theme-border-color1-active { border: 1px solid #00a0e9; }
+.H-theme-border-color2-active { border: 1px solid #e8747e; }
+.H-theme-border-color3-active { border: 1px solid #222427; }
+.H-theme-border-color4-active { border: 1px solid #FC8B4A; }
+.H-theme-border-color5-active { border: 1px solid #3F9189; }
+.H-theme-border-color6-active { border: 1px solid #266dab; }
+.H-theme-border-color7-active { border: 1px solid #D83632; }
+.H-theme-border-color8-active { border: 1px solid #C89041; }
+.H-theme-border-color9-active { border: 1px solid #28A028; }
+.H-theme-border-color1-click:active { border: 1px solid #408CBB; }
+.H-theme-border-color2-click:active { border: 1px solid #e8747e; }
+.H-theme-border-color3-click:active { border: 1px solid #222427; }
+.H-theme-border-color4-click:active { border: 1px solid #FC8B4A; }
+.H-theme-border-color5-click:active { border: 1px solid #3F9189; }
+.H-theme-border-color6-click:active { border: 1px solid #266dab; }
+.H-theme-border-color7-click:active { border: 1px solid #D83632; }
+.H-theme-border-color8-click:active { border: 1px solid #C89041; }
+.H-theme-border-color9-click:active { border: 1px solid #28A028; }

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>title</title>
+	<link rel="stylesheet" type="text/css" href="../../css/Hui.css" />
+	<style>
+		body {}
+	</style>
+</head>
+
+<body>
+	<div id="itemList" style="display:none;">
+		<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-padding-vertical-both-8 H-touch-active">
+			<img src="../../image/userImg/user01.jpg" class="H-display-block H-margin-horizontal-left-10 H-border-radius-circle" style="width:45px;height:45px;">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16">
+				海阔天空
+			</div>
+			<div class="H-padding-horizontal-both-10 H-font-size-12 H-theme-font-color-999">
+				1分钟前
+			</div>
+		</div>
+		<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-padding-vertical-both-8 H-touch-active">
+			<img src="../../image/userImg/user03.jpg" class="H-display-block H-margin-horizontal-left-10 H-border-radius-circle" style="width:45px;height:45px;">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16">
+				云卷云舒
+			</div>
+			<div class="H-padding-horizontal-both-10 H-font-size-12 H-theme-font-color-999">
+				5分钟前
+			</div>
+		</div>
+		<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-padding-vertical-both-8 H-touch-active">
+			<img src="../../image/userImg/user02.jpg" class="H-display-block H-margin-horizontal-left-10 H-border-radius-circle" style="width:45px;height:45px;">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16">
+				春暖花开
+			</div>
+			<div class="H-padding-horizontal-both-10 H-font-size-12 H-theme-font-color-999">
+				15分钟前
+			</div>
+		</div>
+	</div>
+	<script id="tpl_itemList" type="text/html">
+		[:if(list.length>0){:]
+		[: for (var i=0;i<list.length;i++) { :]
+			<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle H-padding-vertical-both-8 H-touch-active">
+			<img src="[:=list[i].avatar:]" class="H-display-block H-margin-horizontal-left-10 H-border-radius-circle" style="width:45px;height:45px;">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16">
+				[:=list[i].nickname.length==0?'未知用户':list[i].nickname:]
+			</div>
+			<div class="H-padding-horizontal-both-10 H-font-size-12 H-theme-font-color-999">
+				[:=list[i].create_time.replace('T',' ').split('.')[0]:]
+			</div>
+			</div>
+			[:}}else{:]
+			<div class="H-padding-vertical-both-20 H-theme-font-color-999 H-font-size-16 H-center-all">暂无数据</div>
+			[:}:]
+	</script>
+	<script src="../../script/api.js" type="text/javascript"></script>
+	<script src="../../script/H.js" type="text/javascript"></script>
+	<script src="../../script/setting.js" type="text/javascript"></script>
+	<script src="../../script/zepto.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		apiready = function() {
+			initData();
+		};
+		function initData() {
+			var url = '/fengwan/home/get/user/list/by/act/1/';
+			var data = {
+				act_id:api.pageParam.id
+			};
+			ajax(url,'get',data,function(ret){
+				log(ret,true);
+				var html = H.tppl(H.D('#tpl_itemList').innerHTML, {
+					list: ret.data.list
+				});
+				$("#itemList").html(html).fadeIn();
+				api.parseTapmode();
+			},function(ret,err){
+
+			});
+		};
+		function initDatas() {
+			var url = window.server + '/fengwan/user/';
+			api.ajax({
+				url: url,
+				method: 'get'
+			}, function(ret, err) {
+				if (ret) {
+					var html = H.tppl(H.D('#tpl_itemList').innerHTML, {
+						list: ret.results
+					});
+					$("#itemList").html(html).fadeIn();
+					api.parseTapmode();
+				} else {
+					H.toast(JSON.stringify(err));
+				}
+			});
+		};
+	</script>
+
+</body>
+
+</html>

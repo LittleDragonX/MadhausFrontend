@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>发布商品</title>
+	<link href="../../../css/Hui.css" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+		input.H-textbox {
+			border-width: 0;
+			color: #999;
+			min-width: 100px;
+		}
+
+		.H-badge {
+			padding-right: 5px;
+			color: #999;
+		}
+
+		.select {
+			text-align: right;
+			vertical-align: middle;
+			border: 0;
+			width: 100%;
+			height: 48px;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			color: #999;
+			cursor: pointer;
+			background-color: white;
+			outline: none;
+			tap-highlight-color: rgba(255, 255, 255, 0);
+			-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+		}
+
+		.select option {
+			direction: rtl;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="content">
+		<div class="H-padding-vertical-bottom-10"></div>
+		<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-both-10-after">
+			<input id="type" type="text" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12 H-text-align-left" v-model="jsonData.name" placeholder="请输入活动类型">
+		</div>
+		<div style="height: 48px;"></div>
+		<div class="H-flexbox-horizontal H-box-sizing-border-box" style="position: fixed;bottom:0px;z-index: 10000;">
+			<div tapmode="" onclick="btnSubmit()" class="H-flex-item H-center-all H-padding-vertical-both-12 H-font-size-16 H-theme-font-color-white" style="background-color:#ff7c48;">
+				确定
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../../../script/api.js"></script>
+	<script type="text/javascript" src="../../../script/H.js"></script>
+	<script type="text/javascript" src="../../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../../script/setting.js"></script>
+	<script type="text/javascript">
+		function btnSubmits() {
+			var url = '/fengwan/admin/add/activity/type/';
+			var token = $api.getStorage('userInfo');
+			var data = {
+				name: $('#type').val()
+			};
+			ajax(url, 'post', data, token, function(ret) {
+				H.toast('添加成功');
+				api.sendEvent({
+					name: 'loadingData',
+					extra: {
+						ret: '1'
+					}
+				});
+				api.closeWin();
+			}, function(ret, err) {
+				log(err, true)
+			});
+		};
+
+		function btnSubmit() {
+			var url = '/fengwan/type/';
+			var data = {
+				name: $('#type').val(),
+				create_user: 1
+			};
+			ajaxs(url, 'post', data, true, function(ret) {
+				if (ret.id) {
+					H.toastTip('添加成功');
+					api.sendEvent({
+						name: 'loadingData',
+						extra: {
+							ret: '1'
+						}
+					});
+					api.closeWin();
+				} else {
+					H.toastTip('操作失败');
+				}
+			}, function(ret, err) {
+				log(ret, true);
+				log(err, true);
+			});
+		};
+	</script>
+</body>
+
+</html>

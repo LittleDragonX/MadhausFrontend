@@ -1,0 +1,123 @@
+<!doctype html>
+<html id="ht">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>评论</title>
+    <link href="../../css/Hui.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        html,
+        body {
+            background: rgba(0, 0, 0, 0.37);
+            padding: 0;
+            margin: 0;
+        }
+
+        .ios {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .closeButton {
+            height: 70px;
+            width: 70px;
+            background-image: url(../image/home_close@3x.png);
+            background-size: 100%;
+        }
+
+        .iconColor {
+            color: #3582DA;
+        }
+
+        .H-footer {
+            height: 82px;
+        }
+    </style>
+</head>
+
+<body class="H-flexbox-vertical" id="bdy">
+    <div class="H-main H-flex-item H-overflow-scrolling"></div>
+    <div id="enrol" style="background-color:#EEEEF4;">
+        <header class="H-header">
+            <span onclick="closeFrame()" tapmode="" class="H-icon H-position-relative H-display-inline-block H-float-left H-vertical-middle H-theme-font-color4 H-padding-horizontal-both-12 H-z-index-100">取消</span>
+            <div class="H-header-title H-center-all H-font-size-18 H-text-show-row-1 H-theme-font-color-666 H-position-absolute H-width-100-percent">
+                参与评论
+            </div>
+            <span onclick="submitBtn()" tapmode="" class="H-icon H-position-relative H-display-inline-block H-float-right H-vertical-middle H-theme-font-color4 H-padding-horizontal-both-15 H-z-index-100">发送</span>
+        </header>
+        <div class="H-padding-vertical-bottom-10 H-padding-horizontal-both-15">
+            <div class="H-theme-background-color-white H-flexbox-horizontal H-border-radius-5">
+                <textarea id="content" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12 H-border-radius-5" style="min-height: 100px;" placeholder="总得写点什么..."></textarea>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../../script/H.js"></script>
+    <script type="text/javascript" src="../../script/setting.js"></script>
+    <script type="text/javascript" src="../../script/zepto.min.js"></script>
+    <script type="text/javascript" src="../../script/api.js "></script>
+    <script type="text/javascript">
+        H.ready(function() {
+            setBg();
+        });
+
+        function submitBtn() {
+            var aid = api.pageParam.aid;
+            var userId = $api.getStorage("userInfo").user.id;
+            var des = $("#content").val();
+            if (des.length == 0) {
+                return H.toast("评论内容不能为空");
+            }
+            addComment(aid, userId, des);
+        };
+        //发表评论:
+        //status:未启用-1、正常1、异常0
+        function addComment(aid, userId, des) {
+            var url = '/fengliao/reply/';
+            var data = {
+                article: aid,
+                user: userId,
+                content: des
+            };
+            ajaxs(url, 'post', data, true, function(ret) {
+
+            }, function(ret, err) {
+                if (ret) {
+                  if(ret.id){
+                    H.toastTip('评论成功');
+                    api.execScript({
+                        name: 'topic_head',
+                        frameName: 'topic_body',
+                        script: 'initComment();'
+                    });
+                    closeFrame();
+                  }else{
+                    H.toastErr('操作失败');
+                  }
+                } else {
+                  log(err,true)
+                    // H.toastErr(err.body.detail);
+                    api.toast({
+                        msg: err.body.detail,
+                        duration: 1200,
+                        location: 'middle'
+                    });
+                }
+            });
+        };
+
+        function setBg() {
+            if (api.systemType == "ios") {
+                $("#ht,#bdy").css({
+                    "background": "rgba(0,0,0,0.6)"
+                });
+            }
+        };
+
+        function closeFrame() {
+            api.closeFrame();
+        };
+    </script>
+</body>
+
+</html>

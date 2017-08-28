@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0">
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>play_editor_body</title>
+	<link href="../../css/Hui.css" rel="stylesheet" type="text/css">
+	<style type="text/css">
+		.btn {
+			background-color: #FF8453;
+		}
+
+		.btn:active {
+			background-color: #ff5336;
+			color: #FFF;
+		}
+	</style>
+</head>
+
+<body class="H-height-100-percent H-box-sizing-border-box H-overflow-hidden">
+	<div id="editorName" class="H-display-none">
+		<div class="fix H-margin-vertical-top-15">
+			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-both-10-after">
+				<input id="name" type="text" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-15 H-theme-background-color-white" placeholder="输入昵称" />
+			</div>
+		</div>
+	</div>
+	<div id="editorNumber" class="H-display-none">
+		<div class="fix H-margin-vertical-top-15">
+			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-both-10-after">
+				<input id="phone" type="text" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-15 H-theme-background-color-white" placeholder="输入微信号或微信绑定手机号" />
+			</div>
+			<div class="H-flexbox-horizontal H-margin-15 H-font-size-12" style="color: #FB5D5F;">
+				设置微信联系方式后才能进行邀约和应约哦！
+			</div>
+		</div>
+	</div>
+	<div id="editorPassword" class="H-display-none">
+		<div class="fix H-margin-vertical-top-15">
+			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-both-10-after">
+				<input type="password" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-15 H-theme-background-color-white" placeholder="请输入旧密码" />
+			</div>
+		</div>
+		<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-both-10-after">
+			<input type="password" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-15 H-theme-background-color-white H-margin-vertical-top-10" placeholder="请输入新密码"
+			/>
+		</div>
+		<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-both-10-after">
+			<input type="password" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-15 H-theme-background-color-white H-margin-vertical-top-10" placeholder="再次输入新密码"
+			/>
+		</div>
+	</div>
+	<div style="height:50px;"></div>
+	<div class="H-width-100-percent" style="position: fixed; bottom: 0;">
+		<button id="footer" onclick="updateUserInfo()" tapmode="" class="H-button H-width-100-percent H-font-size-18 H-outline-none H-padding-vertical-both-10 H-padding-horizontal-both-20 H-theme-font-color-white btn" style="border: 1px solid #FF8453;">
+				确定修改
+			</button>
+	</div>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/H.js"></script>
+	<script type="text/javascript" src="../../script/setting.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/upload.js"></script>
+	<script type="text/javascript">
+		var data = null,type = '';
+		apiready = function() {
+			data = api.pageParam.data;
+			type = data.x;
+			log(data,true)
+			editor(data.x);
+		};
+
+		function editor(x) {
+			if (x == 1) {
+				$("#editorName").fadeIn();
+				$("#name").val(data.v);
+				$("#footer").html("确定修改");
+			} else if (x == 2) {
+				$("#editorNumber").fadeIn();
+				$("#phone").val(data.v);
+				$("#footer").html("确定");
+			} else if (x == 3) {
+				$("#editorPassword").fadeIn();
+				$("#footer").html("确定修改密码");
+			}
+		};
+
+		function send() {
+			var key, val;
+			if (data.x == 1) {
+				val = $("#name").val();
+				key = '#userName';
+			} else if (data.x == 2) {
+				val = $("#phone").val();
+				key = '#wxPhone';
+			}
+			api.sendEvent({
+				name: 'reEditor',
+				extra: {
+					key: key,
+					val: val
+				}
+			});
+			api.closeWin();
+		};
+
+		function updateUserInfo() {
+			var userInfo = $api.getStorage('userInfo');
+			// log(type,true);
+			// var type = data.x;
+			H.toastLoading();
+			var key, val;
+			var userId = userInfo.user.id;
+			var url = '/user-profiles/' + userId + '/';
+			var data = {};
+			if(type==1){
+				data.nickname = $("#name").val();
+				val = $("#name").val();
+				key = '#userName';
+				userInfo.user.nickname = val;
+			}else if(type==2){
+				data.wx_openid = $("#phone").val();
+				val = $("#phone").val();
+				key = '#wxPhone';
+				userInfo.user.wx_openid = val;
+			}
+			ajaxs(url, 'PATCH', data, true, function(ret) {
+
+			}, function(ret, err) {
+				H.closeToast();
+				log(ret, true);
+				log(err, true);
+				if (ret) {
+					if (ret.id) {
+						H.toastTip('修改成功');
+						api.sendEvent({
+							name: 'reEditor',
+							extra: {
+								key: key,
+								val: val
+							}
+						});
+						//存储用户信息
+						$api.setStorage('userInfo',userInfo);
+						api.sendEvent({
+							name: 'userLoginData',
+							extra: {
+								status: 1
+							}
+						});
+
+						api.closeWin();
+					} else {
+						H.toastErr('修改失败');
+					}
+				} else {
+					log(err, true)
+					api.toast({
+						msg: err.body.detail,
+						duration: 1200,
+						location: 'middle'
+					});
+				}
+			});
+		};
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,439 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>发布活动</title>
+	<link href="../../../css/Hui.css" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+		input.H-textbox {
+			border-width: 0;
+			color: #999;
+			min-width: 100px;
+		}
+
+		.H-badge {
+			padding-right: 5px;
+			color: #999;
+		}
+
+		.select {
+			text-align: right;
+			vertical-align: middle;
+			border: 0;
+			width: 100%;
+			height: 48px;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+			color: #999;
+			cursor: pointer;
+			background-color: white;
+			outline: none;
+			tap-highlight-color: rgba(255, 255, 255, 0);
+			-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+		}
+
+		.select option {
+			direction: rtl;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="content">
+		<div id="pic" onclick="openUploadImg()" tapmode="" class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-both-10-after H-vertical-middle" style="height:200px;" v-show="initData.isShow">
+
+		</div>
+		<div onclick="openUploadImg()" tapmode="" class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-both-10-after H-vertical-middle H-touch-active">
+			<div class="H-flex-item H-padding-12 H-font-size-16">
+				活动主图添加
+			</div>
+			<span class="H-icon H-padding-horizontal-both-12 H-display-block H-border-horizontal-left-after"><i class="H-iconfont H-icon-thumb H-font-size-24 H-vertical-middle" style="color:#FF7C48;"></i></span>
+		</div>
+		<div class="H-padding-vertical-bottom-10"></div>
+		<div class="H-theme-background-color-white H-text-list H-flexbox-horizontal H-vertical-middle H-border-vertical-bottom-margin-both-10-after">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+				是否重点推荐
+			</div>
+			<input type="checkbox" v-model="jsonData.level" class="H-switch H-display-block H-position-relative H-theme-background-color-white H-theme-font-color8 H-margin-horizontal-right-10">
+		</div>
+		<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-both-10-after">
+			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">活动标题</span>
+			<input type="text" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12 H-text-align-right" v-model="jsonData.name" placeholder="输入活动标题">
+		</div>
+		<!--<div onclick="vm.openItemInfo()" tapmode="" class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-both-10-after H-vertical-middle H-touch-active" v-show="initData.isShow_open">
+			<div class="H-flex-item H-padding-12 H-font-size-16">
+			活动类型
+			</div>
+			<span class="H-badge H-display-block" v-text="jsonData.manager_name">电影</span>
+			<span class="H-icon H-padding-horizontal-right-10 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i></span>
+			</div>-->
+		<!-- <div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-left-10-after H-vertical-middle">
+			<div class="H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+				活动类型
+			</div>
+			<div class="H-flex-item">
+				<select id="selectType" v-model="jsonData.a_type" class="H-font-size-16 select" dir="rtl">
+						<option value="-1">活动类型选择</option>
+						<option value="1">电影</option>
+						<option value="2">戏剧</option>
+						<option value="3">书法</option>
+					</select>
+			</div>
+			<span class="H-icon H-padding-horizontal-right-10 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i></span>
+		</div> -->
+		<div onclick="openActivityType()" tapmode="" class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-both-10-after H-vertical-middle H-touch-active">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+				活动类型
+			</div>
+			<span class="H-badge H-display-block" v-text="initData.typeName"></span>
+			<span class="H-icon H-padding-horizontal-right-10 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i></span>
+		</div>
+		<div onclick="vm.getDatePicker('活动开始时间','start_time','2')" tapmode="" class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-both-10-after H-vertical-middle H-touch-active">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+				活动开始时间
+			</div>
+			<span id="start_time" class="H-badge H-display-block" v-text="jsonData.start_time">选择活动时间</span>
+			<span class="H-icon H-padding-horizontal-right-10 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i></span>
+		</div>
+		<div onclick="vm.getDatePicker('活动结束时间','end_time','1')" tapmode="" class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-both-10-after H-vertical-middle H-touch-active">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+				活动结束时间
+			</div>
+			<span id="end_time" class="H-badge H-display-block" v-text="jsonData.end_time">选择活动时间</span>
+			<span class="H-icon H-padding-horizontal-right-10 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i></span>
+		</div>
+		<div class="H-text-list H-flexbox-horizontal H-theme-background-color-white H-border-vertical-bottom-margin-both-10-after H-vertical-middle H-touch-active">
+			<div class="H-padding-horizontal-both-10 H-padding-vertical-both-12 H-font-size-16" style="min-width: 90px;">
+				活动地址
+			</div>
+			<!--<div class="H-flex-item H-badge H-text-show-row-2 H-display-block H-text-align-right" v-text="initData.address">
+				选择活动地址
+				</div>
+				<span class="H-icon H-padding-horizontal-right-10 H-display-block"><i class="H-iconfont H-icon-arrow-right H-theme-font-color-ccc H-font-size-16 H-vertical-middle"></i></span>-->
+		</div>
+		<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-both-10-after">
+			<input type="text" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12 H-text-align-left" v-model="jsonData.location" placeholder="输入详细活动地址">
+		</div>
+		<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-both-10-after">
+			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">人数限额</span>
+			<input type="number" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12 H-text-align-right" v-model="jsonData.people_quota_limit" placeholder="输入报名人数限额">
+		</div>
+		<div class="H-theme-background-color-white H-text-list H-flexbox-horizontal H-vertical-middle H-border-vertical-bottom-margin-both-10-after">
+			<div class="H-flex-item H-padding-horizontal-both-10 H-font-size-16 H-padding-vertical-both-12">
+				是否收费
+			</div>
+			<input type="checkbox" v-model="jsonData.has_fee" class="H-switch H-display-block H-position-relative H-theme-background-color-white H-theme-font-color8 H-margin-horizontal-right-10">
+		</div>
+		<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-both-10-after" v-show="jsonData.has_fee">
+			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">活动报名费用</span>
+			<input type="number" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12 H-text-align-right" v-model="jsonData.fee"  placeholder="0.00">
+		</div>
+		<div class="H-flexbox-horizontal">
+			<span class="H-vertical-middle H-padding-horizontal-left-10 H-theme-background-color-white H-font-size-16">咨询电话</span>
+			<input type="number" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12 H-text-align-right" v-model="jsonData.contact_way" placeholder="请输入咨询电话号码">
+		</div>
+		<div class="H-padding-vertical-bottom-10"></div>
+		<div onclick="openContent()" tapmode="" class="H-theme-background-color-white H-padding-10" style="height: 100px;" v-html="jsonData.description">
+			点击编辑活动详情...
+		</div>
+		<div class="show" style="height: 48px;display:none;"></div>
+		<div class="H-flexbox-horizontal H-box-sizing-border-box show" style="position: fixed;bottom:0px;z-index: 10000;display:none;">
+			<div tapmode="" onclick="vm.btnSubmit()" class="H-flex-item H-center-all H-padding-vertical-both-12 H-font-size-16 H-theme-font-color-white" style="background-color:#ff7c48;">
+				确定编辑
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../../../script/api.js"></script>
+	<script type="text/javascript" src="../../../script/H.js"></script>
+	<script type="text/javascript" src="../../../script/vue.js"></script>
+	<script type="text/javascript" src="../../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../../script/setting.js"></script>
+	<script type="text/javascript" src="../../../script/upload.js"></script>
+	<script type="text/javascript">
+		var vm = null,itemId=null;
+		initVue();
+		apiready = function() {
+			if(api.pageParam.type==1){
+				$('.show').css({'display':'block'});
+			}
+			activityType();
+			initRequire();
+			api.addEventListener({
+			    name: 'setContentData'
+			}, function(ret, err){
+			    if( ret ){
+			         setContent(ret.value.content);
+			    }else{
+			         alert( JSON.stringify( err ) );
+			    }
+			});
+		};
+		function initRequire() {
+			require();
+			isIOS = api.systemType == "ios" ? true : false;
+		};
+		function initVue() {
+			vm = new Vue({
+				el: '#content',
+				data: {
+					jsonData: {
+						name: null,
+						a_type: -1,
+						start_time: null,
+						end_time: null,
+						location: null,
+						description: '点击编辑活动详情',
+						people_quota_limit: null,
+						contact_way: null,
+						has_fee: false,
+						fee: null,
+						level: false,
+						pic: null,
+						create_user: 1,
+						company_name:''
+					},
+					initData: {
+						isShow: true,
+						typeName:null
+					}
+				},
+				methods: {
+					btnSubmit: function() {
+						this.editItemInfo();
+					},
+					editItemInfo: function() {
+						var jsonData = this.jsonData;
+						log(jsonData);
+						//删除对象(属性=null)
+						for (var key in jsonData) {
+							if (jsonData[key] == false) {
+								jsonData[key] = 0;
+							}
+							if (jsonData[key] == true) {
+								jsonData[key] = 1;
+							}
+							if (jsonData[key] == null) {
+								delete jsonData[key];
+							}
+						}
+						if(jsonData.has_fee==0){
+							jsonData.fee=0;
+						}else{
+							if(jsonData.fee==0){
+								return H.toast('报名费用必须大于0')
+							}
+						}
+						log(jsonData);
+						//return;
+						var id = api.pageParam.id;
+						var url = window.server + '/fengwans/' + id + '/';
+						api.ajax({
+							url: url,
+							method: 'PUT',
+							data: {
+								values: jsonData
+							},
+							headers: {
+								"X-CSRFToken": $api.getStorage('userInfo').token
+							},
+						}, function(ret, err) {
+							log(ret, true)
+							log(err, true)
+							if (ret) {
+								H.toast('编辑成功');
+								api.sendEvent({
+								    name: 'loadingPlayData',
+								    extra: {
+								        ret: '1'
+								    }
+								});
+								api.closeWin();
+							} else {
+								api.toast({
+									msg: '错误码:' + err.code + ";网络状态码:" + err.statusCode,
+									duration: 3000,
+									location: 'middle'
+								});
+							}
+						});
+						// var url = '/fengwan/admin/modify/';
+						// var token = $api.getStorage('userInfo');
+						// ajax(url, 'post', jsonData, token, function(ret) {
+						// 	H.toast('编辑成功')
+						// }, function(ret, err) {
+						//
+						// });
+
+					},
+					getDatePicker: function(title, id, type) {
+						//var typeStr = type == '0' ? 'time' : 'date';
+						api.openPicker({
+							type: 'date_time',
+							title: title
+						}, function(ret, err) {
+							if (ret) {
+								var dt = (ret.hour < 10 ? ('0' + ret.hour) : ret.hour) + ':' + (ret.minute < 10 ? ('0' + ret.minute) : ret.minute);
+								var ym = ret.year + '-' + (ret.month < 10 ? ('0' + ret.month) : ret.month) + '-' + (ret.day < 10 ? ('0' + ret.day) : ret.day) + ' ';
+								vm.jsonData[id] = ym + dt;
+							} else {
+								alert(JSON.stringify(err));
+							}
+						});
+					}
+				}
+			});
+		};
+		function setGoodsType(id,name){
+			vm.initData.typeName=name;
+			vm.jsonData.a_type=id;
+		};
+		function openActivityType(){
+			H.openWin('base_head_activity_type_body', 'widget://html/comPages/base_head.html', {
+				title: '活动类型',
+				name: 'activity_type_body',
+				url: '../admin/play/activity_type_body.html',
+				id:itemId,
+				str: 'detail'
+			});
+		};
+		function openContent() {
+			H.openWin('base_head', 'widget://html/comPages/base_head.html', {
+				title: '编辑活动详情',
+				name: 'activity_content_edit_body',
+				url: '../admin/play/activity_content_edit_body.html',
+				content:vm.jsonData.description,
+				str:'detail'
+			});
+		};
+		function setContent(data){
+			vm.jsonData.description = data;
+		};
+		function getItemDetail() {
+			var id = api.pageParam.id;
+			var url = window.server + '/fengwans/' + id + '/';
+			api.ajax({
+				url: url,
+				method: 'get',
+				headers: {
+					"X-CSRFToken": $api.getStorage('userInfo').token
+				},
+			}, function(ret, err) {
+				log(ret, true)
+				if (ret) {
+					var data = {
+						name: ret.name,
+						a_type: ret.a_type,
+						start_time: ret.start_time?ret.start_time.replace('T', ' '):null,
+						end_time: ret.end_time?ret.end_time.replace('T', ' '):null,
+						location: ret.location,
+						description: ret.description?ret.description:'点击编辑活动详情',
+						people_quota_limit: ret.people_quota_limit,
+						contact_way: ret.contact_way,
+						has_fee: ret.has_fee == 0 ? false : true,
+						fee: ret.fee,
+						level: ret.level == 0 ? false : true,
+						pic: ret.pic,
+						create_user: 1,
+						company_name:''
+					};
+					itemId = ret.id;
+					vm.jsonData = data;
+					vm.initData.typeName=ret.type_name;
+					$('#pic').css({
+						'background': 'url(' + ret.pic + ') no-repeat left top'
+					})
+				} else {
+					api.toast({
+						msg: '错误码:' + err.code + ";网络状态码:" + err.statusCode,
+						duration: 3000,
+						location: 'middle'
+					});
+				}
+			});
+		};
+
+		function activityType() {
+			var url = '/fengwan/home/get/type/';
+			http(url, 'get', null, function(ret) {
+				log(ret, true);
+				var data = ret.data.activity_type_list;
+				var html = '<option value="0">活动类型选择</option>';
+				for (var i in data) {
+					html += '<option value="' + data[i].id + '">' + data[i].name + '</option>';
+				}
+				$("#selectType").html(html);
+				getItemDetail();
+				api.parseTapmode();
+			}, function(ret, err) {
+
+			});
+		};
+		//上传图片
+		function openUploadImg() {
+			openActionSheet(function(img) {
+				getTokens(img);
+			})
+		};
+
+		function getTokens(img) {
+			api.showProgress({
+			    style: 'default',
+			    animationType: 'fade',
+			    title: '努力加载中...',
+			    text: '先喝杯茶...',
+			    modal: false
+			});
+			var url = window.server + '/common/qiniu/get/token/';
+			api.ajax({
+				url: url,
+				method: "get",
+				headers: {
+					"X-CSRFToken": $api.getStorage('userInfo').token
+				}
+			}, function(ret, err) {
+				if (ret) {
+					log(ret, true);
+					uploadImg(img, ret.data)
+				} else {
+					log(err, true);
+				}
+			});
+		};
+
+		function uploadImg(img, res) {
+			var data = {
+				files: {
+					file: img
+				},
+				values: {
+					token: res.token,
+					key: res.key
+				}
+			};
+			api.ajax({
+				url: "http://up-z2.qiniu.com/",
+				data: data,
+				dataType: "json",
+				method: "post"
+			}, function(ret, err) {
+				api.hideProgress();
+				if (ret) {
+					log(ret, true);
+					vm.jsonData.pic=res.pic_path;
+					$('#pic').css({
+						'background': 'url(' + res.pic_path + ') no-repeat left top'
+					})
+				} else {
+					alert('上传失败');
+					//log(err, true);
+				}
+			});
+		};
+	</script>
+</body>
+
+</html>

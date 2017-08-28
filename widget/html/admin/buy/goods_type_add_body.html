@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>发布商品</title>
+		<link href="../../../css/Hui.css" rel="stylesheet" type="text/css" />
+		<style type="text/css">
+			input.H-textbox {
+				border-width: 0;
+				color: #999;
+				min-width: 100px;
+			}
+			.H-badge {
+				padding-right: 5px;
+				color: #999;
+			}
+			.select {
+				text-align: right;
+				vertical-align: middle;
+				border: 0;
+				width: 100%;
+				height: 48px;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				color: #999;
+				cursor: pointer;
+				background-color: white;
+				outline: none;
+				tap-highlight-color: rgba(255, 255, 255, 0);
+				-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+			}
+			.select option {
+				direction: rtl;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="content">
+			<div class="H-padding-vertical-bottom-10"></div>
+			<div class="H-flexbox-horizontal H-border-vertical-bottom-margin-both-10-after">
+				<input type="text" class="H-textbox H-vertical-align-middle H-vertical-middle H-font-size-16 H-flex-item H-box-sizing-border-box H-border-none H-outline-none H-padding-12 H-text-align-left" v-model="jsonData.name" placeholder="填写商品规格">
+			</div>
+			<div style="height: 48px;"></div>
+			<div class="H-flexbox-horizontal H-box-sizing-border-box" style="position: fixed;bottom:0px;z-index: 10000;">
+				<div tapmode="" onclick="vm.btnSubmit()" class="H-flex-item H-center-all H-padding-vertical-both-12 H-font-size-16 H-theme-font-color-white" style="background-color:#ff7c48;">
+					确定
+				</div>
+			</div>
+		</div>
+		<script src="../../../script/api.js" type="text/javascript"></script>
+		<script type="text/javascript" src="../../../script/H.js"></script>
+		<script type="text/javascript" src="../../../script/vue.js"></script>
+		<script type="text/javascript" src="../../../script/zepto.min.js"></script>
+		<script type="text/javascript" src="../../../script/setting.js"></script>
+		<script type="text/javascript">
+			var vm = null;
+			initVue();
+			apiready = function() {
+				activityType();
+			};
+			function initVue() {
+				vm = new Vue({
+					el : '#content',
+					data : {
+						jsonData : {
+							name : null,
+							price : null,
+							storeNum : null,
+						},
+						initData : {
+							isShow : false,
+						}
+					},
+					methods : {
+						btnSubmit : function() {
+							this.addItemInfo();
+						},
+						addItemInfo : function() {
+							var jsonData = this.jsonData;
+							log(jsonData);
+							//删除对象(属性=null)
+							for (var key in jsonData) {
+								if (jsonData[key] == false) {
+									jsonData[key] = 0;
+								}
+								if (jsonData[key] == true) {
+									jsonData[key] = 1;
+								}
+								if (jsonData[key] == null) {
+									delete jsonData[key];
+								}
+							}
+							log(jsonData);
+							//return;
+							var url = window.server + '/activities/';
+							api.ajax({
+								url : url,
+								method : 'post',
+								data : {
+									values : jsonData
+								},
+								headers : {
+									"X-CSRFToken" : $api.getStorage("userInfo").token
+								}
+							}, function(ret, err) {
+								log('---------返回数据--------', true);
+								log(ret, true);
+								if (ret) {
+									api.toast({
+										msg : '添加成功 ✓',
+										duration : 1500,
+										location : 'middle'
+									});
+								} else {
+									H.toast(JSON.stringify(err));
+								}
+							});
+						},
+						getDatePicker : function(title, id, type) {
+							//var typeStr = type == '0' ? 'time' : 'date';
+							api.openPicker({
+								type : 'date_time',
+								title : title
+							}, function(ret, err) {
+								if (ret) {
+									var dt = (ret.hour < 10 ? ('0' + ret.hour) : ret.hour) + ':' + (ret.minute < 10 ? ('0' + ret.minute) : ret.minute);
+									var ym = ret.year + '-' + (ret.month < 10 ? ('0' + ret.month) : ret.month) + '-' + (ret.day < 10 ? ('0' + ret.day) : ret.day) + ' ';
+									vm.jsonData.start_time = ym + dt;
+								} else {
+									alert(JSON.stringify(err));
+								}
+							});
+						}
+					}
+				});
+			};
+			function activityType() {
+				var url = window.server + '/activity-type/';
+				api.ajax({
+					url : url,
+					method : 'get'
+				}, function(ret, err) {
+					log(ret, true);
+					if (ret) {
+						var data = ret.results;
+						var html = '<option value="0">活动类型选择</option>';
+						for (var i in data) {
+							html += '<option value="' + data[i].id + '">' + data[i].name + '</option>';
+						}
+						$("#selectType").html(html);
+						api.parseTapmode();
+					} else {
+						H.toast(JSON.stringify(err));
+					}
+				});
+			};
+		</script>
+	</body>
+</html>
